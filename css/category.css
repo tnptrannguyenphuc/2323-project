@@ -1,0 +1,158 @@
+/* ============================================================
+   CATEGORY PAGE STYLES – category.css
+   CSS riêng cho trang danh mục (category.html)
+   ============================================================ */
+
+/* -- Bố cục 2 cột: sidebar + content -- */
+.category-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+/* -- Sidebar cố định khi cuộn -- */
+.category-sidebar {
+    position: sticky;
+    top: 80px; /* chiều cao header */
+}
+
+/* -- Badge số lượng trong danh mục -- */
+.cat-count-badge {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-gray);
+    background: var(--bg-gray);
+    padding: 1px 7px;
+    border-radius: 10px;
+}
+
+/* -- Label lọc giá / radio / checkbox -- */
+.price-range-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 6px;
+    font-size: 13px;
+    color: var(--text-dark);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.price-range-label:hover {
+    background: var(--green-soft);
+}
+
+.price-range-label input[type="radio"],
+.price-range-label input[type="checkbox"] {
+    accent-color: var(--green-main);
+    width: 15px;
+    height: 15px;
+}
+
+/* -- Tiêu đề + sắp xếp -- */
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: var(--bg-white);
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.category-title-area {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.category-title-area h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-dark);
+}
+
+.result-count {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+/* -- Form sắp xếp -- */
+.sort-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-form label {
+    font-size: 13px;
+    color: var(--text-gray);
+    white-space: nowrap;
+}
+
+.sort-form select {
+    padding: 7px 12px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text-dark);
+    cursor: pointer;
+    outline: none;
+}
+
+.sort-form select:focus {
+    border-color: var(--green-main);
+}
+
+/* -- Bìa sách placeholder (dùng chung) -- */
+.book-cover-placeholder {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    text-align: center;
+}
+
+.book-cover-placeholder .cover-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.book-cover-placeholder .cover-author {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    font-style: italic;
+}
+
+.product-card .card-img {
+    display: block;
+    position: relative;
+}
+
+/* -- Responsive -- */
+@media (max-width: 768px) {
+    .category-layout {
+        grid-template-columns: 1fr;
+    }
+    .category-sidebar {
+        position: static;
+    }
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

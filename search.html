@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm sách – BookStore</title>
+    <meta name="description" content="Tìm kiếm sách theo tên, thể loại và khoảng giá tại BookStore.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER (copy từ index.html)
+     ============================================================ -->
+<header class="site-header">
+    <div class="header-top">
+        <div class="container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-text">
+                    <span class="logo-name">BookStore</span>
+                    <span class="logo-slogan">Kho sách tri thức</span>
+                </span>
+            </a>
+            <!-- Ô tìm kiếm header -->
+            <div class="header-search">
+                <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại..." autocomplete="off">
+                <a href="search.html" class="header-search-btn">Tìm kiếm</a>
+            </div>
+            <div class="header-actions">
+                <a href="cart.html" class="header-action-btn">
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">3</span>
+                </a>
+                <a href="login.html" class="header-action-btn">
+                    <span>Đăng nhập</span>
+                </a>
+                <a href="register.html" class="header-action-btn">
+                    <span>Đăng ký</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <nav class="header-nav">
+        <div class="container">
+            <a href="category.html" class="nav-item">Văn học</a>
+            <a href="category.html" class="nav-item">Kinh tế</a>
+            <a href="category.html" class="nav-item">Khoa học</a>
+            <a href="category.html" class="nav-item">Kỹ năng sống</a>
+            <a href="category.html" class="nav-item">Thiếu nhi</a>
+            <a href="category.html" class="nav-item">Giáo khoa</a>
+            <a href="category.html" class="nav-item">Lịch sử</a>
+            <a href="search.html" class="nav-item active" style="margin-left:auto;color:#ffe082;">Tìm nâng cao</a>
+        </div>
+    </nav>
+</header>
+
+
+<!-- ============================================================
+     MAIN – TRANG TÌM KIẾM
+     ============================================================ -->
+<main class="main-content">
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Trang chủ</a>
+            <span class="sep">›</span>
+            <span>Tìm kiếm</span>
+        </nav>
+
+        <!-- ============================================================
+             FORM TÌM KIẾM NÂNG CAO
+             Kết hợp nhiều điều kiện trong 1 form
+             ============================================================ -->
+        <div class="search-form-card">
+            <h1>Tìm kiếm sách</h1>
+            <p class="search-subtitle">Tìm kiếm tương đối theo tên – hoặc kết hợp nhiều điều kiện bên dưới</p>
+
+            <!-- Form tìm kiếm nâng cao -->
+            <div class="advanced-search-form">
+
+                <!-- ---- HÀNG 1: Từ khóa tìm kiếm ---- -->
+                <div class="search-field-main">
+                    <label for="search-keyword">Tìm theo tên sách / tác giả</label>
+                    <div class="search-input-wrap">
+                        <input type="text" id="search-keyword"
+                               value="Đắc Nhân Tâm"
+                               placeholder="Nhập tên sách, tác giả...">
+                        <a href="search.html" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Tìm kiếm</a>
+                    </div>
+                    <small class="form-note">Tìm kiếm tương đối – nhập một phần tên cũng tìm được</small>
+                </div>
+
+                <!-- ---- HÀNG 2: Bộ lọc nâng cao ---- -->
+                <div class="advanced-filters">
+                    <h3>Bộ lọc nâng cao</h3>
+                    <div class="filters-grid">
+
+                        <!-- Lọc theo thể loại -->
+                        <div class="form-group">
+                            <label for="filter-category">Thể loại</label>
+                            <select id="filter-category" name="cat">
+                                <option value="">-- Tất cả thể loại --</option>
+                                <option value="van-hoc">Văn học</option>
+                                <option value="kinh-te">Kinh tế</option>
+                                <option value="khoa-hoc">Khoa học</option>
+                                <option value="ky-nang" selected>Kỹ năng sống</option>
+                                <option value="thieu-nhi">Thiếu nhi</option>
+                                <option value="giao-khoa">Giáo khoa</option>
+                                <option value="lich-su">Lịch sử</option>
+                            </select>
+                        </div>
+
+                        <!-- Giá từ -->
+                        <div class="form-group">
+                            <label for="filter-price-min">Giá từ (đồng)</label>
+                            <input type="number" id="filter-price-min" name="price_min"
+                                   value="0" min="0" step="10000" placeholder="VD: 50.000">
+                        </div>
+
+                        <!-- Giá đến -->
+                        <div class="form-group">
+                            <label for="filter-price-max">Giá đến (đồng)</label>
+                            <input type="number" id="filter-price-max" name="price_max"
+                                   value="50.0000" min="0" step="10000" placeholder="VD: 200000">
+                        </div>
+
+                        <!-- Sắp xếp kết quả -->
+                        <div class="form-group">
+                            <label for="filter-sort">Sắp xếp theo</label>
+                            <select id="filter-sort" name="sort">
+                                <option value="relevant">Liên quan nhất</option>
+                                <option value="price-asc">Giá thấp → cao</option>
+                                <option value="price-desc">Giá cao → thấp</option>
+                                <option value="rating">Đánh giá cao nhất</option>
+                                <option value="new">Mới nhất</option>
+                            </select>
+                        </div>
+
+                        <!-- Đánh giá tối thiểu -->
+                        <div class="form-group">
+                            <label for="filter-rating">Đánh giá tối thiểu</label>
+                            <select id="filter-rating" name="min_rating">
+                                <option value="">Tất cả</option>
+                                <option value="5">5 sao</option>
+                                <option value="4">4 sao trở lên</option>
+                                <option value="3">3 sao trở lên</option>
+                            </select>
+                        </div>
+
+                        <!-- Nhà xuất bản -->
+                        <div class="form-group">
+                            <label for="filter-publisher">Nhà xuất bản</label>
+                            <select id="filter-publisher" name="publisher">
+                                <option value="">Tất cả NXB</option>
+                                <option value="nxb-tre">NXB Trẻ</option>
+                                <option value="nxb-kim-dong">NXB Kim Đồng</option>
+                                <option value="nxb-hoi-nha-van">NXB Hội Nhà Văn</option>
+                                <option value="nxb-giao-duc">NXB Giáo Dục</option>
+                                <option value="nxb-tong-hop">NXB Tổng Hợp TP.HCM</option>
+                            </select>
+                        </div>
+
+                    </div><!-- /filters-grid -->
+
+                    <!-- Nút áp dụng -->
+                    <div class="filter-actions">
+                        <a href="search.html" class="btn-primary" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">
+                            Áp dụng tìm kiếm
+                        </a>
+                        <a href="search.html" class="btn-outline">
+                            Xóa bộ lọc
+                        </a>
+                    </div>
+                </div><!-- /advanced-filters -->
+
+            </div><!-- /advanced-search-form -->
+        </div><!-- /search-form-card -->
+
+
+        <!-- ============================================================
+             KẾT QUẢ TÌM KIẾM
+             ============================================================ -->
+        <div class="search-results">
+
+            <!-- Thông báo kết quả -->
+            <div class="search-result-header">
+                <div class="result-info">
+                    <h2>Kết quả cho: <em>"Đắc Nhân Tâm"</em></h2>
+                    <span class="result-count">Tìm thấy <strong>8</strong> sản phẩm</span>
+                </div>
+                <!-- Điều kiện đang áp dụng -->
+                <div class="active-filters">
+                    <span class="filter-tag">
+                        Kỹ năng sống <a href="search.html">&times;</a>
+                    </span>
+                    <span class="filter-tag">
+                        0đ – 500.000đ <a href="search.html">&times;</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Lưới kết quả – phân trang -->
+            <div class="product-grid">
+
+                <!-- Kết quả 1 (tìm thấy) -->
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#27ae60,#1a5c38);">
+                            <span class="cover-title">Đắc Nhân Tâm</span>
+                            <span class="cover-author">Dale Carnegie</span>
+                        </div>
+                        <span class="badge-sale">-20%</span>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">Đắc Nhân Tâm</a>
+                        <span class="card-author">Dale Carnegie</span>
+                        <div class="card-price">
+                            <span class="price-current">88.000đ</span>
+                            <span class="price-old">110.000đ</span>
+                        </div>
+                        <div class="card-rating"><span class="stars">★★★★★</span><span>(245)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <!-- Kết quả 2 -->
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#8e44ad,#5b2c6f);">
+                            <span class="cover-title">Atomic Habits</span>
+                            <span class="cover-author">James Clear</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">Atomic Habits – Thói Quen Tốt</a>
+                        <span class="card-author">James Clear</span>
+                        <div class="card-price"><span class="price-current">118.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★★</span><span>(376)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <!-- Kết quả 3 -->
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#16a085,#0e6655);">
+                            <span class="cover-title">Dám Nghĩ Lớn</span>
+                            <span class="cover-author">David J. Schwartz</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">Dám Nghĩ Lớn</a>
+                        <span class="card-author">David J. Schwartz</span>
+                        <div class="card-price"><span class="price-current">94.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★☆</span><span>(167)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <!-- Kết quả 4 -->
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#1abc9c,#117a65);">
+                            <span class="cover-title">Giao Tiếp Như Chuyên Gia</span>
+                            <span class="cover-author">Leil Lowndes</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">Giao Tiếp Như Chuyên Gia</a>
+                        <span class="card-author">Leil Lowndes</span>
+                        <div class="card-price"><span class="price-current">102.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★☆</span><span>(76)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <!-- Kết quả 5 -->
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#2471a3,#1a4f72);">
+                            <span class="cover-title">7 Thói Quen Hiệu Quả</span>
+                            <span class="cover-author">Stephen R. Covey</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">7 Thói Quen Của Người Hiệu Quả</a>
+                        <span class="card-author">Stephen R. Covey</span>
+                        <div class="card-price"><span class="price-current">132.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★★</span><span>(234)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <!-- Kết quả 6 -->
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#e67e22,#ca6f1e);">
+                            <span class="cover-title">Tư Duy Nhanh Và Chậm</span>
+                            <span class="cover-author">Daniel Kahneman</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Khoa học</span>
+                        <a href="product-detail.html" class="card-title">Tư Duy Nhanh Và Chậm</a>
+                        <span class="card-author">Daniel Kahneman</span>
+                        <div class="card-price"><span class="price-current">156.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★☆</span><span>(189)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <!-- Kết quả 7 -->
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#c0392b,#7b241c);">
+                            <span class="cover-title">Sapiens</span>
+                            <span class="cover-author">Yuval Noah Harari</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Lịch sử</span>
+                        <a href="product-detail.html" class="card-title">Sapiens: Lược Sử Loài Người</a>
+                        <span class="card-author">Yuval Noah Harari</span>
+                        <div class="card-price"><span class="price-current">198.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★★</span><span>(523)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <!-- Kết quả 8 -->
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#2980b9,#1a5276);">
+                            <span class="cover-title">Nhà Giả Kim</span>
+                            <span class="cover-author">Paulo Coelho</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Văn học</span>
+                        <a href="product-detail.html" class="card-title">Nhà Giả Kim</a>
+                        <span class="card-author">Paulo Coelho</span>
+                        <div class="card-price"><span class="price-current">72.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★★</span><span>(412)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+            </div><!-- /product-grid kết quả -->
+
+            <!-- Phân trang kết quả tìm kiếm -->
+            <nav class="pagination">
+                <span class="disabled">‹ Trước</span>
+                <span class="active">1</span>
+                <a href="search.html">2</a>
+                <a href="search.html">Tiếp ›</a>
+            </nav>
+
+        </div><!-- /search-results -->
+
+    </div><!-- /container -->
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="footer-logo-name">BookStore</div>
+                <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.</p>
+                <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM &nbsp;|&nbsp; Hotline: 0909 123 456</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn">f</a>
+                    <a href="#" class="social-btn">in</a>
+                    <a href="#" class="social-btn">yt</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Danh mục</h4>
+                <ul>
+                    <li><a href="category.html">Văn học</a></li>
+                    <li><a href="category.html">Kinh tế</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Tài khoản</h4>
+                <ul>
+                    <li><a href="login.html">Đăng nhập</a></li>
+                    <li><a href="register.html">Đăng ký</a></li>
+                    <li><a href="admin/login.html">Quản trị viên</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">© 2026 BookStore – Nhà sách trực tuyến.</div>
+    </div>
+</footer>
+
+<!-- Tự động định dạng tiền tệ (hàng nghìn, hàng triệu,...) -->
+<script src="js/format-number.js"></script>
+</body>
+</html>

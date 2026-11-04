@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đắc Nhân Tâm – Chi tiết sản phẩm | BookStore</title>
+    <meta name="description" content="Đắc Nhân Tâm – Dale Carnegie. Sách kỹ năng sống bán chạy nhất mọi thời đại.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product-detail.css">
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER (copy từ index.html)
+     ============================================================ -->
+<header class="site-header">
+    <div class="header-top">
+        <div class="container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-text">
+                    <span class="logo-name">BookStore</span>
+                    <span class="logo-slogan">Kho sách tri thức</span>
+                </span>
+            </a>
+            <div class="header-search">
+                <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại...">
+                <a href="search.html" class="header-search-btn">Tìm kiếm</a>
+            </div>
+            <div class="header-actions">
+                <a href="cart.html" class="header-action-btn">
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">3</span>
+                </a>
+                <a href="login.html" class="header-action-btn">
+                    <span>Đăng nhập</span>
+                </a>
+                <a href="register.html" class="header-action-btn">
+                    <span>Đăng ký</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <nav class="header-nav">
+        <div class="container">
+            <a href="category.html" class="nav-item">Văn học</a>
+            <a href="category.html" class="nav-item">Kinh tế</a>
+            <a href="category.html" class="nav-item">Khoa học</a>
+            <a href="category.html" class="nav-item active">Kỹ năng sống</a>
+            <a href="category.html" class="nav-item">Thiếu nhi</a>
+            <a href="category.html" class="nav-item">Giáo khoa</a>
+            <a href="category.html" class="nav-item">Lịch sử</a>
+            <a href="search.html" class="nav-item" style="margin-left:auto;color:#ffe082;">Tìm nâng cao</a>
+        </div>
+    </nav>
+</header>
+
+
+<!-- ============================================================
+     MAIN – CHI TIẾT SẢN PHẨM
+     ============================================================ -->
+<main class="main-content">
+    <div class="container">
+
+        <!-- Breadcrumb đường dẫn -->
+        <nav class="breadcrumb">
+            <a href="index.html">Trang chủ</a>
+            <span class="sep">›</span>
+            <a href="category.html">Kỹ năng sống</a>
+            <span class="sep">›</span>
+            <span>Đắc Nhân Tâm</span>
+        </nav>
+
+        <!-- ---- KHỐI THÔNG TIN CHÍNH ---- -->
+        <div class="product-detail-top">
+
+            <!-- CỘT TRÁI: Ảnh bìa sách -->
+            <div class="product-images">
+                <!-- Ảnh bìa chính (placeholder màu gradient) -->
+                <div class="main-image">
+                    <div class="book-cover-large" style="background:linear-gradient(135deg,#1a5c38,#27ae60);">
+                        <span class="cover-title-lg">Đắc Nhân Tâm</span>
+                        <div class="cover-divider"></div>
+                        <span class="cover-author-lg">Dale Carnegie</span>
+                        <span class="cover-publisher">NXB Tổng Hợp TP.HCM</span>
+                    </div>
+                </div>
+
+                <!-- Thumbnail nhỏ (ảnh thêm) -->
+                <div class="thumbnail-list">
+                    <div class="thumb active" style="background:linear-gradient(135deg,#1a5c38,#27ae60);"></div>
+                    <div class="thumb" style="background:linear-gradient(135deg,#2e4057,#4a6fa5);"></div>
+                    <div class="thumb" style="background:linear-gradient(135deg,#6e2f0e,#a04000);"></div>
+                    <div class="thumb" style="background:linear-gradient(135deg,#17202a,#2c3e50);"></div>
+                </div>
+            </div><!-- /product-images -->
+
+
+            <!-- CỘT GIỮA: Thông tin sản phẩm -->
+            <div class="product-info">
+                <!-- Tên sách -->
+                <h1 class="product-name">Đắc Nhân Tâm</h1>
+
+                <!-- Đánh giá + số lượt đánh giá -->
+                <div class="product-rating-row">
+                    <div class="stars-display">★★★★★</div>
+                    <span class="rating-score">4.9</span>
+                    <span class="rating-count">(245 đánh giá)</span>
+                    <span class="sold-count">| Đã bán: 1.247</span>
+                </div>
+
+                <!-- Giá bán -->
+                <div class="product-price-block">
+                    <span class="price-main">88.000đ</span>
+                    <span class="price-original">110.000đ</span>
+                    <span class="discount-badge">-20%</span>
+                </div>
+
+                <!-- Thông tin nhanh -->
+                <div class="product-quick-info">
+                    <div class="info-row">
+                        <span class="info-label">Tác giả:</span>
+                        <span class="info-value"><a href="search.html">Dale Carnegie</a></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Thể loại:</span>
+                        <span class="info-value"><a href="category.html">Kỹ năng sống</a></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">NXB:</span>
+                        <span class="info-value">NXB Tổng Hợp TP.HCM</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Năm XB:</span>
+                        <span class="info-value">2023</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Số trang:</span>
+                        <span class="info-value">320 trang</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Tình trạng:</span>
+                        <span class="info-value in-stock">Còn hàng (58 quyển)</span>
+                    </div>
+                </div>
+
+                <!-- Chọn số lượng -->
+                <div class="quantity-section">
+                    <span class="qty-label">Số lượng:</span>
+                    <div class="qty-control">
+                        <!-- Dùng input number (CSS-only) -->
+                        <label for="qty-input" class="qty-btn qty-minus">−</label>
+                        <input type="number" id="qty-input" value="1" min="1" max="58" class="qty-input">
+                        <label for="qty-input" class="qty-btn qty-plus">+</label>
+                    </div>
+                </div>
+
+                <!-- Nút hành động -->
+                <div class="product-actions">
+                    <!-- Thêm vào giỏ hàng – dẫn sang trang cart.html -->
+                    <a href="cart.html" class="btn-orange btn-lg">
+                        Thêm vào giỏ hàng
+                    </a>
+                    <!-- Mua ngay – cũng dẫn sang cart -->
+                    <a href="cart.html" class="btn-primary btn-lg">
+                        Mua ngay
+                    </a>
+                </div>
+
+                <!-- Tiện ích cam kết -->
+                <div class="product-guarantees">
+                    <div class="guarantee-item">Freeship đơn từ 150.000đ</div>
+                    <div class="guarantee-item">Đổi trả trong 7 ngày</div>
+                    <div class="guarantee-item">Sách chính hãng NXB</div>
+                </div>
+
+            </div><!-- /product-info -->
+
+
+            <!-- CỘT PHẢI: Box đặt hàng nhanh -->
+            <div class="product-buy-box">
+                <div class="buy-box-price">
+                    <span class="price-main">88.000đ</span>
+                </div>
+
+                <!-- Giao hàng -->
+                <div class="delivery-info">
+                    <div class="delivery-row">
+                        <span>Giao hàng:</span>
+                        <strong>Toàn quốc</strong>
+                    </div>
+                    <div class="delivery-row">
+                        <span>⏰ Dự kiến:</span>
+                        <strong>2–4 ngày</strong>
+                    </div>
+                    <div class="delivery-row">
+                        <span>Phí ship:</span>
+                        <strong class="free-ship">Miễn phí</strong>
+                    </div>
+                </div>
+
+                <!-- Nút mua trong box -->
+                <a href="cart.html" class="btn-orange" style="width:100%; text-align:center; margin-top:12px; display:block;">
+                    Thêm vào giỏ
+                </a>
+                <a href="cart.html" class="btn-primary" style="width:100%; text-align:center; margin-top:8px; display:block;">
+                    Mua ngay
+                </a>
+
+                <!-- Cửa hàng -->
+                <div class="shop-info">
+                    <span>BookStore Official</span>
+                    <a href="index.html">Xem cửa hàng →</a>
+                </div>
+            </div><!-- /product-buy-box -->
+
+        </div><!-- /product-detail-top -->
+
+
+        <!-- ---- TAB NỘI DUNG: Mô tả, Thông số, Đánh giá ---- -->
+        <!-- Dùng CSS :target hoặc radio hack để chuyển tab -->
+        <div class="product-tabs">
+
+            <!-- Các nút tab (link neo #) -->
+            <div class="tab-headers">
+                <a href="#tab-desc" class="tab-btn active" id="tab-desc-link">Mô tả sản phẩm</a>
+                <a href="#tab-specs" class="tab-btn" id="tab-specs-link">Thông số kỹ thuật</a>
+                <a href="#tab-reviews" class="tab-btn" id="tab-reviews-link">Đánh giá (245)</a>
+            </div>
+
+            <!-- Panel: Mô tả sản phẩm -->
+            <div class="tab-panel" id="tab-desc">
+                <h2>Giới thiệu sách</h2>
+                <p>
+                    <strong>Đắc Nhân Tâm</strong> (tên tiếng Anh: <em>How to Win Friends and Influence People</em>) là cuốn sách nổi tiếng
+                    nhất của tác giả Dale Carnegie, được xuất bản lần đầu năm 1936 và đã trở thành một trong những cuốn sách bán chạy nhất
+                    mọi thời đại với hơn <strong>30 triệu bản</strong> được bán ra trên toàn thế giới.
+                </p>
+                <p>
+                    Cuốn sách cung cấp những nguyên tắc cơ bản trong việc giao tiếp và xây dựng mối quan hệ với người khác.
+                    Thông qua nhiều ví dụ thực tế và câu chuyện hấp dẫn, Carnegie chỉ ra cách để:
+                </p>
+                <!-- Danh sách nội dung chính -->
+                <ul class="book-features">
+                    <li>Tạo ấn tượng tốt đẹp ngay từ lần gặp đầu tiên</li>
+                    <li>Thuyết phục người khác theo ý mình mà không gây xúc phạm</li>
+                    <li>Trở thành người lãnh đạo được yêu mến và kính trọng</li>
+                    <li>Xử lý khéo léo các tình huống xung đột và bất đồng</li>
+                    <li>Ghi nhớ tên và xây dựng thiện cảm với mọi người</li>
+                </ul>
+                <p>
+                    Dù được viết từ hơn 80 năm trước, những triết lý trong Đắc Nhân Tâm vẫn còn nguyên giá trị và
+                    được áp dụng rộng rãi trong cuộc sống hiện đại, từ môi trường công sở đến các mối quan hệ cá nhân.
+                </p>
+            </div>
+
+            <!-- Panel: Thông số kỹ thuật -->
+            <div class="tab-panel" id="tab-specs">
+                <h2>Thông số sản phẩm</h2>
+                <!-- Bảng thông số -->
+                <table class="specs-table">
+                    <tbody>
+                        <tr><td class="spec-label">Tên sách</td><td>Đắc Nhân Tâm</td></tr>
+                        <tr><td class="spec-label">Tên tiếng Anh</td><td>How to Win Friends and Influence People</td></tr>
+                        <tr><td class="spec-label">Tác giả</td><td>Dale Carnegie</td></tr>
+                        <tr><td class="spec-label">Dịch giả</td><td>Nguyễn Văn Phước</td></tr>
+                        <tr><td class="spec-label">Nhà xuất bản</td><td>NXB Tổng Hợp TP.HCM</td></tr>
+                        <tr><td class="spec-label">Năm xuất bản</td><td>2023 (tái bản lần 15)</td></tr>
+                        <tr><td class="spec-label">Số trang</td><td>320 trang</td></tr>
+                        <tr><td class="spec-label">Kích thước</td><td>14.5 x 20.5 cm</td></tr>
+                        <tr><td class="spec-label">Bìa sách</td><td>Bìa mềm</td></tr>
+                        <tr><td class="spec-label">ISBN</td><td>978-604-58-4567-0</td></tr>
+                        <tr><td class="spec-label">Trọng lượng</td><td>380g</td></tr>
+                        <tr><td class="spec-label">Ngôn ngữ</td><td>Tiếng Việt</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Panel: Đánh giá -->
+            <div class="tab-panel" id="tab-reviews">
+                <h2>Đánh giá từ người mua</h2>
+
+                <!-- Tổng quan đánh giá -->
+                <div class="review-summary">
+                    <div class="overall-score">
+                        <span class="score-big">4.9</span>
+                        <div class="score-stars">★★★★★</div>
+                        <span class="score-total">245 đánh giá</span>
+                    </div>
+                    <!-- Thanh phân bố số sao -->
+                    <div class="rating-breakdown">
+                        <div class="rating-bar-row">
+                            <span>5 ★</span>
+                            <div class="rating-bar"><div class="bar-fill" style="width:85%"></div></div>
+                            <span>85%</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span>4 ★</span>
+                            <div class="rating-bar"><div class="bar-fill" style="width:10%"></div></div>
+                            <span>10%</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span>3 ★</span>
+                            <div class="rating-bar"><div class="bar-fill" style="width:3%"></div></div>
+                            <span>3%</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span>2 ★</span>
+                            <div class="rating-bar"><div class="bar-fill" style="width:1%"></div></div>
+                            <span>1%</span>
+                        </div>
+                        <div class="rating-bar-row">
+                            <span>1 ★</span>
+                            <div class="rating-bar"><div class="bar-fill" style="width:1%"></div></div>
+                            <span>1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danh sách đánh giá cụ thể -->
+                <div class="review-list">
+
+                    <!-- Đánh giá 1 -->
+                    <div class="review-item">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">N</div>
+                            <div>
+                                <strong>Nguyễn Minh Tuấn</strong>
+                                <span class="review-date">15/10/2026</span>
+                            </div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">
+                            Sách rất hay, nội dung bổ ích. Giao hàng nhanh, đóng gói cẩn thận. Sẽ ủng hộ BookStore
+                            dài dài! Đây là cuốn sách mình đọc đi đọc lại nhiều lần mà vẫn không chán.
+                        </p>
+                    </div>
+
+                    <!-- Đánh giá 2 -->
+                    <div class="review-item">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar" style="background:#e74c3c;">T</div>
+                            <div>
+                                <strong>Trần Thị Lan</strong>
+                                <span class="review-date">08/10/2026</span>
+                            </div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <p class="review-text">
+                            Cuốn sách giúp mình thay đổi cách giao tiếp hoàn toàn. Mình đã áp dụng và thấy
+                            mối quan hệ xung quanh cải thiện rõ rệt. Rất đáng mua!
+                        </p>
+                    </div>
+
+                    <!-- Đánh giá 3 -->
+                    <div class="review-item">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar" style="background:#8e44ad;">L</div>
+                            <div>
+                                <strong>Lê Văn Hùng</strong>
+                                <span class="review-date">01/10/2026</span>
+                            </div>
+                            <div class="review-stars">★★★★☆</div>
+                        </div>
+                        <p class="review-text">
+                            Nội dung tốt nhưng bản dịch hơi cứng ở một vài đoạn. Nhìn chung vẫn là cuốn
+                            nên đọc với ai muốn cải thiện kỹ năng mềm.
+                        </p>
+                    </div>
+
+                </div><!-- /review-list -->
+            </div>
+
+        </div><!-- /product-tabs -->
+
+
+        <!-- ---- SẢN PHẨM LIÊN QUAN ---- -->
+        <section class="section-block" style="margin-top:36px;">
+            <div class="section-heading">
+                <h2>Sách cùng thể loại</h2>
+                <a href="category.html" class="view-all">Xem tất cả →</a>
+            </div>
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#8e44ad,#5b2c6f);">
+                            <span class="cover-title">Atomic Habits</span>
+                            <span class="cover-author">James Clear</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">Atomic Habits – Thói Quen Tốt</a>
+                        <span class="card-author">James Clear</span>
+                        <div class="card-price"><span class="price-current">118.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★★</span><span>(376)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#16a085,#0e6655);">
+                            <span class="cover-title">Dám Nghĩ Lớn</span>
+                            <span class="cover-author">David J. Schwartz</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">Dám Nghĩ Lớn</a>
+                        <span class="card-author">David J. Schwartz</span>
+                        <div class="card-price"><span class="price-current">94.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★☆</span><span>(167)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#2471a3,#1a4f72);">
+                            <span class="cover-title">7 Thói Quen Hiệu Quả</span>
+                            <span class="cover-author">Stephen R. Covey</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">7 Thói Quen Của Người Hiệu Quả</a>
+                        <span class="card-author">Stephen R. Covey</span>
+                        <div class="card-price"><span class="price-current">132.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★★</span><span>(234)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+                <div class="product-card">
+                    <a href="product-detail.html" class="card-img">
+                        <div class="book-cover-placeholder" style="background:linear-gradient(135deg,#1abc9c,#117a65);">
+                            <span class="cover-title">Giao Tiếp Như Chuyên Gia</span>
+                            <span class="cover-author">Leil Lowndes</span>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <span class="card-category">Kỹ năng sống</span>
+                        <a href="product-detail.html" class="card-title">Giao Tiếp Như Chuyên Gia</a>
+                        <span class="card-author">Leil Lowndes</span>
+                        <div class="card-price"><span class="price-current">102.000đ</span></div>
+                        <div class="card-rating"><span class="stars">★★★★☆</span><span>(76)</span></div>
+                    </div>
+                    <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                </div>
+
+            </div>
+        </section><!-- /sản phẩm liên quan -->
+
+    </div><!-- /container -->
+</main>
+
+
+<!-- ============================================================
+     FOOTER (copy từ index.html)
+     ============================================================ -->
+<footer class="site-footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="footer-logo-name">BookStore</div>
+                <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.</p>
+                <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM &nbsp;|&nbsp; Hotline: 0909 123 456</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn">f</a>
+                    <a href="#" class="social-btn">in</a>
+                    <a href="#" class="social-btn">yt</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Danh mục</h4>
+                <ul>
+                    <li><a href="category.html">Văn học</a></li>
+                    <li><a href="category.html">Kinh tế</a></li>
+                    <li><a href="category.html">Kỹ năng sống</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Tài khoản</h4>
+                <ul>
+                    <li><a href="login.html">Đăng nhập</a></li>
+                    <li><a href="register.html">Đăng ký</a></li>
+                    <li><a href="order-history.html">Lịch sử đơn hàng</a></li>
+                    <li><a href="admin/login.html">Quản trị viên</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">© 2026 BookStore – Nhà sách trực tuyến.</div>
+    </div>
+</footer>
+
+</body>
+</html>

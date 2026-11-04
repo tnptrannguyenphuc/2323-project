@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết Đơn hàng - BookStore Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        /* Stepper tiến trình đơn hàng */
+        .order-stepper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            margin: 24px 0 32px;
+            padding: 0 20px;
+        }
+        .order-stepper::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            right: 40px;
+            height: 4px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+        .stepper-progress {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            height: 4px;
+            background: var(--green-main);
+            z-index: 1;
+            width: 33%;
+        }
+        .step-item {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            padding: 0 10px;
+        }
+        .step-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            border: 3px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 700;
+        }
+        .step-item.completed .step-circle {
+            background: var(--green-main);
+            border-color: var(--green-main);
+            color: #fff;
+        }
+        .step-item.active .step-circle {
+            background: #fff;
+            border-color: var(--green-main);
+            color: var(--green-main);
+            box-shadow: 0 0 0 4px var(--green-light);
+        }
+        .step-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            text-align: center;
+        }
+        .step-item.completed .step-label,
+        .step-item.active .step-label {
+            color: var(--text-dark);
+        }
+
+        .order-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 900px) {
+            .order-layout {
+                grid-template-columns: 1fr;
+            }
+            .order-stepper {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="admin-wrapper">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    BookStore
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            Tổng quan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            Quản lý User
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            Quản lý Sản phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html" class="active">
+                            Quản lý Đơn hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="statistics.html">
+                            Thống kê
+                        </a>
+                    </li>
+                    <li class="logout-item">
+                        <a href="login.html">
+                            Đăng xuất
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                BookStore Admin v1.0
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="d-flex align-center gap-12">
+                    <span class="header-title">Chi tiết Đơn đặt hàng</span>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">QT</div>
+                        <div>
+                            <div class="admin-name">Quản trị viên</div>
+                            <div class="admin-role">Super Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="admin-content">
+
+                <div class="d-flex justify-between align-center flex-wrap gap-12 mb-20">
+                    <div>
+                        <a href="orders.html" class="btn btn-secondary btn-sm mb-8">
+                            ← Quay lại danh sách đơn hàng
+                        </a>
+                        <div class="d-flex align-center gap-12">
+                            <h2 id="orderTitleHeading">Đơn hàng #DH1001</h2>
+                            <span id="orderHeaderBadge">
+                                <span class="badge badge-pending" style="font-size:0.9rem;">Chưa xác nhận</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-8">
+                        <button class="btn btn-secondary btn-sm" onclick="window.print()">
+                            In hoá đơn
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stepper trực quan tiến trình đơn hàng -->
+                <div class="card p-24 mb-24">
+                    <h4 style="margin-bottom:8px;">Tiến trình xử lý đơn hàng:</h4>
+                    <p class="text-gray" style="font-size:0.85rem; margin-bottom:16px;">
+                        Quy trình chuẩn hóa một chiều: Chưa xác nhận → Đã xác nhận → Đang giao → Đã giao
+                    </p>
+
+                    <div class="order-stepper" id="stepperContainer">
+                        <div class="stepper-progress" id="stepperProgress"></div>
+                        
+                        <div class="step-item active" id="step-pending">
+                            <div class="step-circle">1</div>
+                            <div class="step-label">Chưa xác nhận</div>
+                        </div>
+                        <div class="step-item" id="step-confirmed">
+                            <div class="step-circle">2</div>
+                            <div class="step-label">Đã xác nhận</div>
+                        </div>
+                        <div class="step-item" id="step-shipping">
+                            <div class="step-circle">3</div>
+                            <div class="step-label">Đang giao hàng</div>
+                        </div>
+                        <div class="step-item" id="step-delivered">
+                            <div class="step-circle">4</div>
+                            <div class="step-label">Đã giao thành công</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bố cục 2 cột: Danh sách sản phẩm + Thông tin khách & cập nhật -->
+                <div class="order-layout">
+                    
+                    <!-- Cột trái: Danh sách sản phẩm (HTML TĨNH TRỰC TIẾP) -->
+                    <div class="card p-24">
+                        <h3 class="mb-16">Sản phẩm trong đơn hàng</h3>
+                        <div class="table-wrapper mb-20">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th style="text-align:center;">Số lượng</th>
+                                        <th style="text-align:right;">Đơn giá</th>
+                                        <th style="text-align:right;">Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderItemsTable">
+                                    <tr>
+                                        <td style="font-weight:600;">Đắc Nhân Tâm</td>
+                                        <td style="text-align:center;">2</td>
+                                        <td style="text-align:right;">88.000đ</td>
+                                        <td style="text-align:right; font-weight:700; color:var(--text-dark);">176.000đ</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight:600;">Chiến Tranh Tiền Tệ</td>
+                                        <td style="text-align:center;">1</td>
+                                        <td style="text-align:right;">118.000đ</td>
+                                        <td style="text-align:right; font-weight:700; color:var(--text-dark);">118.000đ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Tóm tắt chi phí -->
+                        <div style="max-width:320px; margin-left:auto; display:flex; flex-direction:column; gap:10px; font-size:0.9rem;">
+                            <div class="d-flex justify-between">
+                                <span class="text-gray">Tạm tính:</span>
+                                <strong id="summarySubtotal">294.000đ</strong>
+                            </div>
+                            <div class="d-flex justify-between">
+                                <span class="text-gray">Phí vận chuyển:</span>
+                                <span>30.000đ</span>
+                            </div>
+                            <div class="d-flex justify-between">
+                                <span class="text-gray">Giảm giá ưu đãi:</span>
+                                <span style="color:#27ae60;">0đ</span>
+                            </div>
+                            <div class="d-flex justify-between pt-12" style="border-top:2px solid var(--border-color); font-size:1.1rem;">
+                                <strong>Tổng thanh toán:</strong>
+                                <strong style="color:var(--orange-main);" id="summaryTotal">324.000đ</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cột phải: Khách hàng + Cập nhật trạng thái xuôi -->
+                    <div class="d-flex flex-column gap-20">
+                        
+                        <!-- Card Cập nhật trạng thái -->
+                        <div class="card p-20">
+                            <h3 class="mb-14">Cập nhật trạng thái</h3>
+                            <div id="statusUpdateArea">
+                                <p class="text-gray mb-12" style="font-size:0.85rem;">
+                                    Hệ thống chỉ cho phép cập nhật <strong>tiến xuôi</strong>, ngăn chặn quay ngược trạng thái.
+                                </p>
+                                <div class="form-group mb-12">
+                                    <label for="nextStatusOption">Chọn trạng thái tiếp theo:</label>
+                                    <select id="nextStatusOption" class="form-control">
+                                        <option value="confirmed">Đã xác nhận</option>
+                                        <option value="cancelled">Huỷ đơn</option>
+                                    </select>
+                                </div>
+                                <a href="orders.html" class="btn btn-primary" id="btnUpdateCurrentOrder" style="display:block; text-align:center;">
+                                    Cập nhật trạng thái ngay
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Card Thông tin khách hàng & Giao hàng -->
+                        <div class="card p-20">
+                            <h3 class="mb-14">Thông tin giao hàng</h3>
+                            
+                            <div class="mb-12">
+                                <div style="font-size:0.8rem; color:var(--text-gray);">Khách hàng:</div>
+                                <div style="font-weight:700;" id="custName">Nguyễn Văn An</div>
+                            </div>
+
+                            <div class="mb-12">
+                                <div style="font-size:0.8rem; color:var(--text-gray);">Số điện thoại:</div>
+                                <div id="custPhone">0912345678</div>
+                            </div>
+
+                            <div class="mb-12">
+                                <div style="font-size:0.8rem; color:var(--text-gray);">Email:</div>
+                                <div id="custEmail">user@demo.com</div>
+                            </div>
+
+                            <div class="mb-12">
+                                <div style="font-size:0.8rem; color:var(--text-gray);">Địa chỉ nhận hàng:</div>
+                                <div style="font-size:0.9rem;" id="custAddress">123 Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</div>
+                            </div>
+
+                            <div>
+                                <div style="font-size:0.8rem; color:var(--text-gray);">Ngày tạo đơn:</div>
+                                <div id="custOrderDate">28/10/2026</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

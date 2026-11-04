@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt hàng thành công – BookStore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+
+<!-- HEADER (đã đăng nhập) -->
+<header class="site-header">
+    <div class="header-top">
+        <div class="container">
+            <a href="index-logged.html" class="site-logo">
+                <span class="logo-text">
+                    <span class="logo-name">BookStore</span>
+                    <span class="logo-slogan">Kho sách tri thức</span>
+                </span>
+            </a>
+            <div class="header-search">
+                <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại..." autocomplete="off">
+                <a href="search.html" class="header-search-btn">Tìm kiếm</a>
+            </div>
+            <div class="header-actions">
+                <a href="cart.html" class="header-action-btn">
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">3</span>
+                </a>
+                <div class="user-logged-in">
+                    <span class="user-avatar">N</span>
+                    <div class="user-info-header">
+                        <span class="user-name">Nguyễn Văn An</span>
+                        <span class="user-email">user@demo.com</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="order-history.html">Đơn hàng của tôi</a>
+                        <a href="#">Cài đặt tài khoản</a>
+                        <a href="index.html">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="header-nav">
+        <div class="container">
+            <a href="category.html" class="nav-item">Văn học</a>
+            <a href="category.html" class="nav-item">Kinh tế</a>
+            <a href="category.html" class="nav-item">Khoa học</a>
+            <a href="category.html" class="nav-item">Kỹ năng sống</a>
+            <a href="category.html" class="nav-item">Thiếu nhi</a>
+            <a href="category.html" class="nav-item">Giáo khoa</a>
+            <a href="category.html" class="nav-item">Lịch sử</a>
+            <a href="search.html" class="nav-item" style="margin-left:auto; color:#ffe082;">Tìm nâng cao</a>
+        </div>
+    </nav>
+</header>
+
+
+<!-- MAIN -->
+<main class="main-content">
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Trang chủ</a>
+            <span class="sep">›</span>
+            <a href="cart.html">Giỏ hàng</a>
+            <span class="sep">›</span>
+            <span>Xác nhận đơn hàng</span>
+        </nav>
+
+        <!-- ---- BANNER THÀNH CÔNG ---- -->
+        <div class="order-success-banner">
+            <span class="success-icon">Hoàn tất</span>
+            <h1>Đặt hàng thành công!</h1>
+            <p>Cảm ơn bạn đã mua sách tại BookStore.</p>
+            <p>Mã đơn hàng của bạn: <span class="order-id">#DH2026102901</span></p>
+            <p style="margin-top:8px; font-size:13px; color:#888;">
+                Chúng tôi sẽ liên hệ xác nhận qua email <strong>user@demo.com</strong> trong vòng 30 phút.
+            </p>
+        </div>
+
+        <!-- ---- CHI TIẾT ĐƠN HÀNG ---- -->
+        <div class="order-detail-grid">
+
+            <!-- Thông tin đơn hàng -->
+            <div class="info-card">
+                <h3>Thông tin đơn hàng</h3>
+                <div class="user-detail-row">
+                    <span>Mã đơn hàng:</span>
+                    <strong>#DH2026102901</strong>
+                </div>
+                <div class="user-detail-row">
+                    <span>Ngày đặt:</span>
+                    <strong>29/10/2026 10:45</strong>
+                </div>
+                <div class="user-detail-row">
+                    <span>Trạng thái:</span>
+                    <span class="badge badge-pending">Chờ xác nhận</span>
+                </div>
+                <div class="user-detail-row">
+                    <span>Thanh toán:</span>
+                    <strong>Tiền mặt (COD)</strong>
+                </div>
+                <div class="user-detail-row">
+                    <span>Tổng tiền:</span>
+                    <strong style="color:var(--orange-main); font-size:16px;">324.000đ</strong>
+                </div>
+            </div>
+
+            <!-- Địa chỉ giao hàng -->
+            <div class="info-card">
+                <h3>Địa chỉ: Địa chỉ giao hàng</h3>
+                <div class="user-detail-row">
+                    <span>Người nhận:</span>
+                    <strong>Nguyễn Văn An</strong>
+                </div>
+                <div class="user-detail-row">
+                    <span>Điện thoại:</span>
+                    <strong>0909 123 456</strong>
+                </div>
+                <div class="user-detail-row">
+                    <span>Địa chỉ:</span>
+                    <strong>123 Nguyễn Trãi, P.Nguyễn Cư Trinh</strong>
+                </div>
+                <div class="user-detail-row">
+                    <span>Khu vực:</span>
+                    <strong>Quận 1, TP. Hồ Chí Minh</strong>
+                </div>
+                <div class="user-detail-row">
+                    <span>Dự kiến:</span>
+                    <strong>01/11/2026 – 03/11/2026</strong>
+                </div>
+            </div>
+
+        </div><!-- /order-detail-grid -->
+
+        <!-- ---- DANH SÁCH SẢN PHẨM ĐÃ ĐẶT ---- -->
+        <div class="info-card">
+            <h3>Sản phẩm trong đơn hàng</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Sách</th>
+                            <th>Tác giả</th>
+                            <th>Thể loại</th>
+                            <th>SL</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><a href="product-detail.html">Đắc Nhân Tâm</a></td>
+                            <td>Dale Carnegie</td>
+                            <td>Kỹ năng sống</td>
+                            <td>2</td>
+                            <td>88.000đ</td>
+                            <td><strong>176.000đ</strong></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><a href="product-detail.html">Atomic Habits</a></td>
+                            <td>James Clear</td>
+                            <td>Kỹ năng sống</td>
+                            <td>1</td>
+                            <td>118.000đ</td>
+                            <td><strong>118.000đ</strong></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><a href="product-detail.html">Nhà Giả Kim</a></td>
+                            <td>Paulo Coelho</td>
+                            <td>Văn học</td>
+                            <td>1</td>
+                            <td>72.000đ</td>
+                            <td><strong>72.000đ</strong></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" style="text-align:right; font-weight:700;">Giảm giá:</td>
+                            <td colspan="2" style="color:#e74c3c; font-weight:700;">-42.000đ</td>
+                        </tr>
+                        <tr style="background:var(--green-soft);">
+                            <td colspan="5" style="text-align:right; font-weight:700; font-size:15px;">TỔNG CỘNG:</td>
+                            <td colspan="2" style="color:var(--orange-main); font-weight:800; font-size:18px;">324.000đ</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- Nút hành động -->
+        <div style="display:flex; gap:12px; justify-content:center; margin-top:24px;">
+            <a href="order-history.html" class="btn-outline">Xem lịch sử đơn hàng</a>
+            <a href="index-logged.html" class="btn-primary">Tiếp tục mua sắm</a>
+        </div>
+
+    </div>
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="footer-logo-name">BookStore</div>
+                <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.</p>
+                <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM &nbsp;|&nbsp; Hotline: 0909 123 456</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn">f</a><a href="#" class="social-btn">in</a>
+                </div>
+            </div>
+            <div class="footer-col"><h4>Danh mục</h4><ul><li><a href="category.html">Tất cả sách</a></li></ul></div>
+            <div class="footer-col"><h4>Tài khoản</h4><ul><li><a href="order-history.html">Lịch sử đơn hàng</a></li><li><a href="admin/login.html">Quản trị viên</a></li></ul></div>
+            <div class="footer-col"><h4>Hỗ trợ</h4><ul><li><a href="#">Hướng dẫn</a></li></ul></div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">© 2026 BookStore – Nhà sách trực tuyến.</div>
+    </div>
+</footer>
+
+</body>
+</html>

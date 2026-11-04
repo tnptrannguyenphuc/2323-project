@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản – BookStore</title>
+    <meta name="description" content="Đăng ký tài khoản người mua hàng tại BookStore.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="header-top">
+        <div class="container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-text">
+                    <span class="logo-name">BookStore</span>
+                    <span class="logo-slogan">Kho sách tri thức</span>
+                </span>
+            </a>
+            <div class="header-search">
+                <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại..." autocomplete="off">
+                <a href="search.html" class="header-search-btn">Tìm kiếm</a>
+            </div>
+            <div class="header-actions">
+                <a href="cart.html" class="header-action-btn">
+                    <span>Giỏ hàng</span>
+                </a>
+                <a href="login.html" class="header-action-btn">
+                    <span>Đăng nhập</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <nav class="header-nav">
+        <div class="container">
+            <a href="category.html" class="nav-item">Văn học</a>
+            <a href="category.html" class="nav-item">Kinh tế</a>
+            <a href="category.html" class="nav-item">Khoa học</a>
+            <a href="category.html" class="nav-item">Kỹ năng sống</a>
+            <a href="category.html" class="nav-item">Thiếu nhi</a>
+            <a href="category.html" class="nav-item">Giáo khoa</a>
+            <a href="category.html" class="nav-item">Lịch sử</a>
+            <a href="search.html" class="nav-item" style="margin-left:auto; color:#ffe082;">Tìm nâng cao</a>
+        </div>
+    </nav>
+</header>
+
+
+<!-- ============================================================
+     MAIN – TRANG ĐĂNG KÝ
+     ============================================================ -->
+<main class="main-content">
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Trang chủ</a>
+            <span class="sep">›</span>
+            <span>Đăng ký tài khoản</span>
+        </nav>
+
+        <!-- Khung đăng ký -->
+        <div class="auth-wrapper">
+
+            <!-- Hình minh họa bên trái -->
+            <div class="auth-banner">
+                <div class="auth-banner-content">
+                    
+                    <h2>Chào mừng bạn!</h2>
+                    <p>Tạo tài khoản để:</p>
+                    <ul class="auth-benefits">
+                        <li>Mua sách dễ dàng</li>
+                        <li>Theo dõi đơn hàng</li>
+                        <li>Nhận ưu đãi độc quyền</li>
+                        <li>Lưu địa chỉ giao hàng</li>
+                        <li>Xem lịch sử mua hàng</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Form đăng ký -->
+            <div class="auth-form-card">
+                <h1>Tạo tài khoản mới</h1>
+                <p class="auth-subtitle">
+                    Đã có tài khoản?
+                    <a href="login.html">Đăng nhập ngay →</a>
+                </p>
+
+                <!-- Form đăng ký -->
+                <div class="auth-form">
+
+                    <!-- Họ và tên -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-lastname">Họ *</label>
+                            <input type="text" id="reg-lastname" name="lastname"
+                                   value="Nguyễn"
+                                   placeholder="VD: Nguyễn"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-firstname">Tên *</label>
+                            <input type="text" id="reg-firstname" name="firstname"
+                                   value="Văn An"
+                                   placeholder="VD: Văn An"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="reg-email">Email *</label>
+                        <input type="email" id="reg-email" name="email"
+                               value="user@demo.com"
+                               placeholder="example@email.com"
+                               required>
+                        <span class="form-note">Email dùng để đăng nhập và nhận thông báo đơn hàng</span>
+                    </div>
+
+                    <!-- Số điện thoại -->
+                    <div class="form-group">
+                        <label for="reg-phone">Số điện thoại *</label>
+                        <input type="tel" id="reg-phone" name="phone"
+                               value="0912345678"
+                               placeholder="0909 xxx xxx"
+                               required>
+                    </div>
+
+                    <!-- Mật khẩu -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-password">Mật khẩu *</label>
+                            <input type="password" id="reg-password" name="password"
+                                   value="123456"
+                                   placeholder="Tối thiểu 6 ký tự"
+                                   required minlength="6">
+                            <span class="form-note">Ít nhất 6 ký tự</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-confirm">Xác nhận mật khẩu *</label>
+                            <input type="password" id="reg-confirm" name="confirm"
+                                   value="123456"
+                                   placeholder="Nhập lại mật khẩu"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- Ngày sinh -->
+                    <div class="form-group">
+                        <label for="reg-dob">Ngày sinh</label>
+                        <input type="date" id="reg-dob" name="dob" value="1998-05-15">
+                    </div>
+
+                    <!-- Giới tính -->
+                    <div class="form-group">
+                        <label>Giới tính</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="male" checked>
+                                Nam
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="female">
+                                Nữ
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="other">
+                                Khác
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Địa chỉ mặc định -->
+                    <div class="form-group">
+                        <label for="reg-address">Địa chỉ giao hàng mặc định</label>
+                        <input type="text" id="reg-address" name="address"
+                               value="123 Lê Lợi, Phường Bến Nghé"
+                               placeholder="Số nhà, đường, phường/xã...">
+                    </div>
+
+                    <!-- Tỉnh/Thành phố -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-city">Tỉnh / Thành phố</label>
+                            <select id="reg-city" name="city">
+                                <option value="">-- Chọn tỉnh thành --</option>
+                                <option value="hcm" selected>TP. Hồ Chí Minh</option>
+                                <option value="hn">Hà Nội</option>
+                                <option value="dn">Đà Nẵng</option>
+                                <option value="ct">Cần Thơ</option>
+                                <option value="hue">Huế</option>
+                                <option value="vt">Vũng Tàu</option>
+                                <option value="bd">Bình Dương</option>
+                                <option value="dn2">Đồng Nai</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-district">Quận / Huyện</label>
+                            <select id="reg-district" name="district">
+                                <option value="">-- Chọn quận huyện --</option>
+                                <option value="q1" selected>Quận 1</option>
+                                <option value="q2">Quận 2 (TP.Thủ Đức)</option>
+                                <option value="q3">Quận 3</option>
+                                <option value="q4">Quận 4</option>
+                                <option value="q5">Quận 5</option>
+                                <option value="q7">Quận 7</option>
+                                <option value="binh-thanh">Bình Thạnh</option>
+                                <option value="go-vap">Gò Vấp</option>
+                                <option value="phu-nhuan">Phú Nhuận</option>
+                                <option value="tan-binh">Tân Bình</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Đồng ý điều khoản -->
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="agree" checked required>
+                            Tôi đồng ý với
+                            <a href="#">Điều khoản sử dụng</a> và
+                            <a href="#">Chính sách bảo mật</a>
+                        </label>
+                    </div>
+
+                    <!-- Nút đăng ký -->
+                    <a href="login.html" class="btn-primary btn-full" style="display:flex; justify-content:center; align-items:center; text-decoration:none;">
+                        Tạo tài khoản
+                    </a>
+
+                </div><!-- /auth-form -->
+
+                <!-- Phân cách -->
+                <div class="auth-divider">
+                    <span>hoặc</span>
+                </div>
+
+                <!-- Đã có tài khoản -->
+                <div class="auth-switch">
+                    <p>Đã có tài khoản?</p>
+                    <a href="login.html" class="btn-outline btn-full">
+                        Đăng nhập ngay
+                    </a>
+                </div>
+
+            </div><!-- /auth-form-card -->
+
+        </div><!-- /auth-wrapper -->
+
+    </div><!-- /container -->
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="footer-logo-name">BookStore</div>
+                <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.</p>
+                <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM &nbsp;|&nbsp; Hotline: 0909 123 456</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn">f</a><a href="#" class="social-btn">in</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Danh mục</h4>
+                <ul>
+                    <li><a href="category.html">Văn học</a></li>
+                    <li><a href="category.html">Kỹ năng sống</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Tài khoản</h4>
+                <ul>
+                    <li><a href="login.html">Đăng nhập</a></li>
+                    <li><a href="register.html">Đăng ký</a></li>
+                    <li><a href="admin/login.html">Quản trị viên</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">© 2026 BookStore – Nhà sách trực tuyến.</div>
+    </div>
+</footer>
+
+</body>
+</html>

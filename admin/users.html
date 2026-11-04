@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Người dùng - BookStore Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="admin-wrapper">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    BookStore
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            Tổng quan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html" class="active">
+                            Quản lý User
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            Quản lý Sản phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            Quản lý Đơn hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="statistics.html">
+                            Thống kê
+                        </a>
+                    </li>
+                    <li class="logout-item">
+                        <a href="login.html">
+                            Đăng xuất
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                BookStore Admin v1.0
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="d-flex align-center gap-12">
+                    <span class="header-title">Quản lý Người dùng</span>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">QT</div>
+                        <div>
+                            <div class="admin-name">Quản trị viên</div>
+                            <div class="admin-role">Super Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="admin-content">
+
+                <div class="page-header d-flex justify-between align-center flex-wrap gap-16 mb-24">
+                    <div>
+                        <h2>Danh sách Tài khoản & Khách hàng</h2>
+                        <p class="text-gray" style="font-size:0.9rem;">Xem, thêm mới, sửa thông tin và khoá/mở khoá người dùng hệ thống</p>
+                    </div>
+                    <a href="#userModal" class="btn btn-primary">
+                        Thêm người dùng mới
+                    </a>
+                </div>
+
+                <!-- Thẻ thống kê người dùng -->
+                <div class="stat-cards mb-24">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="statTotalUsers">8</div>
+                            <div class="stat-label">Tổng số người dùng</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="statActiveUsers">7</div>
+                            <div class="stat-label">Đang hoạt động</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-orders" style="background:#fee2e2; color:#dc2626;"></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="statLockedUsers">1</div>
+                            <div class="stat-label">Tài khoản bị khoá</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Bar -->
+                <div class="card p-16 mb-20">
+                    <div class="filter-bar" style="margin-bottom:0;">
+                        <div class="search-box">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Tìm theo tên, email, số điện thoại...">
+                        </div>
+                        <select id="roleFilter" class="filter-select">
+                            <option value="">Tất cả vai trò</option>
+                            <option value="Khách hàng">Khách hàng</option>
+                            <option value="Quản trị viên">Quản trị viên</option>
+                        </select>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="active">Đang hoạt động</option>
+                            <option value="locked">Đã bị khoá</option>
+                        </select>
+                        <a href="users.html" class="btn btn-secondary btn-sm">Làm mới</a>
+                    </div>
+                </div>
+
+                <!-- Table User (HTML TĨNH TRỰC TIẾP) -->
+                <div class="card">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Người dùng</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Vai trò</th>
+                                    <th>Ngày đăng ký</th>
+                                    <th>Trạng thái</th>
+                                    <th style="text-align:center;">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTableBody">
+                                <tr>
+                                    <td style="font-weight:600; color:var(--text-gray);">#1</td>
+                                    <td>
+                                        <div class="d-flex align-center gap-10">
+                                            <div class="admin-avatar" style="width:34px; height:34px; font-size:0.8rem; background:var(--green-main)">NA</div>
+                                            <div>
+                                                <div style="font-weight:600;">Nguyễn Văn An</div>
+                                                <div style="font-size:0.8rem; color:var(--text-gray);">user@demo.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>0912345678</td>
+                                    <td><span style="background:#f1f5f9; color:#475569; padding:3px 8px; border-radius:4px; font-size:0.75rem;">Khách hàng</span></td>
+                                    <td>15/01/2026</td>
+                                    <td><span class="badge badge-active">Hoạt động</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#userModal" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;">Khoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600; color:var(--text-gray);">#2</td>
+                                    <td>
+                                        <div class="d-flex align-center gap-10">
+                                            <div class="admin-avatar" style="width:34px; height:34px; font-size:0.8rem; background:var(--green-main)">TB</div>
+                                            <div>
+                                                <div style="font-weight:600;">Trần Thị Bình</div>
+                                                <div style="font-size:0.8rem; color:var(--text-gray);">binh.tran@gmail.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>0988776655</td>
+                                    <td><span style="background:#f1f5f9; color:#475569; padding:3px 8px; border-radius:4px; font-size:0.75rem;">Khách hàng</span></td>
+                                    <td>18/02/2026</td>
+                                    <td><span class="badge badge-active">Hoạt động</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#userModal" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;">Khoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600; color:var(--text-gray);">#3</td>
+                                    <td>
+                                        <div class="d-flex align-center gap-10">
+                                            <div class="admin-avatar" style="width:34px; height:34px; font-size:0.8rem; background:#94a3b8">LC</div>
+                                            <div>
+                                                <div style="font-weight:600;">Lê Hoàng Cường</div>
+                                                <div style="font-size:0.8rem; color:var(--text-gray);">cuong.le@yahoo.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>0933221100</td>
+                                    <td><span style="background:#f1f5f9; color:#475569; padding:3px 8px; border-radius:4px; font-size:0.75rem;">Khách hàng</span></td>
+                                    <td>02/03/2026</td>
+                                    <td><span class="badge badge-locked">Bị khoá</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#userModal" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline" style="color:#27ae60; border-color:#27ae60;">Mở khoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600; color:var(--text-gray);">#4</td>
+                                    <td>
+                                        <div class="d-flex align-center gap-10">
+                                            <div class="admin-avatar" style="width:34px; height:34px; font-size:0.8rem; background:var(--green-main)">PD</div>
+                                            <div>
+                                                <div style="font-weight:600;">Phạm Minh Đức</div>
+                                                <div style="font-size:0.8rem; color:var(--text-gray);">duc.pm@outlook.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>0977112233</td>
+                                    <td><span style="background:#f1f5f9; color:#475569; padding:3px 8px; border-radius:4px; font-size:0.75rem;">Khách hàng</span></td>
+                                    <td>12/03/2026</td>
+                                    <td><span class="badge badge-active">Hoạt động</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#userModal" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;">Khoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600; color:var(--text-gray);">#5</td>
+                                    <td>
+                                        <div class="d-flex align-center gap-10">
+                                            <div class="admin-avatar" style="width:34px; height:34px; font-size:0.8rem; background:var(--green-main)">HE</div>
+                                            <div>
+                                                <div style="font-weight:600;">Hoàng Lan Em</div>
+                                                <div style="font-size:0.8rem; color:var(--text-gray);">lanem.hoang@gmail.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>0944556677</td>
+                                    <td><span style="background:#f1f5f9; color:#475569; padding:3px 8px; border-radius:4px; font-size:0.75rem;">Khách hàng</span></td>
+                                    <td>25/03/2026</td>
+                                    <td><span class="badge badge-active">Hoạt động</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#userModal" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;">Khoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600; color:var(--text-gray);">#6</td>
+                                    <td>
+                                        <div class="d-flex align-center gap-10">
+                                            <div class="admin-avatar" style="width:34px; height:34px; font-size:0.8rem; background:var(--green-main)">VP</div>
+                                            <div>
+                                                <div style="font-weight:600;">Vũ Quốc Phong</div>
+                                                <div style="font-size:0.8rem; color:var(--text-gray);">phong.vu@gmail.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>0966889900</td>
+                                    <td><span style="background:#f1f5f9; color:#475569; padding:3px 8px; border-radius:4px; font-size:0.75rem;">Khách hàng</span></td>
+                                    <td>01/04/2026</td>
+                                    <td><span class="badge badge-active">Hoạt động</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#userModal" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;">Khoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600; color:var(--text-gray);">#7</td>
+                                    <td>
+                                        <div class="d-flex align-center gap-10">
+                                            <div class="admin-avatar" style="width:34px; height:34px; font-size:0.8rem; background:var(--green-main)">DP</div>
+                                            <div>
+                                                <div style="font-weight:600;">Đặng Mai Phương</div>
+                                                <div style="font-size:0.8rem; color:var(--text-gray);">phuong.dm@gmail.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>0909123456</td>
+                                    <td><span style="background:#f1f5f9; color:#475569; padding:3px 8px; border-radius:4px; font-size:0.75rem;">Khách hàng</span></td>
+                                    <td>10/04/2026</td>
+                                    <td><span class="badge badge-active">Hoạt động</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#userModal" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;">Khoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:600; color:var(--text-gray);">#8</td>
+                                    <td>
+                                        <div class="d-flex align-center gap-10">
+                                            <div class="admin-avatar" style="width:34px; height:34px; font-size:0.8rem; background:var(--green-main)">QT</div>
+                                            <div>
+                                                <div style="font-weight:600;">Quản trị viên Hệ thống</div>
+                                                <div style="font-size:0.8rem; color:var(--text-gray);">admin@bookstore.vn</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>0901234567</td>
+                                    <td><span style="background:#e0f2fe; color:#0369a1; padding:3px 8px; border-radius:4px; font-size:0.75rem; font-weight:600;">Quản trị</span></td>
+                                    <td>01/01/2026</td>
+                                    <td><span class="badge badge-active">Hoạt động</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#userModal" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;">Khoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= MODAL THÊM / SỬA USER ================= -->
+    <div class="modal-overlay" id="userModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Thêm người dùng mới</h3>
+                <a href="#" class="modal-close">Đóng</a>
+            </div>
+            <form id="userForm">
+                <div class="modal-body">
+                    <input type="hidden" id="userId">
+                    
+                    <div class="form-group">
+                        <label for="userName">Họ và tên <span class="required">*</span></label>
+                        <input type="text" id="userName" class="form-control" placeholder="Ví dụ: Nguyễn Văn An" value="Nguyễn Văn An" required>
+                    </div>
+
+                    <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                        <div class="form-group">
+                            <label for="userEmail">Email <span class="required">*</span></label>
+                            <input type="email" id="userEmail" class="form-control" placeholder="user@example.com" value="user@demo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPhone">Số điện thoại <span class="required">*</span></label>
+                            <input type="tel" id="userPhone" class="form-control" placeholder="0987654321" value="0912345678" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="passwordGroup">
+                        <label for="userPassword">Mật khẩu <span id="pwdRequired" class="required">*</span></label>
+                        <input type="password" id="userPassword" class="form-control" placeholder="Nhập mật khẩu (tối thiểu 6 ký tự)" value="123456">
+                    </div>
+
+                    <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                        <div class="form-group">
+                            <label for="userRole">Vai trò <span class="required">*</span></label>
+                            <select id="userRole" class="form-control" required>
+                                <option value="Khách hàng" selected>Khách hàng</option>
+                                <option value="Quản trị viên">Quản trị viên</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="userStatus">Trạng thái <span class="required">*</span></label>
+                            <select id="userStatus" class="form-control" required>
+                                <option value="active" selected>Hoạt động</option>
+                                <option value="locked">Bị khoá</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-secondary">Hủy bỏ</a>
+                    <a href="users.html" class="btn btn-primary" id="btnSaveUser">Lưu tài khoản</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

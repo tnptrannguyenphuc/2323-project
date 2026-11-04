@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 490">
+  <defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#1d6a39"/><stop offset="1" stop-color="#82e0aa"/></linearGradient></defs>
+  <rect width="350" height="490" fill="url(#bg)"/><circle cx="270" cy="90" r="80" fill="#f9e79f" opacity=".8"/><path d="M0 345q90-80 175 0t175 0v145H0z" fill="#145a32" opacity=".6"/>
+  <path d="M70 335h210M105 315v40m140-40v40" stroke="#fef9e7" stroke-width="3" opacity=".8"/>
+  <text x="175" y="160" fill="#fff" font-family="Georgia,serif" font-size="22" text-anchor="middle">CHO TÔI XIN</text><text x="175" y="203" fill="#fff" font-family="Georgia,serif" font-size="25" text-anchor="middle">MỘT VÉ ĐI</text><text x="175" y="246" fill="#fff" font-family="Georgia,serif" font-size="27" text-anchor="middle">TUỔI THƠ</text>
+  <text x="175" y="415" fill="#eafaf1" font-family="Arial,sans-serif" font-size="15" letter-spacing="2" text-anchor="middle">NGUYỄN NHẬT ÁNH</text>
+</svg>

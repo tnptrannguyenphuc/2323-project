@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookStore – Danh mục sách</title>
+    <meta name="description" content="Xem sách theo danh mục tại BookStore – đa thể loại, giá tốt.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/category.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+     HEADER – THANH ĐIỀU HƯỚNG (copy từ index.html)
+     ============================================================ -->
+    <header class="site-header">
+        <div class="header-top">
+            <div class="container">
+                <a href="index.html" class="site-logo">
+                    <span class="logo-text">
+                        <span class="logo-name">BookStore</span>
+                        <span class="logo-slogan">Kho sách tri thức</span>
+                    </span>
+                </a>
+                <div class="header-search">
+                    <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại...">
+                    <a href="search.html" class="header-search-btn">Tìm kiếm</a>
+                </div>
+                <div class="header-actions">
+                    <a href="cart.html" class="header-action-btn">
+                        <span>Giỏ hàng</span>
+                        <span class="cart-badge">3</span>
+                    </a>
+                    <a href="login.html" class="header-action-btn">
+                        <span>Đăng nhập</span>
+                    </a>
+                    <a href="register.html" class="header-action-btn">
+                        <span>Đăng ký</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <div class="container">
+                <a href="category.html" class="nav-item active">Văn học</a>
+                <a href="category.html" class="nav-item">Kinh tế</a>
+                <a href="category.html" class="nav-item">Khoa học</a>
+                <a href="category.html" class="nav-item">Kỹ năng sống</a>
+                <a href="category.html" class="nav-item">Thiếu nhi</a>
+                <a href="category.html" class="nav-item">Giáo khoa</a>
+                <a href="category.html" class="nav-item">Lịch sử</a>
+                <a href="search.html" class="nav-item" style="margin-left:auto;color:#ffe082;">Tìm nâng cao</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- ============================================================
+     MAIN – NỘI DUNG TRANG DANH MỤC
+     ============================================================ -->
+    <main class="main-content">
+        <div class="container">
+
+            <!-- Đường dẫn breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="index.html">Trang chủ</a>
+                <span class="sep">›</span>
+                <span>Văn học</span>
+            </nav>
+
+            <!-- Bố cục 2 cột: sidebar trái + nội dung phải -->
+            <div class="category-layout">
+
+                <!-- ============================================================
+                 SIDEBAR TRÁI – BỘ LỌC DANH MỤC
+                 ============================================================ -->
+                <aside class="category-sidebar">
+
+                    <!-- Danh sách thể loại -->
+                    <div class="sidebar-section">
+                        <h3>Thể loại sách</h3>
+                        <!-- Mỗi link dẫn đến trang category.html với query khác -->
+                            <a href="category.html" class="sidebar-link">
+                                Tất cả sách
+                            </a>
+                                <a href="category.html" class="sidebar-link active">
+                                    Văn học <span class="cat-count-badge">128</span>
+                                </a>
+                                    <a href="category.html" class="sidebar-link">
+                                        Kinh tế <span class="cat-count-badge">96</span>
+                                    </a>
+                                        <a href="category.html" class="sidebar-link">
+                                            Khoa học <span class="cat-count-badge">74</span>
+                                        </a>
+                                            <a href="category.html" class="sidebar-link">
+                                                Kỹ năng sống <span class="cat-count-badge">112</span>
+                                            </a>
+                                                <a href="category.html" class="sidebar-link">
+                                                    Thiếu nhi <span class="cat-count-badge">85</span>
+                                                </a>
+                                                    <a href="category.html" class="sidebar-link">
+                                                        Giáo khoa <span class="cat-count-badge">203</span>
+                                                    </a>
+                                                        <a href="category.html" class="sidebar-link">
+                                                            Lịch sử <span class="cat-count-badge">67</span>
+                                                        </a>
+                    </div>
+
+                    <!-- Lọc theo khoảng giá -->
+                    <div class="sidebar-section">
+                        <h3>Khoảng giá</h3>
+                        <!-- Dùng radio input để lọc (CSS-only, không cần JS) -->
+                        <label class="price-range-label">
+                            <input type="radio" name="price" value="all" checked> Tất cả mức giá
+                        </label>
+                        <label class="price-range-label">
+                            <input type="radio" name="price" value="under50"> Dưới 50.000đ
+                        </label>
+                        <label class="price-range-label">
+                            <input type="radio" name="price" value="50-100"> 50.000 – 100.000đ
+                        </label>
+                        <label class="price-range-label">
+                            <input type="radio" name="price" value="100-200"> 100.000 – 200.000đ
+                        </label>
+                        <label class="price-range-label">
+                            <input type="radio" name="price" value="over200"> Trên 200.000đ
+                        </label>
+                        <!-- Nút áp dụng lọc dẫn đến search.html với tham số -->
+                            href="category.html" class="btn-outline btn-sm"
+                            style="margin-top:10px; display:block; text-align:center;">
+                            Áp dụng lọc
+                        </a>
+                    </div>
+
+                    <!-- Lọc theo nhà xuất bản -->
+                    <div class="sidebar-section">
+                        <h3>Nhà xuất bản</h3>
+                        <label class="price-range-label">
+                            <input type="checkbox" checked> NXB Trẻ
+                        </label>
+                        <label class="price-range-label">
+                            <input type="checkbox"> NXB Kim Đồng
+                        </label>
+                        <label class="price-range-label">
+                            <input type="checkbox"> NXB Hội Nhà Văn
+                        </label>
+                        <label class="price-range-label">
+                            <input type="checkbox"> NXB Giáo Dục
+                        </label>
+                        <label class="price-range-label">
+                            <input type="checkbox"> NXB Văn Học
+                        </label>
+                    </div>
+
+                    <!-- Đánh giá trung bình -->
+                    <div class="sidebar-section">
+                        <h3>Đánh giá</h3>
+                        <label class="price-range-label">
+                            <input type="radio" name="rating" value="5"> ★★★★★ (5 sao)
+                        </label>
+                        <label class="price-range-label">
+                            <input type="radio" name="rating" value="4" checked> ★★★★☆ (4 sao trở lên)
+                        </label>
+                        <label class="price-range-label">
+                            <input type="radio" name="rating" value="3"> ★★★☆☆ (3 sao trở lên)
+                        </label>
+                        <label class="price-range-label">
+                            <input type="radio" name="rating" value="all"> Tất cả
+                        </label>
+                    </div>
+
+                </aside><!-- /category-sidebar -->
+
+
+                <!-- ============================================================
+                 NỘI DUNG PHẢI – DANH SÁCH SẢN PHẨM
+                 ============================================================ -->
+                <div class="category-content">
+
+                    <!-- Tiêu đề + sắp xếp -->
+                    <div class="category-header">
+                        <div class="category-title-area">
+                            <h1>Văn học</h1>
+                            <!-- Số kết quả -->
+                            <span class="result-count">128 sản phẩm</span>
+                        </div>
+
+                            <!-- Chọn cách sắp xếp -->
+                            <div class="sort-form">
+                                <label for="sort-select">Sắp xếp:</label>
+                                    <select id="sort-select">
+                                        <option value="popular">Phổ biến nhất</option>
+                                        <option value="new">Mới nhất</option>
+                                        <option value="price-asc">Giá thấp → cao</option>
+                                        <option value="price-desc">Giá cao → thấp</option>
+                                        <option value="rating">Đánh giá cao</option>
+                                    </select>
+                        <a href="category.html" class="btn-outline btn-sm"
+                            style="display:inline-flex; align-items:center; text-decoration:none;">Lọc</a>
+                    </div>
+                </div><!-- /category-header -->
+
+
+                <!-- ---- LƯỚI SẢN PHẨM (trang 1 – mỗi trang 12 sản phẩm) ---- -->
+                <div class="product-grid">
+
+                    <!-- Sản phẩm 1 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/nha-gia-kim.jpg" alt="Bìa sách Nhà Giả Kim của Paulo Coelho">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Nhà Giả Kim</a>
+                                <span class="card-author">Paulo Coelho</span>
+                                <div class="card-price"><span class="price-current">72.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(412)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 2 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/so-do.jpg" alt="Bìa sách Số Đỏ của Vũ Trọng Phụng">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Số Đỏ</a>
+                                <span class="card-author">Vũ Trọng Phụng</span>
+                                <div class="card-price"><span class="price-current">48.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(321)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 3 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/tuoi-tre-dang-gia-bao-nhieu.jpg"
+                                    alt="Bìa sách Tuổi Trẻ Đáng Giá Bao Nhiêu của Rosie Nguyễn">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Tuổi Trẻ Đáng Giá Bao Nhiêu</a>
+                                <span class="card-author">Rosie Nguyễn</span>
+                                <div class="card-price"><span class="price-current">78.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(302)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 4 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/mat-biec.jpg" alt="Bìa sách Mắt Biếc của Nguyễn Nhật Ánh">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Mắt Biếc</a>
+                                <span class="card-author">Nguyễn Nhật Ánh</span>
+                                <div class="card-price"><span class="price-current">62.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(698)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 5 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/tat-den.jpg" alt="Bìa sách Tắt Đèn của Ngô Tất Tố">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Tắt Đèn</a>
+                                <span class="card-author">Ngô Tất Tố</span>
+                                <div class="card-price"><span class="price-current">42.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★☆</span><span>(178)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 6 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/truyen-kieu.jpg" alt="Bìa sách Truyện Kiều của Nguyễn Du">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Truyện Kiều</a>
+                                <span class="card-author">Nguyễn Du</span>
+                                <div class="card-price"><span class="price-current">38.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(543)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 7 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/chi-pheo.jpg" alt="Bìa sách Chí Phèo của Nam Cao">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Chí Phèo</a>
+                                <span class="card-author">Nam Cao</span>
+                                <div class="card-price"><span class="price-current">50.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(267)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 8 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/cho-toi-xin-mot-ve-di-tuoi-tho.jpg"
+                                    alt="Bìa sách Cho Tôi Xin Một Vé Đi Tuổi Thơ của Nguyễn Nhật Ánh">
+                                <span class="badge-sale">-15%</span>
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                    <a href="product-detail.html" class="card-title">Cho Tôi Xin Một Vé Đi Tuổi
+                                        Thơ</a>
+                                    <span class="card-author">Nguyễn Nhật Ánh</span>
+                                    <div class="card-price">
+                                        <span class="price-current">68.000đ</span>
+                                        <span class="price-old">80.000đ</span>
+                                    </div>
+                                    <div class="card-rating"><span class="stars">★★★★★</span><span>(445)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 9 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/nguoi-dua-dieu.jpg" alt="Bìa sách Người Đua Diều của Khaled Hosseini">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Người Đua Diều</a>
+                                <span class="card-author">Khaled Hosseini</span>
+                                <div class="card-price"><span class="price-current">95.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(312)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 10 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/nghin-le-mot-dem.jpg" alt="Bìa sách Nghìn Lẻ Một Đêm">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Nghìn Lẻ Một Đêm</a>
+                                <span class="card-author">Nhiều tác giả</span>
+                                <div class="card-price"><span class="price-current">125.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★☆</span><span>(189)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 11 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/chien-tranh-va-hoa-binh.jpg"
+                                    alt="Bìa sách Chiến Tranh Và Hòa Bình của Leo Tolstoy">
+                                <span class="badge-sale">-20%</span>
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Chiến Tranh Và Hòa Bình</a>
+                                <span class="card-author">Leo Tolstoy</span>
+                                <div class="card-price">
+                                    <span class="price-current">280.000đ</span>
+                                    <span class="price-old">350.000đ</span>
+                                </div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(156)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                    <!-- Sản phẩm 12 -->
+                    <div class="product-card">
+                            <a href="product-detail.html" class="card-img">
+                                <img src="images/bo-gia.jpg" alt="Bìa sách Bố Già của Mario Puzo">
+                            </a>
+                            <div class="card-body">
+                                <span class="card-category">Văn học</span>
+                                <a href="product-detail.html" class="card-title">Bố Già</a>
+                                <span class="card-author">Mario Puzo</span>
+                                <div class="card-price"><span class="price-current">155.000đ</span></div>
+                                <div class="card-rating"><span class="stars">★★★★★</span><span>(421)</span></div>
+                            </div>
+                            <div class="card-footer"><a href="cart.html" class="btn-add-cart">Thêm vào giỏ</a></div>
+                    </div>
+
+                </div><!-- /product-grid -->
+
+
+                <!-- ---- PHÂN TRANG ---- -->
+                <!-- Mỗi trang dẫn đến URL category.html -->
+                <nav class="pagination">
+                    <!-- Nút về trước (disabled vì đang ở trang 1) -->
+                    <span class="disabled">‹ Trước</span>
+
+                    <!-- Trang 1 (hiện tại) -->
+                    <span class="active">1</span>
+
+                    <!-- Trang 2, 3, 4... -->
+                    <a href="category.html">2</a>
+                    <a href="category.html">3</a>
+                    <a href="category.html">4</a>
+
+                    <!-- Dấu "..." -->
+                    <span>...</span>
+
+                    <!-- Trang cuối -->
+                    <a href="category.html">11</a>
+
+                    <!-- Nút tiếp theo -->
+                    <a href="category.html">Tiếp ›</a>
+                </nav><!-- /pagination -->
+
+            </div><!-- /category-content -->
+
+        </div><!-- /category-layout -->
+
+        </div><!-- /container -->
+    </main>
+
+
+    <!-- ============================================================
+     FOOTER – THANH DƯỚI CÙNG (copy từ index.html)
+     ============================================================ -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-brand">
+                    <div class="footer-logo-name">BookStore</div>
+                    <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.</p>
+                    <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM &nbsp;|&nbsp; Hotline: 0909 123 456</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-btn">f</a>
+                        <a href="#" class="social-btn">in</a>
+                        <a href="#" class="social-btn">yt</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Danh mục</h4>
+                    <ul>
+                        <li><a href="category.html">Văn học</a></li>
+                        <li><a href="category.html">Kinh tế</a></li>
+                        <li><a href="category.html">Khoa học</a></li>
+                        <li><a href="category.html">Kỹ năng sống</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Tài khoản</h4>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="register.html">Đăng ký</a></li>
+                        <li><a href="order-history.html">Lịch sử đơn hàng</a></li>
+                        <li><a href="admin/login.html">Quản trị viên</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">© 2026 BookStore – Nhà sách trực tuyến.</div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

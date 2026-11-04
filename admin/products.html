@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Sản phẩm - BookStore Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        .product-thumb {
+            width: 48px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: #f8fafc;
+        }
+
+        .sold-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #f1f5f9;
+            color: #475569;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="admin-wrapper">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    BookStore
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            Tổng quan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            Quản lý User
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html" class="active">
+                            Quản lý Sản phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            Quản lý Đơn hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="statistics.html">
+                            Thống kê
+                        </a>
+                    </li>
+                    <li class="logout-item">
+                        <a href="login.html">
+                            Đăng xuất
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                BookStore Admin v1.0
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="d-flex align-center gap-12">
+                    <span class="header-title">Quản lý Sản phẩm</span>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">QT</div>
+                        <div>
+                            <div class="admin-name">Quản trị viên</div>
+                            <div class="admin-role">Super Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="admin-content">
+
+                <div class="page-header d-flex justify-between align-center flex-wrap gap-16 mb-24">
+                    <div>
+                        <h2>Danh mục Sách & Sản phẩm</h2>
+                        <p class="text-gray" style="font-size:0.9rem;">Thêm mới với xem trước ảnh, cập nhật đúng phân
+                            loại, và xoá/ẩn thông minh dựa trên lịch sử đã bán</p>
+                    </div>
+                    <a href="#productModal" class="btn btn-primary">
+                        Thêm sản phẩm mới
+                    </a>
+                </div>
+
+                <!-- Thống kê nhanh sản phẩm -->
+                <div class="stat-cards mb-24">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="statTotalBooks">8</div>
+                            <div class="stat-label">Tổng đầu sách</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="statVisibleBooks">7</div>
+                            <div class="stat-label">Đang hiển thị trên web</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon icon-orders" style="background:#fee2e2; color:#dc2626;"></div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="statHiddenBooks">1</div>
+                            <div class="stat-label">Đang ẩn (Đã từng bán)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bộ lọc sản phẩm -->
+                <div class="card p-16 mb-20">
+                    <div class="filter-bar" style="margin-bottom:0;">
+                        <div class="search-box">
+                            <input type="text" id="searchInput" class="form-control"
+                                placeholder="Tìm theo tên sách, tác giả...">
+                        </div>
+                        <select id="catFilter" class="filter-select">
+                            <option value="">Tất cả thể loại</option>
+                            <option value="van-hoc">Văn học</option>
+                            <option value="kinh-te">Kinh tế</option>
+                            <option value="khoa-hoc">Khoa học</option>
+                            <option value="ky-nang">Kỹ năng sống</option>
+                            <option value="thieu-nhi">Thiếu nhi</option>
+                            <option value="giao-khoa">Giáo khoa</option>
+                            <option value="lich-su">Lịch sử</option>
+                        </select>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="visible">Đang hiển thị</option>
+                            <option value="hidden">Đã ẩn</option>
+                        </select>
+                        <a href="products.html" class="btn btn-secondary btn-sm">Làm mới</a>
+                    </div>
+                </div>
+
+                <!-- Bảng danh sách sản phẩm (HTML TĨNH TRỰC TIẾP) -->
+                <div class="card">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ảnh</th>
+                                    <th>Tên sách & Tác giả</th>
+                                    <th>Thể loại</th>
+                                    <th>Giá bán</th>
+                                    <th>Kho</th>
+                                    <th>Đã bán</th>
+                                    <th>Trạng thái web</th>
+                                    <th style="text-align:center;">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productTableBody">
+                                <tr>
+                                    <td>
+                                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=150&q=80"
+                                            alt="Đắc Nhân Tâm" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Đắc Nhân Tâm</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Dale Carnegie
+                                        </div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Kỹ năng
+                                            sống</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">88.000đ</td>
+                                    <td>45</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
+                                            <strong>245</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#productModal" class="btn btn-sm btn-secondary"
+                                                title="Sửa thông tin">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline"
+                                                style="color:#e74c3c; border-color:#e74c3c;"
+                                                title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=150&q=80"
+                                            alt="Nhà Giả Kim" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Nhà Giả Kim</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Paulo Coelho
+                                        </div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">79.000đ</td>
+                                    <td>60</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
+                                            <strong>180</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline"
+                                                style="color:#e74c3c; border-color:#e74c3c;">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=150&q=80"
+                                            alt="Sapiens" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Sapiens: Lược Sử Loài
+                                            Người</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Yuval Noah
+                                            Harari</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Khoa học</span>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">189.000đ</td>
+                                    <td>25</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
+                                            <strong>95</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline"
+                                                style="color:#e74c3c; border-color:#e74c3c;">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?auto=format&fit=crop&w=150&q=80"
+                                            alt="Chiến Tranh Tiền Tệ" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Chiến Tranh Tiền Tệ</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Song Hongbing
+                                        </div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Kinh tế</span>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">135.000đ</td>
+                                    <td>30</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
+                                            <strong>52</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline"
+                                                style="color:#e74c3c; border-color:#e74c3c;">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=150&q=80"
+                                            alt="Hoàng Tử Bé" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Hoàng Tử Bé</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Antoine de
+                                            Saint-Exupéry</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Thiếu nhi</span>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">55.000đ</td>
+                                    <td>80</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
+                                            <strong>310</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline"
+                                                style="color:#e74c3c; border-color:#e74c3c;">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="opacity:0.75; background-color:#fbfcfd;">
+                                    <td>
+                                        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=150&q=80"
+                                            alt="Đại Việt Sử Ký Toàn Thư" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Đại Việt Sử Ký Toàn Thư
+                                        </div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Ngô Sĩ Liên
+                                        </div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Lịch sử</span>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">250.000đ</td>
+                                    <td>12</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
+                                            <strong>34</strong></span></td>
+                                    <td><span class="badge badge-hidden">Đã ẩn</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline"
+                                                style="color:var(--green-main); border-color:var(--green-main);">Hiện
+                                                lại</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=150&q=80"
+                                            alt="Toán Học Cao Cấp" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Toán Học Cao Cấp Tập 1
+                                            (Mới Nhập)</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Nguyễn Đình Trí
+                                        </div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Giáo khoa</span>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">68.000đ</td>
+                                    <td>100</td>
+                                    <td><span class="sold-badge" style="background:#fffbeb; color:#b45309;">Chưa bán
+                                            (0)</span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline"
+                                                style="color:#e74c3c; border-color:#e74c3c;"
+                                                title="Chưa bán nên cho phép xoá">Xoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=150&q=80"
+                                            alt="Bản Thảo" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Thử Nghiệm Bản Thảo Chưa
+                                            Bán</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Tác Giả Khuyết
+                                            Danh</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">45.000đ</td>
+                                    <td>10</td>
+                                    <td><span class="sold-badge" style="background:#fffbeb; color:#b45309;">Chưa bán
+                                            (0)</span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
+                                            <a href="#" class="btn btn-sm btn-outline"
+                                                style="color:#e74c3c; border-color:#e74c3c;"
+                                                title="Chưa bán nên cho phép xoá">Xoá</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= MODAL THÊM / SỬA SẢN PHẨM ================= -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3 id="modalTitle">Thêm / Sửa sản phẩm</h3>
+                <a href="#" class="modal-close">Đóng</a>
+            </div>
+            <form id="productForm">
+                <div class="modal-body">
+                    <input type="hidden" id="prodId">
+
+                    <!-- Khu vực upload và xem trước hình ảnh -->
+                    <div class="form-group mb-20">
+                        <label>Hình ảnh bìa sách <span class="required">*</span></label>
+                        <div class="image-upload-area has-image" id="imageUploadArea">
+                            <img id="imagePreview" class="image-preview visible"
+                                src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=150&q=80"
+                                alt="Xem trước bìa sách">
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="display:grid; grid-template-columns:2fr 1fr; gap:16px;">
+                        <div class="form-group">
+                            <label for="prodName">Tên cuốn sách <span class="required">*</span></label>
+                            <input type="text" id="prodName" class="form-control" placeholder="Ví dụ: Đắc Nhân Tâm"
+                                value="Đắc Nhân Tâm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prodCategory">Phân loại thể loại <span class="required">*</span></label>
+                            <select id="prodCategory" class="form-control" required>
+                                <option value="van-hoc">Văn học</option>
+                                <option value="kinh-te">Kinh tế</option>
+                                <option value="khoa-hoc">Khoa học</option>
+                                <option value="ky-nang" selected>Kỹ năng sống</option>
+                                <option value="thieu-nhi">Thiếu nhi</option>
+                                <option value="giao-khoa">Giáo khoa</option>
+                                <option value="lich-su">Lịch sử</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+                        <div class="form-group">
+                            <label for="prodAuthor">Tác giả <span class="required">*</span></label>
+                            <input type="text" id="prodAuthor" class="form-control" placeholder="Ví dụ: Dale Carnegie"
+                                value="Dale Carnegie" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prodPrice">Giá bán (VNĐ) <span class="required">*</span></label>
+                            <input type="text" id="prodPrice" name="price" class="form-control format-number"
+                                placeholder="88.000" value="88.000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prodStock">Số lượng tồn kho <span class="required">*</span></label>
+                            <input type="number" id="prodStock" class="form-control" min="0" value="45" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prodDesc">Mô tả tóm tắt sách</label>
+                        <textarea id="prodDesc" class="form-control" rows="3"
+                            placeholder="Nhập tóm tắt nội dung sách...">Cuốn sách nghệ thuật thu phục lòng người kinh điển nhất mọi thời đại.</textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-secondary">Hủy bỏ</a>
+                    <a href="products.html" class="btn btn-primary" id="btnSaveProd">Lưu sản phẩm</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tự động format dấu chấm cho ô tiền tệ -->
+    <script src="../js/format-number.js"></script>
+</body>
+
+</html>

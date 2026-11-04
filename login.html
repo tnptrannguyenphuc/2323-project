@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập – BookStore</title>
+    <meta name="description" content="Đăng nhập tài khoản BookStore để mua sách và xem đơn hàng.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="header-top">
+        <div class="container">
+            <a href="index.html" class="site-logo">
+                <span class="logo-text">
+                    <span class="logo-name">BookStore</span>
+                    <span class="logo-slogan">Kho sách tri thức</span>
+                </span>
+            </a>
+            <div class="header-search">
+                <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại..." autocomplete="off">
+                <a href="search.html" class="header-search-btn">Tìm kiếm</a>
+            </div>
+            <div class="header-actions">
+                <a href="cart.html" class="header-action-btn">
+                    <span>Giỏ hàng</span>
+                </a>
+                <a href="register.html" class="header-action-btn">
+                    <span>Đăng ký</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <nav class="header-nav">
+        <div class="container">
+            <a href="category.html" class="nav-item">Văn học</a>
+            <a href="category.html" class="nav-item">Kinh tế</a>
+            <a href="category.html" class="nav-item">Khoa học</a>
+            <a href="category.html" class="nav-item">Kỹ năng sống</a>
+            <a href="category.html" class="nav-item">Thiếu nhi</a>
+            <a href="category.html" class="nav-item">Giáo khoa</a>
+            <a href="category.html" class="nav-item">Lịch sử</a>
+            <a href="search.html" class="nav-item" style="margin-left:auto; color:#ffe082;">Tìm nâng cao</a>
+        </div>
+    </nav>
+</header>
+
+
+<!-- ============================================================
+     MAIN – TRANG ĐĂNG NHẬP
+     ============================================================ -->
+<main class="main-content">
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Trang chủ</a>
+            <span class="sep">›</span>
+            <span>Đăng nhập</span>
+        </nav>
+
+        <!-- Khung đăng nhập (hẹp hơn đăng ký) -->
+        <div class="auth-wrapper auth-centered">
+
+            <!-- Hình bên trái -->
+            <div class="auth-banner">
+                <div class="auth-banner-content">
+                    
+                    <h2>Chào mừng trở lại!</h2>
+                    <p>Đăng nhập để tiếp tục mua sách và theo dõi đơn hàng của bạn.</p>
+                    <div class="auth-stats">
+                        <div class="auth-stat">
+                            <strong>10.000+</strong>
+                            <span>Đầu sách</span>
+                        </div>
+                        <div class="auth-stat">
+                            <strong>50.000+</strong>
+                            <span>Khách hàng</span>
+                        </div>
+                        <div class="auth-stat">
+                            <strong>5★</strong>
+                            <span>Chất lượng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form đăng nhập -->
+            <div class="auth-form-card">
+                <h1>Đăng nhập</h1>
+                <p class="auth-subtitle">
+                    Chưa có tài khoản?
+                    <a href="register.html">Đăng ký miễn phí →</a>
+                </p>
+
+                <!-- Thông báo tài khoản demo -->
+                <div class="alert alert-info">
+                    <strong>Demo:</strong> Email: <code>user@demo.com</code> | Mật khẩu: <code>123456</code>
+                </div>
+
+                <!-- Form đăng nhập – dẫn sang trang chủ đã đăng nhập (index-logged.html) -->
+                <div class="auth-form">
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email"
+                               value="user@demo.com"
+                               placeholder="Nhập email của bạn"
+                               required>
+                    </div>
+
+                    <!-- Mật khẩu -->
+                    <div class="form-group">
+                        <label for="login-password">Mật khẩu</label>
+                        <input type="password" id="login-password"
+                               value="123456"
+                               placeholder="Nhập mật khẩu"
+                               required>
+                        <!-- Liên kết quên mật khẩu -->
+                        <div class="forgot-link">
+                            <a href="#">Quên mật khẩu?</a>
+                        </div>
+                    </div>
+
+                    <!-- Nhớ đăng nhập -->
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked>
+                            Ghi nhớ đăng nhập
+                        </label>
+                    </div>
+
+                    <!-- Nút đăng nhập -->
+                    <a href="index-logged.html" class="btn-primary btn-full" style="display:flex; justify-content:center; align-items:center; text-decoration:none;">
+                        Đăng nhập
+                    </a>
+
+                </div><!-- /auth-form -->
+
+                <!-- Phân cách -->
+                <div class="auth-divider">
+                    <span>hoặc</span>
+                </div>
+
+                <!-- Đăng ký mới -->
+                <div class="auth-switch">
+                    <p>Chưa có tài khoản?</p>
+                    <a href="register.html" class="btn-outline btn-full">
+                        Tạo tài khoản mới
+                    </a>
+                </div>
+
+                <!-- Link quản trị viên -->
+                <div class="admin-login-link">
+                    <a href="admin/login.html">Đăng nhập với tư cách Quản trị viên</a>
+                </div>
+
+            </div><!-- /auth-form-card -->
+
+        </div><!-- /auth-wrapper -->
+
+    </div>
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="footer-logo-name">BookStore</div>
+                <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.</p>
+                <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM &nbsp;|&nbsp; Hotline: 0909 123 456</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn">f</a><a href="#" class="social-btn">in</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Danh mục</h4>
+                <ul>
+                    <li><a href="category.html">Văn học</a></li>
+                    <li><a href="category.html">Kỹ năng sống</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Tài khoản</h4>
+                <ul>
+                    <li><a href="login.html">Đăng nhập</a></li>
+                    <li><a href="register.html">Đăng ký</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul><li><a href="#">Hướng dẫn</a></li></ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">© 2026 BookStore – Nhà sách trực tuyến.</div>
+    </div>
+</footer>
+
+</body>
+</html>

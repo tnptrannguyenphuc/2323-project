@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 490">
+  <defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#4a1942"/><stop offset="1" stop-color="#d98880"/></linearGradient></defs>
+  <rect width="350" height="490" fill="url(#bg)"/><path d="M0 345 70 275l55 54 85-100 140 117v144H0z" fill="#512e5f" opacity=".55"/><path d="M92 75 122 95l-10 34-38 0-10-34z" fill="#f9e79f"/><path d="m92 75 68-50M92 75l-3 115" stroke="#f9e79f" stroke-width="2"/>
+  <text x="175" y="230" fill="#fff" font-family="Georgia,serif" font-size="38" font-weight="bold" text-anchor="middle">NGƯỜI</text><text x="175" y="279" fill="#fff" font-family="Georgia,serif" font-size="38" font-weight="bold" text-anchor="middle">ĐUA DIỀU</text>
+  <text x="175" y="390" fill="#f5eef8" font-family="Arial,sans-serif" font-size="17" letter-spacing="1" text-anchor="middle">KHALED HOSSEINI</text>
+</svg>

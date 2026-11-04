@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 490">
+  <defs><linearGradient id="bg" x2="0.8" y2="1"><stop stop-color="#e74c3c"/><stop offset="1" stop-color="#7b241c"/></linearGradient></defs>
+  <rect width="350" height="490" fill="url(#bg)"/><circle cx="275" cy="85" r="95" fill="#f5b041" opacity=".8"/><path d="M0 335 115 205l74 82 75-105 86 122v186H0z" fill="#641e16" opacity=".55"/>
+  <text x="28" y="68" fill="#fff" font-family="Arial,sans-serif" font-size="13" letter-spacing="4">SỐNG HẾT MÌNH</text>
+  <text x="175" y="210" fill="#fff" font-family="Arial,sans-serif" font-size="30" font-weight="bold" text-anchor="middle">TUỔI TRẺ</text><text x="175" y="253" fill="#fff" font-family="Arial,sans-serif" font-size="25" font-weight="bold" text-anchor="middle">ĐÁNG GIÁ</text><text x="175" y="296" fill="#fff" font-family="Arial,sans-serif" font-size="34" font-weight="bold" text-anchor="middle">BAO NHIÊU?</text>
+  <text x="175" y="420" fill="#fdebd0" font-family="Arial,sans-serif" font-size="18" text-anchor="middle">ROSIE NGUYỄN</text>
+</svg>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê Khách hàng VIP - BookStore Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        .rank-badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+        .rank-1 { background: #fef08a; color: #854d0e; border: 2px solid #eab308; }
+        .rank-2 { background: #e2e8f0; color: #475569; border: 2px solid #94a3b8; }
+        .rank-3 { background: #ffedd5; color: #9a3412; border: 2px solid #f97316; }
+        .rank-other { background: #f1f5f9; color: #64748b; }
+
+        .order-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border: 1px solid #bfdbfe;
+            margin: 2px 4px 2px 0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .order-pill:hover {
+            background: #dbeafe;
+            color: #1e40af;
+            transform: translateY(-1px);
+        }
+
+        .bar-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 6px;
+        }
+        .bar-track {
+            flex: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green-main), #10b981);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="admin-wrapper">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    BookStore
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            Tổng quan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            Quản lý User
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            Quản lý Sản phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            Quản lý Đơn hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="statistics.html" class="active">
+                            Thống kê
+                        </a>
+                    </li>
+                    <li class="logout-item">
+                        <a href="login.html">
+                            Đăng xuất
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                BookStore Admin v1.0
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="d-flex align-center gap-12">
+                    <span class="header-title">Báo cáo & Thống kê Doanh thu</span>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">QT</div>
+                        <div>
+                            <div class="admin-name">Quản trị viên</div>
+                            <div class="admin-role">Super Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="admin-content">
+
+                <div class="page-header mb-24">
+                    <h2>Thống kê Top 5 Khách hàng có Mức mua cao nhất</h2>
+                    <p class="text-gray" style="font-size:0.9rem;">
+                        Nhập khoảng thời gian để hệ thống tính toán và xếp hạng giảm dần theo tổng tiền mua, kèm danh sách từng đơn hàng chi tiết.
+                    </p>
+                </div>
+
+                <!-- Form chọn khoảng thời gian thống kê -->
+                <div class="card p-24 mb-24">
+                    <div id="statsFilterForm">
+                        <div class="d-flex align-center flex-wrap gap-16 mb-16">
+                            
+                            <div class="d-flex align-center gap-8">
+                                <label for="statDateFrom" style="font-weight:600; font-size:0.9rem;">Từ ngày:</label>
+                                <input type="date" id="statDateFrom" class="form-control" style="width:170px;" value="2026-10-01" required>
+                            </div>
+
+                            <div class="d-flex align-center gap-8">
+                                <label for="statDateTo" style="font-weight:600; font-size:0.9rem;">Đến ngày:</label>
+                                <input type="date" id="statDateTo" class="form-control" style="width:170px;" value="2026-10-31" required>
+                            </div>
+
+                            <a href="statistics.html" class="btn btn-primary" style="text-decoration:none;">
+                                Xem thống kê Top 5 VIP
+                            </a>
+
+                            <a href="statistics.html" class="btn btn-secondary">
+                                Tất cả thời gian
+                            </a>
+                        </div>
+
+                        <!-- Các mốc thời gian gợi ý nhanh -->
+                        <div class="d-flex align-center flex-wrap gap-8" style="font-size:0.85rem; color:var(--text-gray);">
+                            <span>Chọn nhanh:</span>
+                            <button type="button" class="btn btn-sm btn-secondary">7 ngày gần nhất</button>
+                            <button type="button" class="btn btn-sm btn-secondary">30 ngày gần nhất</button>
+                            <button type="button" class="btn btn-sm btn-secondary">Tháng 10/2026</button>
+                            <button type="button" class="btn btn-sm btn-secondary">Cả năm 2026</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thống kê tổng hợp kết quả của Top 5 -->
+                <div class="stat-cards mb-24" id="statsSummaryCards">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="top5TotalRevenue">3.626.000đ</div>
+                            <div class="stat-label">Tổng tiền Top 5 mua</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="top5TotalOrders">9</div>
+                            <div class="stat-label">Tổng số đơn hàng thực hiện</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="top1CustomerName">Nguyễn Văn An</div>
+                            <div class="stat-label">Khách hàng quán quân</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BẢNG KẾT QUẢ TOP 5 KHÁCH HÀNG (HTML TĨNH SẮP XẾP GIẢM DẦN THEO TỔNG TIỀN) -->
+                <div class="card p-24">
+                    <div class="d-flex justify-between align-center flex-wrap gap-12 mb-16">
+                        <div>
+                            <h3 id="resultTitle">Bảng xếp hạng 5 Khách hàng có mức mua cao nhất</h3>
+                            <p class="text-gray" style="font-size:0.85rem;" id="resultSubtitle">Dữ liệu được sắp xếp giảm dần theo tổng tiền mua hàng</p>
+                        </div>
+                        <span class="badge badge-active" id="dateRangeNotice">Thời gian: 01/10/2026 → 31/10/2026</span>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width:70px; text-align:center;">Hạng</th>
+                                    <th>Khách hàng VIP</th>
+                                    <th style="text-align:center;">Số đơn</th>
+                                    <th>Danh sách từng đơn hàng (Nhấp xem chi tiết)</th>
+                                    <th style="text-align:right;">Tổng tiền mua</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topCustomersTableBody">
+                                <tr>
+                                    <td style="text-align:center;"><span class="rank-badge rank-1">#1</span></td>
+                                    <td>
+                                        <div style="font-weight:700; font-size:0.95rem; color:var(--text-dark);">Nguyễn Văn An</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">user@demo.com • 0912345678</div>
+                                        <div class="bar-container">
+                                            <div class="bar-track">
+                                                <div class="bar-fill" style="width:100%;"></div>
+                                            </div>
+                                            <span style="font-size:0.75rem; color:var(--text-gray);">100%</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align:center; font-weight:700; font-size:1.1rem; color:var(--green-dark);">
+                                        3
+                                    </td>
+                                    <td style="max-width:320px;">
+                                        <a href="order-detail.html" class="order-pill" title="Nhấp xem chi tiết đơn hàng #DH1001">
+                                            #DH1001 (324.000đ)
+                                        </a>
+                                        <a href="order-detail.html" class="order-pill" title="Nhấp xem chi tiết đơn hàng #DH1005">
+                                            #DH1005 (450.000đ)
+                                        </a>
+                                        <a href="order-detail.html" class="order-pill" title="Nhấp xem chi tiết đơn hàng #DH1010">
+                                            #DH1010 (580.000đ)
+                                        </a>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <div style="font-size:1.15rem; font-weight:800; color:var(--orange-main);">
+                                            1.354.000đ
+                                        </div>
+                                        <div style="font-size:0.75rem; color:var(--text-light);">
+                                            Trung bình: 451.333đ/đơn
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;"><span class="rank-badge rank-2">#2</span></td>
+                                    <td>
+                                        <div style="font-weight:700; font-size:0.95rem; color:var(--text-dark);">Trần Thị Bình</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">binh.tran@gmail.com • 0988776655</div>
+                                        <div class="bar-container">
+                                            <div class="bar-track">
+                                                <div class="bar-fill" style="width:63%;"></div>
+                                            </div>
+                                            <span style="font-size:0.75rem; color:var(--text-gray);">63%</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align:center; font-weight:700; font-size:1.1rem; color:var(--green-dark);">
+                                        2
+                                    </td>
+                                    <td style="max-width:320px;">
+                                        <a href="order-detail.html" class="order-pill" title="Nhấp xem chi tiết đơn hàng #DH1002">
+                                            #DH1002 (512.000đ)
+                                        </a>
+                                        <a href="order-detail.html" class="order-pill" title="Nhấp xem chi tiết đơn hàng #DH1009">
+                                            #DH1009 (345.000đ)
+                                        </a>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <div style="font-size:1.15rem; font-weight:800; color:var(--orange-main);">
+                                            857.000đ
+                                        </div>
+                                        <div style="font-size:0.75rem; color:var(--text-light);">
+                                            Trung bình: 428.500đ/đơn
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;"><span class="rank-badge rank-3">#3</span></td>
+                                    <td>
+                                        <div style="font-weight:700; font-size:0.95rem; color:var(--text-dark);">Phạm Minh Đức</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">duc.pm@outlook.com • 0977112233</div>
+                                        <div class="bar-container">
+                                            <div class="bar-track">
+                                                <div class="bar-fill" style="width:61%;"></div>
+                                            </div>
+                                            <span style="font-size:0.75rem; color:var(--text-gray);">61%</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align:center; font-weight:700; font-size:1.1rem; color:var(--green-dark);">
+                                        1
+                                    </td>
+                                    <td style="max-width:320px;">
+                                        <a href="order-detail.html" class="order-pill" title="Nhấp xem chi tiết đơn hàng #DH1004">
+                                            #DH1004 (820.000đ)
+                                        </a>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <div style="font-size:1.15rem; font-weight:800; color:var(--orange-main);">
+                                            820.000đ
+                                        </div>
+                                        <div style="font-size:0.75rem; color:var(--text-light);">
+                                            Trung bình: 820.000đ/đơn
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;"><span class="rank-badge rank-other">#4</span></td>
+                                    <td>
+                                        <div style="font-weight:700; font-size:0.95rem; color:var(--text-dark);">Vũ Quốc Phong</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">phong.vu@gmail.com • 0966889900</div>
+                                        <div class="bar-container">
+                                            <div class="bar-track">
+                                                <div class="bar-fill" style="width:29%;"></div>
+                                            </div>
+                                            <span style="font-size:0.75rem; color:var(--text-gray);">29%</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align:center; font-weight:700; font-size:1.1rem; color:var(--green-dark);">
+                                        1
+                                    </td>
+                                    <td style="max-width:320px;">
+                                        <a href="order-detail.html" class="order-pill" title="Nhấp xem chi tiết đơn hàng #DH1007">
+                                            #DH1007 (390.000đ)
+                                        </a>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <div style="font-size:1.15rem; font-weight:800; color:var(--orange-main);">
+                                            390.000đ
+                                        </div>
+                                        <div style="font-size:0.75rem; color:var(--text-light);">
+                                            Trung bình: 390.000đ/đơn
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;"><span class="rank-badge rank-other">#5</span></td>
+                                    <td>
+                                        <div style="font-weight:700; font-size:0.95rem; color:var(--text-dark);">Hoàng Lan Em</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">lanem.hoang@gmail.com • 0944556677</div>
+                                        <div class="bar-container">
+                                            <div class="bar-track">
+                                                <div class="bar-fill" style="width:16%;"></div>
+                                            </div>
+                                            <span style="font-size:0.75rem; color:var(--text-gray);">16%</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align:center; font-weight:700; font-size:1.1rem; color:var(--green-dark);">
+                                        1
+                                    </td>
+                                    <td style="max-width:320px;">
+                                        <a href="order-detail.html" class="order-pill" title="Nhấp xem chi tiết đơn hàng #DH1006">
+                                            #DH1006 (215.000đ)
+                                        </a>
+                                    </td>
+                                    <td style="text-align:right;">
+                                        <div style="font-size:1.15rem; font-weight:800; color:var(--orange-main);">
+                                            215.000đ
+                                        </div>
+                                        <div style="font-size:0.75rem; color:var(--text-light);">
+                                            Trung bình: 215.000đ/đơn
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

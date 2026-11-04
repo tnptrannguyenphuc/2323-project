@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 490">
+  <defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#154360"/><stop offset=".65" stop-color="#5dade2"/><stop offset="1" stop-color="#f8c471"/></linearGradient></defs>
+  <rect width="350" height="490" fill="url(#bg)"/><circle cx="270" cy="115" r="44" fill="#fef9e7"/><path d="M0 300q90-95 175 0t175 0v190H0z" fill="#1b4f72" opacity=".72"/><path d="M0 354q90-55 175 0t175 0" fill="none" stroke="#d6eaf8" stroke-width="3" opacity=".7"/>
+  <text x="175" y="220" fill="#fff" font-family="Georgia,serif" font-size="55" font-style="italic" text-anchor="middle">Mắt Biếc</text><path d="M105 240h140" stroke="#fef9e7" stroke-width="2"/>
+  <text x="175" y="400" fill="#eaf2f8" font-family="Arial,sans-serif" font-size="17" letter-spacing="2" text-anchor="middle">NGUYỄN NHẬT ÁNH</text>
+</svg>

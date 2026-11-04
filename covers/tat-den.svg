@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 490">
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#6e2f0e"/><stop offset="1" stop-color="#d68910"/></linearGradient></defs>
+  <rect width="350" height="490" fill="url(#bg)"/><path d="M0 345 95 205l62 87 90-140 103 151v187H0z" fill="#512e1f" opacity=".55"/><circle cx="267" cy="111" r="43" fill="#f9e79f" opacity=".9"/>
+  <text x="175" y="260" fill="#fff" font-family="Georgia,serif" font-size="53" font-weight="bold" text-anchor="middle">TẮT ĐÈN</text><path d="M108 282h134" stroke="#f9e79f" stroke-width="2"/>
+  <text x="175" y="340" fill="#fdf2e9" font-family="Arial,sans-serif" font-size="18" letter-spacing="2" text-anchor="middle">NGÔ TẤT TỐ</text><text x="175" y="450" fill="#f5cba7" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" text-anchor="middle">TIỂU THUYẾT</text>
+</svg>

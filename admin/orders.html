@@ -1,0 +1,545 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Đơn hàng - BookStore Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        .filter-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: 12px;
+            align-items: center;
+        }
+        @media (max-width: 992px) {
+            .filter-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 576px) {
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .date-range-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .date-range-box input[type="date"] {
+            padding: 7px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="admin-wrapper">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    BookStore
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            Tổng quan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            Quản lý User
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            Quản lý Sản phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html" class="active">
+                            Quản lý Đơn hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="statistics.html">
+                            Thống kê
+                        </a>
+                    </li>
+                    <li class="logout-item">
+                        <a href="login.html">
+                            Đăng xuất
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                BookStore Admin v1.0
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="d-flex align-center gap-12">
+                    <span class="header-title">Quản lý Đơn hàng</span>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">QT</div>
+                        <div>
+                            <div class="admin-name">Quản trị viên</div>
+                            <div class="admin-role">Super Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="admin-content">
+
+                <div class="page-header d-flex justify-between align-center flex-wrap gap-16 mb-24">
+                    <div>
+                        <h2>Danh sách Đơn đặt hàng</h2>
+                        <p class="text-gray" style="font-size:0.9rem;">Cập nhật trạng thái một chiều theo quy trình chuẩn, lọc theo thời gian, trạng thái và địa điểm giao hàng</p>
+                    </div>
+                    <div class="d-flex gap-10">
+                        <a href="statistics.html" class="btn btn-primary">
+                            Xem báo cáo & Thống kê VIP
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Thống kê nhanh đơn hàng theo trạng thái -->
+                <div class="stat-cards mb-24">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="countAll">10</div>
+                            <div class="stat-label">Tất cả đơn hàng</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="countPending">2</div>
+                            <div class="stat-label">Chưa xác nhận</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="countConfirmed">2</div>
+                            <div class="stat-label">Đã xác nhận</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <div class="stat-value" id="countDelivered">4</div>
+                            <div class="stat-label">Đã giao thành công</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KHU VỰC BỘ LỌC ĐA TIÊU CHÍ (Status, Date Range, Location) -->
+                <div class="card p-20 mb-20">
+                    <div style="font-weight:700; margin-bottom:12px; color:var(--text-dark);">
+                        Bộ lọc nâng cao:
+                    </div>
+                    <div class="filter-grid mb-12">
+                        <!-- 1. Tìm theo từ khóa / mã đơn / khách hàng -->
+                        <div class="search-box">
+                            <input type="text" id="orderSearchInput" class="form-control" placeholder="Mã đơn (#DH...), tên KH, SĐT...">
+                        </div>
+
+                        <!-- 2. Lọc theo trạng thái đơn hàng -->
+                        <div>
+                            <select id="statusFilter" class="form-control">
+                                <option value="">Tất cả trạng thái</option>
+                                <option value="pending">Chưa xác nhận</option>
+                                <option value="confirmed">Đã xác nhận</option>
+                                <option value="shipping">Đang giao hàng</option>
+                                <option value="delivered">Đã giao (Thành công)</option>
+                                <option value="cancelled">Huỷ đơn</option>
+                            </select>
+                        </div>
+
+                        <!-- 3. Lọc theo Tỉnh / Thành phố -->
+                        <div>
+                            <select id="cityFilter" class="form-control">
+                                <option value="">Tất cả Tỉnh / Thành phố</option>
+                                <option value="hcm">TP. Hồ Chí Minh</option>
+                                <option value="hn">Hà Nội</option>
+                                <option value="dn">Đà Nẵng</option>
+                                <option value="ct">Cần Thơ</option>
+                                <option value="hp">Hải Phòng</option>
+                            </select>
+                        </div>
+
+                        <!-- 4. Lọc theo Quận / Huyện -->
+                        <div>
+                            <select id="districtFilter" class="form-control">
+                                <option value="">Tất cả Quận / Huyện</option>
+                                <option value="q1">Quận 1</option>
+                                <option value="cau-giay">Quận Cầu Giấy</option>
+                                <option value="hai-chau">Quận Hải Châu</option>
+                                <option value="binh-thanh">Quận Bình Thạnh</option>
+                            </select>
+                        </div>
+
+                        <!-- Nút đặt lại -->
+                        <div>
+                            <a href="orders.html" class="btn btn-secondary" style="white-space:nowrap; display:block; text-align:center;">
+                                Đặt lại
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Lọc theo khoảng thời gian (Từ ngày -> Đến ngày) -->
+                    <div class="d-flex align-center flex-wrap gap-12 pt-12" style="border-top:1px dashed var(--border-color);">
+                        <span style="font-size:0.85rem; font-weight:600; color:var(--text-gray);">Khoảng thời gian đặt:</span>
+                        <div class="date-range-box">
+                            <label for="dateFrom" style="font-size:0.8rem; color:var(--text-gray);">Từ:</label>
+                            <input type="date" id="dateFrom" value="2026-10-01">
+                        </div>
+                        <div class="date-range-box">
+                            <label for="dateTo" style="font-size:0.8rem; color:var(--text-gray);">Đến:</label>
+                            <input type="date" id="dateTo" value="2026-10-31">
+                        </div>
+                        <div class="d-flex gap-6 ml-auto">
+                            <button class="btn btn-sm btn-secondary">7 ngày qua</button>
+                            <button class="btn btn-sm btn-secondary">30 ngày qua</button>
+                            <button class="btn btn-sm btn-secondary">Tháng này</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bảng danh sách đơn hàng (HTML TĨNH ĐẦY ĐỦ) -->
+                <div class="card">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn</th>
+                                    <th>Khách hàng</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Địa chỉ giao hàng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Tình trạng</th>
+                                    <th style="text-align:center;">Cập nhật trạng thái (Xuôi)</th>
+                                    <th style="text-align:center;">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1001
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Nguyễn Văn An</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0912345678</div>
+                                    </td>
+                                    <td>28/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận 1, TP. Hồ Chí Minh</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">123 Lê Lợi, Phường Bến Nghé</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">324.000đ</td>
+                                    <td><span class="badge badge-pending">Chưa xác nhận</span></td>
+                                    <td style="text-align:center;">
+                                        <a href="#statusModal" class="btn btn-sm btn-outline" style="color:var(--green-main); border-color:var(--green-main);">
+                                            Cập nhật tiếp →
+                                        </a>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1002
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Trần Thị Bình</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0988776655</div>
+                                    </td>
+                                    <td>27/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận Cầu Giấy, Hà Nội</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">45 Trần Thái Tông, Dịch Vọng</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">512.000đ</td>
+                                    <td><span class="badge badge-confirmed">Đã xác nhận</span></td>
+                                    <td style="text-align:center;">
+                                        <a href="#statusModal" class="btn btn-sm btn-outline" style="color:var(--green-main); border-color:var(--green-main);">
+                                            Cập nhật tiếp →
+                                        </a>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1003
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Lê Hoàng Cường</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0933221100</div>
+                                    </td>
+                                    <td>25/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận Hải Châu, Đà Nẵng</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">88 Bạch Đằng, Hải Châu 1</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">180.000đ</td>
+                                    <td><span class="badge badge-shipping">Đang giao hàng</span></td>
+                                    <td style="text-align:center;">
+                                        <a href="#statusModal" class="btn btn-sm btn-outline" style="color:var(--green-main); border-color:var(--green-main);">
+                                            Cập nhật tiếp →
+                                        </a>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1004
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Phạm Minh Đức</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0977112233</div>
+                                    </td>
+                                    <td>22/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận Bình Thạnh, TP. Hồ Chí Minh</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">12 Xô Viết Nghệ Tĩnh, P.17</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">820.000đ</td>
+                                    <td><span class="badge badge-delivered">Đã giao (Thành công)</span></td>
+                                    <td style="text-align:center;">
+                                        <span style="font-size:0.75rem; color:var(--text-light); font-style:italic;">Đã chốt (Không thể đổi)</span>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1005
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Nguyễn Văn An</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0912345678</div>
+                                    </td>
+                                    <td>20/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận 1, TP. Hồ Chí Minh</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">123 Lê Lợi, P. Bến Nghé</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">450.000đ</td>
+                                    <td><span class="badge badge-delivered">Đã giao (Thành công)</span></td>
+                                    <td style="text-align:center;">
+                                        <span style="font-size:0.75rem; color:var(--text-light); font-style:italic;">Đã chốt (Không thể đổi)</span>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1006
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Hoàng Lan Em</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0944556677</div>
+                                    </td>
+                                    <td>18/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận Hoàn Kiếm, Hà Nội</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">15 Hàng Đào, P. Hàng Đào</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">215.000đ</td>
+                                    <td><span class="badge badge-delivered">Đã giao (Thành công)</span></td>
+                                    <td style="text-align:center;">
+                                        <span style="font-size:0.75rem; color:var(--text-light); font-style:italic;">Đã chốt (Không thể đổi)</span>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1007
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Vũ Quốc Phong</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0966889900</div>
+                                    </td>
+                                    <td>15/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận Hồng Bàng, Hải Phòng</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">28 Hoàng Văn Thụ, Quang Trung</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">390.000đ</td>
+                                    <td><span class="badge badge-delivered">Đã giao (Thành công)</span></td>
+                                    <td style="text-align:center;">
+                                        <span style="font-size:0.75rem; color:var(--text-light); font-style:italic;">Đã chốt (Không thể đổi)</span>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1008
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Đặng Mai Phương</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0909123456</div>
+                                    </td>
+                                    <td>14/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận Ninh Kiều, Cần Thơ</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">56 Đường 30 Tháng 4, An Phú</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">95.000đ</td>
+                                    <td><span class="badge badge-cancelled">Huỷ đơn</span></td>
+                                    <td style="text-align:center;">
+                                        <span style="font-size:0.75rem; color:var(--text-light); font-style:italic;">Đã chốt (Không thể đổi)</span>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1009
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Trần Thị Bình</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0988776655</div>
+                                    </td>
+                                    <td>29/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận Cầu Giấy, Hà Nội</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">45 Trần Thái Tông, Dịch Vọng</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">345.000đ</td>
+                                    <td><span class="badge badge-pending">Chưa xác nhận</span></td>
+                                    <td style="text-align:center;">
+                                        <a href="#statusModal" class="btn btn-sm btn-outline" style="color:var(--green-main); border-color:var(--green-main);">
+                                            Cập nhật tiếp →
+                                        </a>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700; color:var(--green-dark);">
+                                        <a href="order-detail.html" style="color:inherit; text-decoration:underline;">
+                                            #DH1010
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600;">Nguyễn Văn An</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">0912345678</div>
+                                    </td>
+                                    <td>10/10/2026</td>
+                                    <td style="max-width:220px;">
+                                        <div style="font-size:0.85rem; font-weight:500;">Quận 1, TP. Hồ Chí Minh</div>
+                                        <div style="font-size:0.75rem; color:var(--text-gray);">123 Lê Lợi, P. Bến Nghé</div>
+                                    </td>
+                                    <td style="font-weight:700; color:var(--orange-main);">580.000đ</td>
+                                    <td><span class="badge badge-confirmed">Đã xác nhận</span></td>
+                                    <td style="text-align:center;">
+                                        <a href="#statusModal" class="btn btn-sm btn-outline" style="color:var(--green-main); border-color:var(--green-main);">
+                                            Cập nhật tiếp →
+                                        </a>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <a href="order-detail.html" class="btn btn-sm btn-secondary">Chi tiết</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ================= MODAL CẬP NHẬT TRẠNG THÁI ================= -->
+    <div class="modal-overlay" id="statusModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Cập nhật tình trạng đơn hàng</h3>
+                <a href="#" class="modal-close">Đóng</a>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="modalOrderId" value="1001">
+                <div class="mb-16">
+                    <div style="font-size:0.9rem; color:var(--text-gray);">Mã đơn hàng:</div>
+                    <div style="font-size:1.1rem; font-weight:700; color:var(--green-dark);" id="modalOrderCode">#DH1001 - Khách: Nguyễn Văn An</div>
+                </div>
+                <div class="mb-16">
+                    <div style="font-size:0.9rem; color:var(--text-gray);">Trạng thái hiện tại:</div>
+                    <div id="modalCurrentStatus" class="mt-4">
+                        <span class="badge badge-pending">Chưa xác nhận</span>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-16">
+                    <label for="nextStatusSelect">Chuyển sang trạng thái tiếp theo: <span class="required">*</span></label>
+                    <select id="nextStatusSelect" class="form-control">
+                        <option value="confirmed">Đã xác nhận</option>
+                        <option value="cancelled">Huỷ đơn</option>
+                    </select>
+                </div>
+
+                <div class="alert" style="background:#eafaf1; border-left:4px solid var(--green-main); padding:10px 14px; border-radius:4px; font-size:0.85rem; color:#1a5c38;">
+                    <strong>Quy tắc cập nhật:</strong> Trạng thái đơn hàng chỉ có thể cập nhật xuôi theo quy trình nghiệp vụ: Chưa xác nhận → Đã xác nhận → Đang giao → Đã giao thành công (hoặc Huỷ đơn). Không cho phép quay ngược lại các bước trước.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-secondary">Hủy</a>
+                <a href="orders.html" class="btn btn-primary">Cập nhật ngay</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
