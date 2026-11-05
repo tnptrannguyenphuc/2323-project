@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 490">
-  <defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#7d6608"/><stop offset="1" stop-color="#d4ac0d"/></linearGradient></defs>
-  <rect width="350" height="490" fill="url(#bg)"/><path d="M0 370q80-90 160 0t190 0v120H0z" fill="#5b4b08" opacity=".45"/><circle cx="175" cy="145" r="87" fill="none" stroke="#f9e79f" stroke-width="2"/><circle cx="175" cy="145" r="72" fill="none" stroke="#f9e79f" stroke-width="1"/>
-  <text x="175" y="162" fill="#fff" font-family="Georgia,serif" font-size="44" text-anchor="middle">TRUYỆN</text><text x="175" y="218" fill="#fff" font-family="Georgia,serif" font-size="44" text-anchor="middle">KIỀU</text>
-  <text x="175" y="340" fill="#fff" font-family="Georgia,serif" font-size="25" font-style="italic" text-anchor="middle">Nguyễn Du</text><text x="175" y="445" fill="#fef9e7" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" text-anchor="middle">TRUYỆN THƠ NÔM</text>
-</svg>

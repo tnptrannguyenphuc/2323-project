@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 490">
-  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#17202a"/><stop offset="1" stop-color="#566573"/></linearGradient></defs>
-  <rect width="350" height="490" fill="url(#bg)"/><path d="M25 25h300v440H25z" fill="none" stroke="#d4ac0d" stroke-width="2"/>
-  <circle cx="175" cy="145" r="72" fill="none" stroke="#d4ac0d" stroke-width="2"/><text x="175" y="156" fill="#f7dc6f" font-family="Georgia,serif" font-size="54" text-anchor="middle">SĐ</text>
-  <text x="175" y="278" fill="#fff" font-family="Georgia,serif" font-size="38" font-weight="bold" text-anchor="middle">SỐ ĐỎ</text>
-  <path d="M90 300h170" stroke="#d4ac0d" stroke-width="2"/><text x="175" y="350" fill="#f4f6f7" font-family="Arial,sans-serif" font-size="17" text-anchor="middle">VŨ TRỌNG PHỤNG</text>
-  <text x="175" y="445" fill="#d5d8dc" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" text-anchor="middle">VĂN HỌC VIỆT NAM</text>
-</svg>
