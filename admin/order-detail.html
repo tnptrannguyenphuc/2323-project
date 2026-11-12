@@ -80,14 +80,11 @@
         }
 
         .order-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 24px;
         }
         @media (max-width: 900px) {
-            .order-layout {
-                grid-template-columns: 1fr;
-            }
             .order-stepper {
                 overflow-x: auto;
             }
@@ -170,33 +167,33 @@
             <!-- Page Body -->
             <div class="admin-content">
 
-                <div class="d-flex justify-between align-center flex-wrap gap-12 mb-20">
-                    <div>
-                        <a href="orders.html" class="btn btn-secondary btn-sm mb-8">
-                            ← Quay lại danh sách đơn hàng
-                        </a>
+                <div class="mb-20">
+                    <a href="orders.html" class="btn btn-secondary btn-sm mb-12" style="display:inline-flex;">
+                        ← Quay lại danh sách đơn hàng
+                    </a>
+                    <div class="d-flex justify-between align-center flex-wrap gap-12">
                         <div class="d-flex align-center gap-12">
-                            <h2 id="orderTitleHeading">Đơn hàng #DH1001</h2>
+                            <h2 id="orderTitleHeading" style="margin:0;">Đơn hàng #DH1001</h2>
                             <span id="orderHeaderBadge">
                                 <span class="badge badge-pending" style="font-size:0.9rem;">Chưa xác nhận</span>
                             </span>
                         </div>
-                    </div>
-                    <div class="d-flex gap-8">
-                        <button class="btn btn-secondary btn-sm" onclick="window.print()">
-                            In hoá đơn
-                        </button>
+                        <div>
+                            <button class="btn btn-secondary btn-sm" onclick="window.print()">
+                                In hoá đơn
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Stepper trực quan tiến trình đơn hàng -->
-                <div class="card p-24 mb-24">
-                    <h4 style="margin-bottom:8px;">Tiến trình xử lý đơn hàng:</h4>
-                    <p class="text-gray" style="font-size:0.85rem; margin-bottom:16px;">
+                <div class="card mb-24" style="padding: 32px 36px;">
+                    <h4 style="margin-bottom:8px; font-size:1.05rem;">Tiến trình xử lý đơn hàng:</h4>
+                    <p class="text-gray" style="font-size:0.88rem; margin-bottom:24px;">
                         Quy trình chuẩn hóa một chiều: Chưa xác nhận → Đã xác nhận → Đang giao → Đã giao
                     </p>
 
-                    <div class="order-stepper" id="stepperContainer">
+                    <div class="order-stepper" id="stepperContainer" style="padding: 0 40px; margin: 20px 0 16px;">
                         <div class="stepper-progress" id="stepperProgress"></div>
                         
                         <div class="step-item active" id="step-pending">
@@ -218,13 +215,13 @@
                     </div>
                 </div>
 
-                <!-- Bố cục 2 cột: Danh sách sản phẩm + Thông tin khách & cập nhật -->
+                <!-- Bố cục 3 hàng ngang: Sản phẩm -> Thông tin giao hàng -> Cập nhật trạng thái -->
                 <div class="order-layout">
                     
-                    <!-- Cột trái: Danh sách sản phẩm (HTML TĨNH TRỰC TIẾP) -->
-                    <div class="card p-24">
-                        <h3 class="mb-16">Sản phẩm trong đơn hàng</h3>
-                        <div class="table-wrapper mb-20">
+                    <!-- Khung 1: Danh sách sản phẩm (HTML TĨNH TRỰC TIẾP) -->
+                    <div class="card" style="padding: 28px 32px; margin-bottom: 0;">
+                        <h3 style="margin-top:0; margin-bottom: 20px; font-size: 1.15rem; font-weight: 700;">Sản phẩm trong đơn hàng</h3>
+                        <div class="table-wrapper mb-24">
                             <table>
                                 <thead>
                                     <tr>
@@ -252,7 +249,7 @@
                         </div>
 
                         <!-- Tóm tắt chi phí -->
-                        <div style="max-width:320px; margin-left:auto; display:flex; flex-direction:column; gap:10px; font-size:0.9rem;">
+                        <div style="max-width:340px; margin-left:auto; display:flex; flex-direction:column; gap:12px; font-size:0.95rem; padding-top: 14px;">
                             <div class="d-flex justify-between">
                                 <span class="text-gray">Tạm tính:</span>
                                 <strong id="summarySubtotal">294.000đ</strong>
@@ -265,67 +262,72 @@
                                 <span class="text-gray">Giảm giá ưu đãi:</span>
                                 <span style="color:#27ae60;">0đ</span>
                             </div>
-                            <div class="d-flex justify-between pt-12" style="border-top:2px solid var(--border-color); font-size:1.1rem;">
+                            <div class="d-flex justify-between pt-12" style="border-top:2px solid var(--border-color); font-size:1.15rem;">
                                 <strong>Tổng thanh toán:</strong>
                                 <strong style="color:var(--orange-main);" id="summaryTotal">324.000đ</strong>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Cột phải: Khách hàng + Cập nhật trạng thái xuôi -->
-                    <div class="d-flex flex-column gap-20">
-                        
-                        <!-- Card Cập nhật trạng thái -->
-                        <div class="card p-20">
-                            <h3 class="mb-14">Cập nhật trạng thái</h3>
-                            <div id="statusUpdateArea">
-                                <p class="text-gray mb-12" style="font-size:0.85rem;">
-                                    Hệ thống chỉ cho phép cập nhật <strong>tiến xuôi</strong>, ngăn chặn quay ngược trạng thái.
-                                </p>
-                                <div class="form-group mb-12">
-                                    <label for="nextStatusOption">Chọn trạng thái tiếp theo:</label>
-                                    <select id="nextStatusOption" class="form-control">
+                    <!-- Khung 2: Thông tin giao hàng -->
+                    <div class="card" style="padding: 28px 32px; margin-bottom: 0;">
+                        <div class="card-header" style="padding: 0 0 16px 0; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="margin:0; font-size:1.15rem; font-weight:700;">Thông tin giao hàng</h3>
+                            <span class="badge badge-active" style="font-size:0.8rem; padding: 4px 10px;">Người nhận</span>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                                <div style="padding: 14px 18px; background: #f8fafc; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                                    <div class="text-gray" style="font-size:0.85rem; margin-bottom: 4px;">Khách hàng:</div>
+                                    <strong id="custName" style="color:var(--text-dark); font-size:1rem;">Nguyễn Văn An</strong>
+                                </div>
+                                <div style="padding: 14px 18px; background: #f8fafc; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                                    <div class="text-gray" style="font-size:0.85rem; margin-bottom: 4px;">Số điện thoại:</div>
+                                    <span id="custPhone" style="font-weight:600; font-size:1rem;">0912345678</span>
+                                </div>
+                                <div style="padding: 14px 18px; background: #f8fafc; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                                    <div class="text-gray" style="font-size:0.85rem; margin-bottom: 4px;">Email liên hệ:</div>
+                                    <span id="custEmail" style="color:var(--text-dark); font-size:0.95rem;">user@demo.com</span>
+                                </div>
+                                <div style="padding: 14px 18px; background: #f8fafc; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                                    <div class="text-gray" style="font-size:0.85rem; margin-bottom: 4px;">Ngày đặt hàng:</div>
+                                    <span id="custOrderDate" style="font-weight:600; font-size:1rem;">28/10/2026</span>
+                                </div>
+                            </div>
+                            <div style="margin-top: 16px; padding: 14px 18px; background: #f8fafc; border-radius: var(--radius-sm); border: 1px solid var(--border-color); display: flex; align-items: baseline; gap: 12px;">
+                                <span class="text-gray" style="font-size:0.88rem; min-width: 100px; font-weight: 500;">Địa chỉ giao:</span>
+                                <span id="custAddress" style="font-size:0.95rem; font-weight:600; color:var(--text-dark);">123 Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Khung 3: Cập nhật trạng thái -->
+                    <div class="card" style="padding: 28px 32px; margin-bottom: 0;">
+                        <div class="card-header" style="padding: 0 0 16px 0; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="margin:0; font-size:1.15rem; font-weight:700;">Cập nhật trạng thái</h3>
+                            <span class="badge badge-pending" style="font-size:0.8rem; padding: 4px 10px;">Hiện tại: Chưa xác nhận</span>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:14px 18px; margin-bottom:20px; font-size:0.88rem; color:var(--text-gray); line-height:1.5;">
+                                Quy trình xử lý đơn hàng chuẩn: chỉ cho phép <strong>tiến xuôi</strong> từng bước để đảm bảo tính toàn vẹn dữ liệu.
+                            </div>
+                            <div style="display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap;">
+                                <div class="form-group" style="flex: 1; min-width: 280px; margin-bottom: 0;">
+                                    <label for="nextStatusOption" style="font-size:0.9rem; font-weight:600; margin-bottom:8px; display:block;">
+                                        Chọn trạng thái tiếp theo:
+                                    </label>
+                                    <select id="nextStatusOption" class="form-control" style="font-size:0.95rem; height: 42px;">
                                         <option value="confirmed">Đã xác nhận</option>
-                                        <option value="cancelled">Huỷ đơn</option>
+                                        <option value="cancelled">Huỷ đơn hàng</option>
                                     </select>
                                 </div>
-                                <a href="orders.html" class="btn btn-primary" id="btnUpdateCurrentOrder" style="display:block; text-align:center;">
+                                <a href="orders.html" class="btn btn-primary" id="btnUpdateCurrentOrder" style="padding: 0 24px; font-weight:600; height: 42px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">
                                     Cập nhật trạng thái ngay
                                 </a>
                             </div>
                         </div>
-
-                        <!-- Card Thông tin khách hàng & Giao hàng -->
-                        <div class="card p-20">
-                            <h3 class="mb-14">Thông tin giao hàng</h3>
-                            
-                            <div class="mb-12">
-                                <div style="font-size:0.8rem; color:var(--text-gray);">Khách hàng:</div>
-                                <div style="font-weight:700;" id="custName">Nguyễn Văn An</div>
-                            </div>
-
-                            <div class="mb-12">
-                                <div style="font-size:0.8rem; color:var(--text-gray);">Số điện thoại:</div>
-                                <div id="custPhone">0912345678</div>
-                            </div>
-
-                            <div class="mb-12">
-                                <div style="font-size:0.8rem; color:var(--text-gray);">Email:</div>
-                                <div id="custEmail">user@demo.com</div>
-                            </div>
-
-                            <div class="mb-12">
-                                <div style="font-size:0.8rem; color:var(--text-gray);">Địa chỉ nhận hàng:</div>
-                                <div style="font-size:0.9rem;" id="custAddress">123 Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</div>
-                            </div>
-
-                            <div>
-                                <div style="font-size:0.8rem; color:var(--text-gray);">Ngày tạo đơn:</div>
-                                <div id="custOrderDate">28/10/2026</div>
-                            </div>
-                        </div>
-
                     </div>
+
                 </div>
 
             </div>

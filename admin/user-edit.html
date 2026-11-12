@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa Chi tiết Người dùng - BookStore Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        .edit-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 36px;
+            align-items: start;
+        }
+
+        .user-preview-card {
+            text-align: center;
+            padding: 36px 30px;
+        }
+
+        .user-avatar-large {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-main), var(--green-dark));
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 12px auto 18px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .user-form-card {
+            padding: 40px 44px;
+        }
+
+        @media (max-width: 992px) {
+            .edit-layout {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .user-form-card {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="admin-wrapper">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    BookStore
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            Tổng quan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html" class="active">
+                            Quản lý User
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html">
+                            Quản lý Sản phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            Quản lý Đơn hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="statistics.html">
+                            Thống kê
+                        </a>
+                    </li>
+                    <li class="logout-item">
+                        <a href="login.html">
+                            Đăng xuất
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                BookStore Admin v1.0
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="d-flex align-center gap-12">
+                    <span class="header-title">Chỉnh sửa Chi tiết Người dùng</span>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">QT</div>
+                        <div>
+                            <div class="admin-name">Quản trị viên</div>
+                            <div class="admin-role">Super Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="admin-content page-content" style="padding: 32px 36px;">
+
+                <div class="mb-28" style="margin-bottom: 28px;">
+                    <a href="users.html" class="btn btn-secondary btn-sm mb-12">
+                        ← Quay lại danh sách người dùng
+                    </a>
+                    <div class="d-flex justify-between align-center flex-wrap gap-12">
+                        <div>
+                            <h2 style="margin:0; font-size:1.4rem;">Chỉnh sửa Thông tin Người dùng #1</h2>
+                            <p class="text-gray" style="font-size:0.9rem; margin-top:6px; margin-bottom:0;">
+                                Cập nhật hồ sơ tài khoản, vai trò và trạng thái hoạt động trên hệ thống
+                            </p>
+                        </div>
+                        <div class="d-flex gap-10">
+                            <a href="users.html" class="btn btn-secondary" style="padding:10px 20px;">Hủy bỏ</a>
+                            <a href="users.html" class="btn btn-primary" style="padding:10px 24px;">Lưu thay đổi</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="users.html" method="get">
+                    <div class="edit-layout">
+
+                        <!-- Cột trái: Tóm tắt người dùng (Tách rời rộng rãi khỏi viền khung) -->
+                        <div class="card user-preview-card">
+                            <div class="user-avatar-large">NA</div>
+                            <h3 style="font-size:1.15rem; margin-bottom:6px;">Nguyễn Văn An</h3>
+                            <p class="text-gray" style="font-size:0.88rem; margin-bottom:14px;">user@demo.com</p>
+                            <span class="badge badge-active" style="margin-bottom:20px; padding:5px 14px; font-size:0.82rem;">Đang hoạt động</span>
+                            
+                            <div style="border-top:1px dashed var(--border-color); padding-top:20px; text-align:left; font-size:0.88rem; line-height:1.6;">
+                                <div class="mb-8" style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                                    <span class="text-gray">Mã định danh:</span> <strong>#1</strong>
+                                </div>
+                                <div class="mb-8" style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                                    <span class="text-gray">Ngày tham gia:</span> <strong>15/01/2026</strong>
+                                </div>
+                                <div style="display:flex; justify-content:space-between;">
+                                    <span class="text-gray">Tổng đơn hàng:</span> <strong>3 đơn</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cột phải: Form thông tin chi tiết (Tách rời rộng rãi khỏi thành khung) -->
+                        <div class="card user-form-card">
+                            <h3 style="font-size:1.15rem; border-bottom:1px solid var(--border-color); padding-bottom:16px; margin-bottom:28px;">
+                                Chi tiết tài khoản người dùng
+                            </h3>
+
+                            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:22px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="userId" style="font-weight:600; margin-bottom:8px; display:block;">Mã ID hệ thống</label>
+                                    <input type="text" id="userId" class="form-control"
+                                        value="#1" readonly style="background:#f8fafc; cursor:not-allowed;">
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="userName" style="font-weight:600; margin-bottom:8px; display:block;">Họ và tên <span class="required">*</span></label>
+                                    <input type="text" id="userName" class="form-control"
+                                        value="Nguyễn Văn An" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:22px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="userEmail" style="font-weight:600; margin-bottom:8px; display:block;">Địa chỉ Email <span class="required">*</span></label>
+                                    <input type="email" id="userEmail" class="form-control"
+                                        value="user@demo.com" required>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="userPhone" style="font-weight:600; margin-bottom:8px; display:block;">Số điện thoại <span class="required">*</span></label>
+                                    <input type="tel" id="userPhone" class="form-control"
+                                        value="0912345678" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:22px; margin-bottom:24px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="userRole" style="font-weight:600; margin-bottom:8px; display:block;">Vai trò <span class="required">*</span></label>
+                                    <select id="userRole" class="form-control" required>
+                                        <option value="Khách hàng" selected>Khách hàng</option>
+                                        <option value="Quản trị viên">Quản trị viên</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="userCreatedAt" style="font-weight:600; margin-bottom:8px; display:block;">Ngày đăng ký</label>
+                                    <input type="text" id="userCreatedAt" class="form-control"
+                                        value="15/01/2026" readonly style="background:#f8fafc; cursor:not-allowed;">
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="userStatus" style="font-weight:600; margin-bottom:8px; display:block;">Trạng thái <span class="required">*</span></label>
+                                    <select id="userStatus" class="form-control" required>
+                                        <option value="active" selected>Hoạt động</option>
+                                        <option value="locked">Bị khoá</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-28" style="margin-bottom:28px;">
+                                <label for="userPassword" style="font-weight:600; margin-bottom:8px; display:block;">Mật khẩu mới (Để trống nếu không đổi)</label>
+                                <input type="password" id="userPassword" class="form-control"
+                                    placeholder="Nhập mật khẩu mới nếu muốn thay đổi...">
+                            </div>
+
+                            <div class="d-flex justify-end gap-12" style="border-top:1px solid var(--border-color); padding-top:24px; margin-top:28px;">
+                                <a href="users.html" class="btn btn-secondary" style="padding:10px 22px;">Hủy bỏ</a>
+                                <a href="users.html" class="btn btn-primary" style="padding:10px 28px;">Lưu thay đổi</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

@@ -60,6 +60,13 @@
             background: linear-gradient(90deg, var(--green-main), #10b981);
             border-radius: 4px;
         }
+
+        .table-custom-padded thead th {
+            padding: 16px 20px;
+        }
+        .table-custom-padded tbody td {
+            padding: 18px 20px;
+        }
     </style>
 </head>
 <body>
@@ -136,7 +143,7 @@
             </header>
 
             <!-- Page Body -->
-            <div class="admin-content">
+            <div class="admin-content page-content">
 
                 <div class="page-header mb-24">
                     <h2>Thống kê Top 5 Khách hàng có Mức mua cao nhất</h2>
@@ -145,43 +152,35 @@
                     </p>
                 </div>
 
-                <!-- Form chọn khoảng thời gian thống kê -->
-                <div class="card p-24 mb-24">
+                <!-- Form chọn khoảng thời gian thống kê (Ô bộ lọc mở rộng, tách xa viền và các thành phần) -->
+                <div class="card mb-24" style="padding: 36px 40px;">
                     <div id="statsFilterForm">
-                        <div class="d-flex align-center flex-wrap gap-16 mb-16">
+                        <div class="d-flex align-center flex-wrap" style="gap: 36px; margin-bottom: 28px;">
                             
-                            <div class="d-flex align-center gap-8">
-                                <label for="statDateFrom" style="font-weight:600; font-size:0.9rem;">Từ ngày:</label>
-                                <input type="date" id="statDateFrom" class="form-control" style="width:170px;" value="2026-10-01" required>
+                            <div class="d-flex align-center" style="background:#f8fafc; padding:12px 24px; border:1px solid var(--border-color); border-radius:8px; gap:14px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                                <label for="statDateFrom" style="font-weight:600; font-size:0.95rem; margin-bottom:0; color:var(--text-dark);">Từ ngày:</label>
+                                <input type="date" id="statDateFrom" class="form-control" style="width:190px; padding:9px 12px; font-size:0.95rem;" value="2026-10-01" required>
                             </div>
 
-                            <div class="d-flex align-center gap-8">
-                                <label for="statDateTo" style="font-weight:600; font-size:0.9rem;">Đến ngày:</label>
-                                <input type="date" id="statDateTo" class="form-control" style="width:170px;" value="2026-10-31" required>
+                            <div class="d-flex align-center" style="background:#f8fafc; padding:12px 24px; border:1px solid var(--border-color); border-radius:8px; gap:14px; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                                <label for="statDateTo" style="font-weight:600; font-size:0.95rem; margin-bottom:0; color:var(--text-dark);">Đến ngày:</label>
+                                <input type="date" id="statDateTo" class="form-control" style="width:190px; padding:9px 12px; font-size:0.95rem;" value="2026-10-31" required>
                             </div>
-
-                            <a href="statistics.html" class="btn btn-primary" style="text-decoration:none;">
-                                Xem thống kê Top 5 VIP
-                            </a>
-
-                            <a href="statistics.html" class="btn btn-secondary">
-                                Tất cả thời gian
-                            </a>
                         </div>
 
-                        <!-- Các mốc thời gian gợi ý nhanh -->
-                        <div class="d-flex align-center flex-wrap gap-8" style="font-size:0.85rem; color:var(--text-gray);">
-                            <span>Chọn nhanh:</span>
-                            <button type="button" class="btn btn-sm btn-secondary">7 ngày gần nhất</button>
-                            <button type="button" class="btn btn-sm btn-secondary">30 ngày gần nhất</button>
-                            <button type="button" class="btn btn-sm btn-secondary">Tháng 10/2026</button>
-                            <button type="button" class="btn btn-sm btn-secondary">Cả năm 2026</button>
+                        <!-- Các mốc thời gian gợi ý nhanh (tách rời rộng rãi) -->
+                        <div class="d-flex align-center flex-wrap" style="padding-top: 24px; border-top: 1px dashed var(--border-color); gap: 16px; font-size: 0.9rem; color: var(--text-gray);">
+                            <span style="font-weight:700; color:var(--text-dark);">Chọn nhanh mốc:</span>
+                            <button type="button" class="btn btn-sm btn-secondary" style="padding: 8px 18px;">7 ngày gần nhất</button>
+                            <button type="button" class="btn btn-sm btn-secondary" style="padding: 8px 18px;">30 ngày gần nhất</button>
+                            <button type="button" class="btn btn-sm btn-secondary" style="padding: 8px 18px;">Tháng 10/2026</button>
+                            <button type="button" class="btn btn-sm btn-secondary" style="padding: 8px 18px;">Cả năm 2026</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Thống kê tổng hợp kết quả của Top 5 -->
-                <div class="stat-cards mb-24" id="statsSummaryCards">
+                <div class="stat-cards mb-24" id="statsSummaryCards" style="grid-template-columns: repeat(3, 1fr); gap: 20px;">
                     <div class="stat-card">
                         <div class="stat-info">
                             <div class="stat-value" id="top5TotalRevenue">3.626.000đ</div>
@@ -203,17 +202,17 @@
                 </div>
 
                 <!-- BẢNG KẾT QUẢ TOP 5 KHÁCH HÀNG (HTML TĨNH SẮP XẾP GIẢM DẦN THEO TỔNG TIỀN) -->
-                <div class="card p-24">
-                    <div class="d-flex justify-between align-center flex-wrap gap-12 mb-16">
+                <div class="card" style="padding: 36px 40px;">
+                    <div class="d-flex justify-between align-center flex-wrap gap-16 mb-24" style="border-bottom:1px solid var(--border-color); padding-bottom:18px;">
                         <div>
-                            <h3 id="resultTitle">Bảng xếp hạng 5 Khách hàng có mức mua cao nhất</h3>
-                            <p class="text-gray" style="font-size:0.85rem;" id="resultSubtitle">Dữ liệu được sắp xếp giảm dần theo tổng tiền mua hàng</p>
+                            <h3 id="resultTitle" style="font-size:1.15rem; margin-bottom:6px;">Bảng xếp hạng 5 Khách hàng có mức mua cao nhất</h3>
+                            <p class="text-gray" style="font-size:0.88rem; margin:0;" id="resultSubtitle">Dữ liệu được sắp xếp giảm dần theo tổng tiền mua hàng</p>
                         </div>
-                        <span class="badge badge-active" id="dateRangeNotice">Thời gian: 01/10/2026 → 31/10/2026</span>
+                        <span class="badge badge-active" id="dateRangeNotice" style="font-size:0.85rem; padding:6px 14px;">Thời gian: 01/10/2026 → 31/10/2026</span>
                     </div>
 
                     <div class="table-wrapper">
-                        <table>
+                        <table class="table-custom-padded">
                             <thead>
                                 <tr>
                                     <th style="width:70px; text-align:center;">Hạng</th>

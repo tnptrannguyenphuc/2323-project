@@ -24,6 +24,62 @@
             background: #f1f5f9;
             color: #475569;
         }
+
+        .pagination-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0 4px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pagination-info {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .page-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 34px;
+            height: 34px;
+            padding: 0 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: #fff;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .page-btn:hover:not(.disabled):not(.active) {
+            background: #f1f5f9;
+            border-color: var(--green-main);
+            color: var(--green-main);
+        }
+
+        .page-btn.active {
+            background: var(--green-main);
+            border-color: var(--green-main);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .page-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -101,7 +157,7 @@
             </header>
 
             <!-- Page Body -->
-            <div class="admin-content">
+            <div class="admin-content page-content">
 
                 <div class="page-header d-flex justify-between align-center flex-wrap gap-16 mb-24">
                     <div>
@@ -109,22 +165,22 @@
                         <p class="text-gray" style="font-size:0.9rem;">Thêm mới với xem trước ảnh, cập nhật đúng phân
                             loại, và xoá/ẩn thông minh dựa trên lịch sử đã bán</p>
                     </div>
-                    <a href="#productModal" class="btn btn-primary">
+                    <a href="product-edit.html" class="btn btn-primary">
                         Thêm sản phẩm mới
                     </a>
                 </div>
 
                 <!-- Thống kê nhanh sản phẩm -->
-                <div class="stat-cards mb-24">
+                <div class="stat-cards mb-24" style="grid-template-columns: repeat(3, 1fr); gap: 20px;">
                     <div class="stat-card">
                         <div class="stat-info">
-                            <div class="stat-value" id="statTotalBooks">8</div>
+                            <div class="stat-value" id="statTotalBooks">12</div>
                             <div class="stat-label">Tổng đầu sách</div>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-info">
-                            <div class="stat-value" id="statVisibleBooks">7</div>
+                            <div class="stat-value" id="statVisibleBooks">11</div>
                             <div class="stat-label">Đang hiển thị trên web</div>
                         </div>
                     </div>
@@ -159,7 +215,7 @@
                             <option value="visible">Đang hiển thị</option>
                             <option value="hidden">Đã ẩn</option>
                         </select>
-                        <a href="products.html" class="btn btn-secondary btn-sm">Làm mới</a>
+                        <a href="products.html" class="btn btn-secondary btn-sm" style="margin-left:auto; padding:9px 18px;">Làm mới</a>
                     </div>
                 </div>
 
@@ -182,215 +238,270 @@
                             <tbody id="productTableBody">
                                 <tr>
                                     <td>
-                                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=150&q=80"
-                                            alt="Đắc Nhân Tâm" class="product-thumb">
-                                    </td>
-                                    <td>
-                                        <div style="font-weight:600; color:var(--text-dark);">Đắc Nhân Tâm</div>
-                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Dale Carnegie
-                                        </div>
-                                    </td>
-                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Kỹ năng
-                                            sống</span></td>
-                                    <td style="font-weight:700; color:var(--orange-main);">88.000đ</td>
-                                    <td>45</td>
-                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
-                                            <strong>245</strong></span></td>
-                                    <td><span class="badge badge-visible">Hiển thị</span></td>
-                                    <td style="text-align:center;">
-                                        <div class="d-flex justify-center gap-8">
-                                            <a href="#productModal" class="btn btn-sm btn-secondary"
-                                                title="Sửa thông tin">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-outline"
-                                                style="color:#e74c3c; border-color:#e74c3c;"
-                                                title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=150&q=80"
+                                        <img src="../images/nha-gia-kim.jpg"
                                             alt="Nhà Giả Kim" class="product-thumb">
                                     </td>
                                     <td>
                                         <div style="font-weight:600; color:var(--text-dark);">Nhà Giả Kim</div>
-                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Paulo Coelho
-                                        </div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Paulo Coelho</div>
                                     </td>
-                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span>
-                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
                                     <td style="font-weight:700; color:var(--orange-main);">79.000đ</td>
                                     <td>60</td>
-                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
-                                            <strong>180</strong></span></td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>180</strong></span></td>
                                     <td><span class="badge badge-visible">Hiển thị</span></td>
                                     <td style="text-align:center;">
                                         <div class="d-flex justify-center gap-8">
-                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-outline"
-                                                style="color:#e74c3c; border-color:#e74c3c;">Ẩn</a>
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="https://images.unsplash.com/photo-1532012164546-f432f2e3777a?auto=format&fit=crop&w=150&q=80"
-                                            alt="Sapiens" class="product-thumb">
+                                        <img src="../images/so-do.jpg"
+                                            alt="Số Đỏ" class="product-thumb">
                                     </td>
                                     <td>
-                                        <div style="font-weight:600; color:var(--text-dark);">Sapiens: Lược Sử Loài
-                                            Người</div>
-                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Yuval Noah
-                                            Harari</div>
+                                        <div style="font-weight:600; color:var(--text-dark);">Số Đỏ</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Vũ Trọng Phụng</div>
                                     </td>
-                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Khoa học</span>
-                                    </td>
-                                    <td style="font-weight:700; color:var(--orange-main);">189.000đ</td>
-                                    <td>25</td>
-                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
-                                            <strong>95</strong></span></td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">48.000đ</td>
+                                    <td>45</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>321</strong></span></td>
                                     <td><span class="badge badge-visible">Hiển thị</span></td>
                                     <td style="text-align:center;">
                                         <div class="d-flex justify-center gap-8">
-                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-outline"
-                                                style="color:#e74c3c; border-color:#e74c3c;">Ẩn</a>
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?auto=format&fit=crop&w=150&q=80"
-                                            alt="Chiến Tranh Tiền Tệ" class="product-thumb">
+                                        <img src="../images/tuoi-tre-dang-gia-bao-nhieu.jpg"
+                                            alt="Tuổi Trẻ Đáng Giá Bao Nhiêu" class="product-thumb">
                                     </td>
                                     <td>
-                                        <div style="font-weight:600; color:var(--text-dark);">Chiến Tranh Tiền Tệ</div>
-                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Song Hongbing
-                                        </div>
+                                        <div style="font-weight:600; color:var(--text-dark);">Tuổi Trẻ Đáng Giá Bao Nhiêu</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Rosie Nguyễn</div>
                                     </td>
-                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Kinh tế</span>
-                                    </td>
-                                    <td style="font-weight:700; color:var(--orange-main);">135.000đ</td>
-                                    <td>30</td>
-                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
-                                            <strong>52</strong></span></td>
-                                    <td><span class="badge badge-visible">Hiển thị</span></td>
-                                    <td style="text-align:center;">
-                                        <div class="d-flex justify-center gap-8">
-                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-outline"
-                                                style="color:#e74c3c; border-color:#e74c3c;">Ẩn</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=150&q=80"
-                                            alt="Hoàng Tử Bé" class="product-thumb">
-                                    </td>
-                                    <td>
-                                        <div style="font-weight:600; color:var(--text-dark);">Hoàng Tử Bé</div>
-                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Antoine de
-                                            Saint-Exupéry</div>
-                                    </td>
-                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Thiếu nhi</span>
-                                    </td>
-                                    <td style="font-weight:700; color:var(--orange-main);">55.000đ</td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Kỹ năng sống</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">78.000đ</td>
                                     <td>80</td>
-                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
-                                            <strong>310</strong></span></td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>302</strong></span></td>
                                     <td><span class="badge badge-visible">Hiển thị</span></td>
                                     <td style="text-align:center;">
                                         <div class="d-flex justify-center gap-8">
-                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-outline"
-                                                style="color:#e74c3c; border-color:#e74c3c;">Ẩn</a>
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/mat-biec.jpg"
+                                            alt="Mắt Biếc" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Mắt Biếc</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Nguyễn Nhật Ánh</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">62.000đ</td>
+                                    <td>55</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>698</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/tat-den.jpg"
+                                            alt="Tắt Đèn" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Tắt Đèn</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Ngô Tất Tố</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">42.000đ</td>
+                                    <td>35</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>178</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/truyen-kieu.jpg"
+                                            alt="Truyện Kiều" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Truyện Kiều</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Nguyễn Du</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">38.000đ</td>
+                                    <td>90</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>543</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/chi-pheo.jpg"
+                                            alt="Chí Phèo" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Chí Phèo</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Nam Cao</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">50.000đ</td>
+                                    <td>40</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>267</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/cho-toi-xin-mot-ve-di-tuoi-tho.jpg"
+                                            alt="Cho Tôi Xin Một Vé Đi Tuổi Thơ" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Cho Tôi Xin Một Vé Đi Tuổi Thơ</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Nguyễn Nhật Ánh</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Thiếu nhi</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">68.000đ</td>
+                                    <td>65</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>445</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/nguoi-dua-dieu.jpg"
+                                            alt="Người Đua Diều" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Người Đua Diều</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Khaled Hosseini</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">95.000đ</td>
+                                    <td>25</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>312</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/nghin-le-mot-dem.jpg"
+                                            alt="Nghìn Lẻ Một Đêm" class="product-thumb">
+                                    </td>
+                                    <td>
+                                        <div style="font-weight:600; color:var(--text-dark);">Nghìn Lẻ Một Đêm</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Nhiều tác giả</div>
+                                    </td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">125.000đ</td>
+                                    <td>20</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>189</strong></span></td>
+                                    <td><span class="badge badge-visible">Hiển thị</span></td>
+                                    <td style="text-align:center;">
+                                        <div class="d-flex justify-center gap-8">
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr style="opacity:0.75; background-color:#fbfcfd;">
                                     <td>
-                                        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=150&q=80"
-                                            alt="Đại Việt Sử Ký Toàn Thư" class="product-thumb">
+                                        <img src="../images/chien-tranh-va-hoa-binh.jpg"
+                                            alt="Chiến Tranh Và Hòa Bình" class="product-thumb">
                                     </td>
                                     <td>
-                                        <div style="font-weight:600; color:var(--text-dark);">Đại Việt Sử Ký Toàn Thư
-                                        </div>
-                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Ngô Sĩ Liên
-                                        </div>
+                                        <div style="font-weight:600; color:var(--text-dark);">Chiến Tranh Và Hòa Bình</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Leo Tolstoy</div>
                                     </td>
-                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Lịch sử</span>
-                                    </td>
-                                    <td style="font-weight:700; color:var(--orange-main);">250.000đ</td>
-                                    <td>12</td>
-                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán:
-                                            <strong>34</strong></span></td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">280.000đ</td>
+                                    <td>15</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>156</strong></span></td>
                                     <td><span class="badge badge-hidden">Đã ẩn</span></td>
                                     <td style="text-align:center;">
                                         <div class="d-flex justify-center gap-8">
-                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-outline"
-                                                style="color:var(--green-main); border-color:var(--green-main);">Hiện
-                                                lại</a>
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:var(--green-main); border-color:var(--green-main);">Hiện lại</a>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=150&q=80"
-                                            alt="Toán Học Cao Cấp" class="product-thumb">
+                                        <img src="../images/bo-gia.jpg"
+                                            alt="Bố Già" class="product-thumb">
                                     </td>
                                     <td>
-                                        <div style="font-weight:600; color:var(--text-dark);">Toán Học Cao Cấp Tập 1
-                                            (Mới Nhập)</div>
-                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Nguyễn Đình Trí
-                                        </div>
+                                        <div style="font-weight:600; color:var(--text-dark);">Bố Già</div>
+                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Mario Puzo</div>
                                     </td>
-                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Giáo khoa</span>
-                                    </td>
-                                    <td style="font-weight:700; color:var(--orange-main);">68.000đ</td>
-                                    <td>100</td>
-                                    <td><span class="sold-badge" style="background:#fffbeb; color:#b45309;">Chưa bán
-                                            (0)</span></td>
+                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span></td>
+                                    <td style="font-weight:700; color:var(--orange-main);">155.000đ</td>
+                                    <td>50</td>
+                                    <td><span class="sold-badge" style="background:#eafaf1; color:#1a5c38;">Đã bán: <strong>421</strong></span></td>
                                     <td><span class="badge badge-visible">Hiển thị</span></td>
                                     <td style="text-align:center;">
                                         <div class="d-flex justify-center gap-8">
-                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-outline"
-                                                style="color:#e74c3c; border-color:#e74c3c;"
-                                                title="Chưa bán nên cho phép xoá">Xoá</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="https://images.unsplash.com/photo-1476275466078-4007374efbbe?auto=format&fit=crop&w=150&q=80"
-                                            alt="Bản Thảo" class="product-thumb">
-                                    </td>
-                                    <td>
-                                        <div style="font-weight:600; color:var(--text-dark);">Thử Nghiệm Bản Thảo Chưa
-                                            Bán</div>
-                                        <div style="font-size:0.8rem; color:var(--text-gray);">Tác giả: Tác Giả Khuyết
-                                            Danh</div>
-                                    </td>
-                                    <td><span class="badge" style="background:#f0fdf4; color:#166534;">Văn học</span>
-                                    </td>
-                                    <td style="font-weight:700; color:var(--orange-main);">45.000đ</td>
-                                    <td>10</td>
-                                    <td><span class="sold-badge" style="background:#fffbeb; color:#b45309;">Chưa bán
-                                            (0)</span></td>
-                                    <td><span class="badge badge-visible">Hiển thị</span></td>
-                                    <td style="text-align:center;">
-                                        <div class="d-flex justify-center gap-8">
-                                            <a href="#productModal" class="btn btn-sm btn-secondary">Sửa</a>
-                                            <a href="#" class="btn btn-sm btn-outline"
-                                                style="color:#e74c3c; border-color:#e74c3c;"
-                                                title="Chưa bán nên cho phép xoá">Xoá</a>
+                                            <a href="product-edit.html" class="btn btn-sm btn-secondary" title="Sửa thông tin">Sửa</a>
+                                            <a href="products.html" class="btn btn-sm btn-outline" style="color:#e74c3c; border-color:#e74c3c;" title="Ẩn sản phẩm do đã có lượt bán">Ẩn</a>
                                         </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- Phân trang -->
+                <div class="pagination-bar mt-16 mb-8">
+                    <span class="pagination-info">Hiển thị 1–12 / 12 sản phẩm</span>
+                    <div class="pagination-controls">
+                        <a href="#" class="page-btn disabled" aria-disabled="true">‹</a>
+                        <a href="#" class="page-btn active">1</a>
+                        <a href="#" class="page-btn">2</a>
+                        <a href="#" class="page-btn">3</a>
+                        <a href="#" class="page-btn">›</a>
                     </div>
                 </div>
 
@@ -403,7 +514,7 @@
         <div class="modal modal-lg">
             <div class="modal-header">
                 <h3 id="modalTitle">Thêm / Sửa sản phẩm</h3>
-                <a href="#" class="modal-close">Đóng</a>
+                <button type="button" class="modal-close" onclick="closeModal('productModal')" style="background:none;border:none;cursor:pointer;font-size:1rem;color:var(--text-gray);">Đóng</button>
             </div>
             <form id="productForm">
                 <div class="modal-body">
@@ -456,6 +567,20 @@
                         </div>
                     </div>
 
+                    <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                        <div class="form-group">
+                            <label for="prodSold">Lượt đã bán</label>
+                            <input type="number" id="prodSold" class="form-control" min="0" value="245" readonly style="background:#f8fafc;">
+                        </div>
+                        <div class="form-group">
+                            <label for="prodWebStatus">Trạng thái hiển thị web <span class="required">*</span></label>
+                            <select id="prodWebStatus" class="form-control" required>
+                                <option value="visible" selected>Hiển thị</option>
+                                <option value="hidden">Ẩn</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="prodDesc">Mô tả tóm tắt sách</label>
                         <textarea id="prodDesc" class="form-control" rows="3"
@@ -464,7 +589,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-secondary">Hủy bỏ</a>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('productModal')">Hủy bỏ</button>
                     <a href="products.html" class="btn btn-primary" id="btnSaveProd">Lưu sản phẩm</a>
                 </div>
             </form>

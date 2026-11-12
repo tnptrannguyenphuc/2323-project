@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa Chi tiết Sản phẩm - BookStore Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        .edit-layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 36px;
+            align-items: start;
+        }
+
+        .product-preview-card {
+            text-align: center;
+            padding: 36px 30px;
+        }
+
+        .product-preview-card img {
+            width: 100%;
+            max-width: 210px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            margin: 12px auto 20px;
+            box-shadow: var(--shadow-sm);
+            display: block;
+        }
+
+        .product-form-card {
+            padding: 40px 44px;
+        }
+
+        @media (max-width: 992px) {
+            .edit-layout {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .product-form-card {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="admin-wrapper">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-logo">
+                <div class="logo-text">
+                    BookStore
+                    <span>Admin Panel</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            Tổng quan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="users.html">
+                            Quản lý User
+                        </a>
+                    </li>
+                    <li>
+                        <a href="products.html" class="active">
+                            Quản lý Sản phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a href="orders.html">
+                            Quản lý Đơn hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="statistics.html">
+                            Thống kê
+                        </a>
+                    </li>
+                    <li class="logout-item">
+                        <a href="login.html">
+                            Đăng xuất
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                BookStore Admin v1.0
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="d-flex align-center gap-12">
+                    <span class="header-title">Chỉnh sửa Chi tiết Sản phẩm</span>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">QT</div>
+                        <div>
+                            <div class="admin-name">Quản trị viên</div>
+                            <div class="admin-role">Super Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Body -->
+            <div class="admin-content page-content" style="padding: 32px 36px;">
+
+                <div class="mb-28" style="margin-bottom: 28px;">
+                    <a href="products.html" class="btn btn-secondary btn-sm mb-12">
+                        ← Quay lại danh sách sản phẩm
+                    </a>
+                    <div class="d-flex justify-between align-center flex-wrap gap-12">
+                        <div>
+                            <h2 style="margin:0; font-size:1.4rem;">Chỉnh sửa Thông tin Sản phẩm</h2>
+                            <p class="text-gray" style="font-size:0.9rem; margin-top:6px; margin-bottom:0;">
+                                Cập nhật đầy đủ thông tin sách theo đúng chuẩn hiển thị ngoài hệ thống
+                            </p>
+                        </div>
+                        <div class="d-flex gap-10">
+                            <a href="products.html" class="btn btn-secondary" style="padding:10px 20px;">Hủy bỏ</a>
+                            <a href="products.html" class="btn btn-primary" style="padding:10px 24px;">Lưu thay đổi</a>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="products.html" method="get">
+                    <div class="edit-layout">
+
+                        <!-- Cột trái: Ảnh bìa sản phẩm (Tách rời rộng rãi khỏi khung) -->
+                        <div class="card product-preview-card">
+                            <h3 class="mb-16" style="font-size:1.05rem; text-align:left; margin-bottom:18px;">Hình ảnh bìa sách</h3>
+                            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=400&q=80"
+                                alt="Bìa sách Đắc Nhân Tâm">
+                            <div class="form-group mb-12">
+                                <label for="prodImageUpload" class="btn btn-secondary btn-sm" style="display:block; cursor:pointer; padding:9px 14px;">
+                                    Đổi ảnh bìa mới
+                                </label>
+                                <input type="file" id="prodImageUpload" style="display:none;" accept="image/*">
+                            </div>
+                            <p class="text-gray" style="font-size:0.8rem; margin:12px 0 0; line-height:1.4;">
+                                Khuyến nghị tỉ lệ 3:4, định dạng JPG/PNG, dung lượng dưới 2MB.
+                            </p>
+                        </div>
+
+                        <!-- Cột phải: Thông tin chi tiết sản phẩm (Tách rời rộng rãi khỏi thành khung) -->
+                        <div class="card product-form-card">
+                            <h3 style="font-size:1.15rem; border-bottom:1px solid var(--border-color); padding-bottom:16px; margin-bottom:28px;">
+                                Chi tiết thông tin sản phẩm
+                            </h3>
+
+                            <div class="form-row" style="display:grid; grid-template-columns:2fr 1fr; gap:22px; margin-bottom:22px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="prodName" style="font-weight:600; margin-bottom:8px; display:block;">Tên cuốn sách <span class="required">*</span></label>
+                                    <input type="text" id="prodName" class="form-control"
+                                        value="Đắc Nhân Tâm" required>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="prodCategory" style="font-weight:600; margin-bottom:8px; display:block;">Phân loại thể loại <span class="required">*</span></label>
+                                    <select id="prodCategory" class="form-control" required>
+                                        <option value="van-hoc">Văn học</option>
+                                        <option value="kinh-te">Kinh tế</option>
+                                        <option value="khoa-hoc">Khoa học</option>
+                                        <option value="ky-nang" selected>Kỹ năng sống</option>
+                                        <option value="thieu-nhi">Thiếu nhi</option>
+                                        <option value="giao-khoa">Giáo khoa</option>
+                                        <option value="lich-su">Lịch sử</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:22px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="prodAuthor" style="font-weight:600; margin-bottom:8px; display:block;">Tác giả <span class="required">*</span></label>
+                                    <input type="text" id="prodAuthor" class="form-control"
+                                        value="Dale Carnegie" required>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="prodPrice" style="font-weight:600; margin-bottom:8px; display:block;">Giá bán (VNĐ) <span class="required">*</span></label>
+                                    <input type="text" id="prodPrice" class="form-control"
+                                        value="88.000" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:22px; margin-bottom:24px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="prodStock" style="font-weight:600; margin-bottom:8px; display:block;">Số lượng tồn kho <span class="required">*</span></label>
+                                    <input type="number" id="prodStock" class="form-control" min="0"
+                                        value="45" required>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="prodSold" style="font-weight:600; margin-bottom:8px; display:block;">Lượt đã bán</label>
+                                    <input type="number" id="prodSold" class="form-control"
+                                        value="245" readonly style="background:#f8fafc; cursor:not-allowed;">
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="prodWebStatus" style="font-weight:600; margin-bottom:8px; display:block;">Trạng thái web <span class="required">*</span></label>
+                                    <select id="prodWebStatus" class="form-control" required>
+                                        <option value="visible" selected>Hiển thị</option>
+                                        <option value="hidden">Đã ẩn</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-28" style="margin-bottom:28px;">
+                                <label for="prodDesc" style="font-weight:600; margin-bottom:8px; display:block;">Mô tả tóm tắt sách</label>
+                                <textarea id="prodDesc" class="form-control" rows="4" style="line-height:1.6;">Cuốn sách nghệ thuật thu phục lòng người kinh điển nhất mọi thời đại, hướng dẫn xây dựng các mối quan hệ thành công và phát triển năng lực lãnh đạo bản thân.</textarea>
+                            </div>
+
+                            <div class="d-flex justify-end gap-12" style="border-top:1px solid var(--border-color); padding-top:24px; margin-top:28px;">
+                                <a href="products.html" class="btn btn-secondary" style="padding:10px 22px;">Hủy bỏ</a>
+                                <a href="products.html" class="btn btn-primary" style="padding:10px 28px;">Lưu thay đổi</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+</body>
+
+</html>

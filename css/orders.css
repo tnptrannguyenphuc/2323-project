@@ -258,6 +258,18 @@
     gap: 10px;
     position: relative;
     cursor: pointer;
+    min-height: 42px;
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: var(--transition);
+    box-sizing: border-box;
+}
+
+.user-logged-in:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.35);
 }
 .user-avatar {
     width: 36px; height: 36px;

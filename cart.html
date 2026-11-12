@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,426 +9,442 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/cart.css">
 </head>
+
 <body>
 
-<!-- ============================================================
+    <!-- ============================================================
      HEADER – sau khi đăng nhập (hiển thị tên người dùng)
      ============================================================ -->
-<header class="site-header">
-    <div class="header-top">
-        <div class="container">
-            <a href="index-logged.html" class="site-logo">
-                <span class="logo-text">
-                    <span class="logo-name">BookStore</span>
-                    <span class="logo-slogan">Kho sách tri thức</span>
-                </span>
-            </a>
-            <div class="header-search">
-                <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại..." autocomplete="off">
-                <a href="search.html" class="header-search-btn">Tìm kiếm</a>
-            </div>
-            <div class="header-actions">
-                <!-- Đã đăng nhập – hiển thị tên người dùng -->
-                <a href="cart.html" class="header-action-btn">
-                    <span>Giỏ hàng</span>
-                    <span class="cart-badge">3</span>
+    <header class="site-header">
+        <div class="header-top">
+            <div class="container">
+                <a href="index-logged.html" class="site-logo">
+                    <span class="logo-text">
+                        <span class="logo-name">BookStore</span>
+                        <span class="logo-slogan">Kho sách tri thức</span>
+                    </span>
                 </a>
-                <!-- Tên người dùng đã đăng nhập -->
-                <div class="user-logged-in">
-                    <span class="user-avatar">N</span>
-                    <div class="user-info-header">
-                        <span class="user-name">Nguyễn Văn An</span>
-                        <span class="user-email">user@demo.com</span>
-                    </div>
-                    <!-- Menu dropdown -->
-                    <div class="user-dropdown">
-                        <a href="order-history.html">Đơn hàng của tôi</a>
-                        <a href="#">Cài đặt tài khoản</a>
-                        <a href="index.html">Đăng xuất</a>
+                <div class="header-search">
+                    <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại..." autocomplete="off">
+                    <a href="search.html" class="header-search-btn">Tìm kiếm</a>
+                </div>
+                <div class="header-actions">
+                    <!-- Đã đăng nhập – hiển thị tên người dùng -->
+                    <a href="cart.html" class="header-action-btn">
+                        <span>Giỏ hàng</span>
+                        <span class="cart-badge">3</span>
+                    </a>
+                    <!-- Tên người dùng đã đăng nhập -->
+                    <div class="user-logged-in">
+                        <span class="user-avatar">N</span>
+                        <div class="user-info-header">
+                            <span class="user-name">Nguyễn Văn An</span>
+                            <span class="user-email">user@demo.com</span>
+                        </div>
+                        <!-- Menu dropdown -->
+                        <div class="user-dropdown">
+                            <a href="order-history.html">Đơn hàng của tôi</a>
+                            <a href="account-settings.html">Cài đặt tài khoản</a>
+                            <a href="index.html">Đăng xuất</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <nav class="header-nav">
-        <div class="container">
-            <a href="category.html" class="nav-item">Văn học</a>
-            <a href="category.html" class="nav-item">Kinh tế</a>
-            <a href="category.html" class="nav-item">Khoa học</a>
-            <a href="category.html" class="nav-item">Kỹ năng sống</a>
-            <a href="category.html" class="nav-item">Thiếu nhi</a>
-            <a href="category.html" class="nav-item">Giáo khoa</a>
-            <a href="category.html" class="nav-item">Lịch sử</a>
-            <a href="search.html" class="nav-item" style="margin-left:auto; color:#ffe082;">Tìm nâng cao</a>
-        </div>
-    </nav>
-</header>
+        <nav class="header-nav">
+            <div class="container">
+                <a href="category.html" class="nav-item">Văn học</a>
+                <a href="category.html" class="nav-item">Kinh tế</a>
+                <a href="category.html" class="nav-item">Khoa học</a>
+                <a href="category.html" class="nav-item">Kỹ năng sống</a>
+                <a href="category.html" class="nav-item">Thiếu nhi</a>
+                <a href="category.html" class="nav-item">Giáo khoa</a>
+                <a href="category.html" class="nav-item">Lịch sử</a>
+                <a href="search.html" class="nav-item" style="margin-left:auto; color:#ffe082;">Tìm nâng cao</a>
+            </div>
+        </nav>
+    </header>
 
 
-<!-- ============================================================
+    <!-- ============================================================
      MAIN – GIỎ HÀNG + THANH TOÁN
      ============================================================ -->
-<main class="main-content">
-    <div class="container">
+    <main class="main-content">
+        <div class="container">
 
-        <!-- Breadcrumb -->
-        <nav class="breadcrumb">
-            <a href="index.html">Trang chủ</a>
-            <span class="sep">›</span>
-            <span>Giỏ hàng</span>
-        </nav>
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="index.html">Trang chủ</a>
+                <span class="sep">›</span>
+                <span>Giỏ hàng</span>
+            </nav>
 
-        <!-- Tiêu đề trang -->
-        <h1 class="page-title">Giỏ hàng của tôi</h1>
+            <!-- Tiêu đề trang -->
+            <h1 class="page-title">Giỏ hàng của tôi</h1>
 
-        <!-- ---- BỐ CỤC 2 CỘT: Giỏ hàng + Tóm tắt đơn hàng ---- -->
-        <div class="cart-layout">
+            <!-- ---- BỐ CỤC 2 CỘT: Giỏ hàng + Tóm tắt đơn hàng ---- -->
+            <div class="cart-layout">
 
-            <!-- ============================================================
+                <!-- ============================================================
                  CỘT TRÁI: Danh sách sản phẩm trong giỏ
                  ============================================================ -->
-            <div class="cart-items-section">
+                <div class="cart-items-section">
 
-                <!-- Header bảng -->
-                <div class="cart-table-header">
-                    <span class="col-product">Sản phẩm</span>
-                    <span class="col-price">Đơn giá</span>
-                    <span class="col-qty">Số lượng</span>
-                    <span class="col-total">Thành tiền</span>
-                    <span class="col-action"></span>
-                </div>
+                    <!-- Header bảng -->
+                    <div class="cart-table-header">
+                        <span class="col-product">Sản phẩm</span>
+                        <span class="col-price">Đơn giá</span>
+                        <span class="col-qty">Số lượng</span>
+                        <span class="col-total">Thành tiền</span>
+                        <span class="col-action"></span>
+                    </div>
 
-                <!-- ---- Sản phẩm 1 trong giỏ ---- -->
-                <div class="cart-item">
-                    <!-- Checkbox chọn -->
-                    <input type="checkbox" class="item-checkbox" checked id="item1">
+                    <!-- ---- Sản phẩm 1 trong giỏ ---- -->
+                    <div class="cart-item">
+                        <!-- Checkbox chọn -->
+                        <input type="checkbox" class="item-checkbox" checked id="item1">
 
-                    <!-- Ảnh sách -->
-                    <div class="item-img">
-                        <div class="cart-book-cover" style="background:linear-gradient(135deg,#27ae60,#1a5c38);">
-                            <span>Đắc Nhân Tâm</span>
+                        <!-- Ảnh sách -->
+                        <div class="item-img">
+                            <div class="cart-book-cover" style="background:linear-gradient(135deg,#27ae60,#1a5c38);">
+                                <span>Đắc Nhân Tâm</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Thông tin -->
-                    <div class="item-info">
-                        <a href="product-detail.html" class="item-name">Đắc Nhân Tâm</a>
-                        <span class="item-author">Dale Carnegie</span>
-                        <span class="item-category">Kỹ năng sống</span>
-                    </div>
-
-                    <!-- Giá đơn -->
-                    <div class="item-price col-price">
-                        <span class="price-current">88.000đ</span>
-                        <span class="price-old-sm">110.000đ</span>
-                    </div>
-
-                    <!-- Số lượng -->
-                    <div class="item-qty col-qty">
-                        <label class="qty-btn-sm" for="qty1">−</label>
-                        <input type="number" id="qty1" value="2" min="1" max="58" class="qty-input-sm">
-                        <label class="qty-btn-sm" for="qty1">+</label>
-                    </div>
-
-                    <!-- Thành tiền -->
-                    <div class="item-total col-total">
-                        <strong>176.000đ</strong>
-                    </div>
-
-                    <!-- Nút xóa -->
-                    <div class="item-action col-action">
-                        <a href="cart.html" class="btn-remove" title="Xóa khỏi giỏ">Xóa</a>
-                    </div>
-                </div><!-- /cart-item 1 -->
-
-
-                <!-- ---- Sản phẩm 2 trong giỏ ---- -->
-                <div class="cart-item">
-                    <input type="checkbox" class="item-checkbox" checked id="item2">
-                    <div class="item-img">
-                        <div class="cart-book-cover" style="background:linear-gradient(135deg,#8e44ad,#5b2c6f);">
-                            <span>Atomic Habits</span>
+                        <!-- Thông tin -->
+                        <div class="item-info">
+                            <a href="product-detail.html" class="item-name">Đắc Nhân Tâm</a>
+                            <span class="item-author">Dale Carnegie</span>
+                            <span class="item-category">Kỹ năng sống</span>
                         </div>
-                    </div>
-                    <div class="item-info">
-                        <a href="product-detail.html" class="item-name">Atomic Habits – Thói Quen Tốt</a>
-                        <span class="item-author">James Clear</span>
-                        <span class="item-category">Kỹ năng sống</span>
-                    </div>
-                    <div class="item-price col-price">
-                        <span class="price-current">118.000đ</span>
-                        <span class="price-old-sm">158.000đ</span>
-                    </div>
-                    <div class="item-qty col-qty">
-                        <label class="qty-btn-sm" for="qty2">−</label>
-                        <input type="number" id="qty2" value="1" min="1" max="50" class="qty-input-sm">
-                        <label class="qty-btn-sm" for="qty2">+</label>
-                    </div>
-                    <div class="item-total col-total">
-                        <strong>118.000đ</strong>
-                    </div>
-                    <div class="item-action col-action">
-                        <a href="cart.html" class="btn-remove">Xóa</a>
-                    </div>
-                </div><!-- /cart-item 2 -->
 
-
-                <!-- ---- Sản phẩm 3 trong giỏ ---- -->
-                <div class="cart-item">
-                    <input type="checkbox" class="item-checkbox" checked id="item3">
-                    <div class="item-img">
-                        <div class="cart-book-cover" style="background:linear-gradient(135deg,#2980b9,#1a5276);">
-                            <span>Nhà Giả Kim</span>
+                        <!-- Giá đơn -->
+                        <div class="item-price col-price">
+                            <span class="price-current">88.000đ</span>
+                            <span class="price-old-sm">110.000đ</span>
                         </div>
-                    </div>
-                    <div class="item-info">
-                        <a href="product-detail.html" class="item-name">Nhà Giả Kim</a>
-                        <span class="item-author">Paulo Coelho</span>
-                        <span class="item-category">Văn học</span>
-                    </div>
-                    <div class="item-price col-price">
-                        <span class="price-current">72.000đ</span>
-                    </div>
-                    <div class="item-qty col-qty">
-                        <label class="qty-btn-sm" for="qty3">−</label>
-                        <input type="number" id="qty3" value="1" min="1" max="100" class="qty-input-sm">
-                        <label class="qty-btn-sm" for="qty3">+</label>
-                    </div>
-                    <div class="item-total col-total">
-                        <strong>72.000đ</strong>
-                    </div>
-                    <div class="item-action col-action">
-                        <a href="cart.html" class="btn-remove">Xóa</a>
-                    </div>
-                </div><!-- /cart-item 3 -->
 
-                <!-- Tiếp tục mua sắm -->
-                <div class="cart-continue">
-                    <a href="index.html" class="btn-outline">← Tiếp tục mua sắm</a>
-                </div>
+                        <!-- Số lượng -->
+                        <div class="item-qty col-qty">
+                            <label class="qty-btn-sm" for="qty1">−</label>
+                            <input type="number" id="qty1" value="2" min="1" max="58" class="qty-input-sm">
+                            <label class="qty-btn-sm" for="qty1">+</label>
+                        </div>
 
-            </div><!-- /cart-items-section -->
+                        <!-- Thành tiền -->
+                        <div class="item-total col-total">
+                            <strong>176.000đ</strong>
+                        </div>
+
+                        <!-- Nút xóa -->
+                        <div class="item-action col-action">
+                            <a href="cart.html" class="btn-remove" title="Xóa khỏi giỏ">Xóa</a>
+                        </div>
+                    </div><!-- /cart-item 1 -->
 
 
-            <!-- ============================================================
+                    <!-- ---- Sản phẩm 2 trong giỏ ---- -->
+                    <div class="cart-item">
+                        <input type="checkbox" class="item-checkbox" checked id="item2">
+                        <div class="item-img">
+                            <div class="cart-book-cover" style="background:linear-gradient(135deg,#8e44ad,#5b2c6f);">
+                                <span>Atomic Habits</span>
+                            </div>
+                        </div>
+                        <div class="item-info">
+                            <a href="product-detail.html" class="item-name">Atomic Habits – Thói Quen Tốt</a>
+                            <span class="item-author">James Clear</span>
+                            <span class="item-category">Kỹ năng sống</span>
+                        </div>
+                        <div class="item-price col-price">
+                            <span class="price-current">118.000đ</span>
+                            <span class="price-old-sm">158.000đ</span>
+                        </div>
+                        <div class="item-qty col-qty">
+                            <label class="qty-btn-sm" for="qty2">−</label>
+                            <input type="number" id="qty2" value="1" min="1" max="50" class="qty-input-sm">
+                            <label class="qty-btn-sm" for="qty2">+</label>
+                        </div>
+                        <div class="item-total col-total">
+                            <strong>118.000đ</strong>
+                        </div>
+                        <div class="item-action col-action">
+                            <a href="cart.html" class="btn-remove">Xóa</a>
+                        </div>
+                    </div><!-- /cart-item 2 -->
+
+
+                    <!-- ---- Sản phẩm 3 trong giỏ ---- -->
+                    <div class="cart-item">
+                        <input type="checkbox" class="item-checkbox" checked id="item3">
+                        <div class="item-img">
+                            <div class="cart-book-cover" style="background:linear-gradient(135deg,#2980b9,#1a5276);">
+                                <span>Nhà Giả Kim</span>
+                            </div>
+                        </div>
+                        <div class="item-info">
+                            <a href="product-detail.html" class="item-name">Nhà Giả Kim</a>
+                            <span class="item-author">Paulo Coelho</span>
+                            <span class="item-category">Văn học</span>
+                        </div>
+                        <div class="item-price col-price">
+                            <span class="price-current">72.000đ</span>
+                        </div>
+                        <div class="item-qty col-qty">
+                            <label class="qty-btn-sm" for="qty3">−</label>
+                            <input type="number" id="qty3" value="1" min="1" max="100" class="qty-input-sm">
+                            <label class="qty-btn-sm" for="qty3">+</label>
+                        </div>
+                        <div class="item-total col-total">
+                            <strong>72.000đ</strong>
+                        </div>
+                        <div class="item-action col-action">
+                            <a href="cart.html" class="btn-remove">Xóa</a>
+                        </div>
+                    </div><!-- /cart-item 3 -->
+
+                    <!-- Tiếp tục mua sắm -->
+                    <div class="cart-continue">
+                        <a href="index.html" class="btn-outline">← Tiếp tục mua sắm</a>
+                    </div>
+
+                </div><!-- /cart-items-section -->
+
+
+                <!-- ============================================================
                  CỘT PHẢI: Tóm tắt + Địa chỉ + Thanh toán
                  ============================================================ -->
-            <div class="cart-summary-section">
+                <div class="cart-summary-section">
 
-                <!-- ---- THÔNG TIN NGƯỜI ĐẶT (tự động hiển thị) ---- -->
-                <div class="info-card">
-                    <h3>Thông tin người đặt</h3>
-                    <!-- Thông tin lấy từ tài khoản đăng nhập (hardcoded demo) -->
-                    <div class="user-detail-row">
-                        <span>Họ tên:</span>
-                        <strong>Nguyễn Văn An</strong>
-                    </div>
-                    <div class="user-detail-row">
-                        <span>Email:</span>
-                        <strong>user@demo.com</strong>
-                    </div>
-                    <div class="user-detail-row">
-                        <span>SĐT:</span>
-                        <strong>0909 123 456</strong>
-                    </div>
-                </div>
-
-
-                <!-- ---- CHỌN ĐỊA CHỈ GIAO HÀNG ---- -->
-                <div class="info-card">
-                    <h3>Địa chỉ: Địa chỉ giao hàng</h3>
-
-                    <!-- Chọn địa chỉ có sẵn hoặc địa chỉ mới -->
-                    <div class="address-options">
-
-                        <!-- Địa chỉ 1 của tài khoản -->
-                        <label class="address-option">
-                            <input type="radio" name="address" value="addr1" checked>
-                            <div class="address-detail">
-                                <strong>123 Nguyễn Trãi, P.Nguyễn Cư Trinh</strong>
-                                <span>Quận 1, TP. Hồ Chí Minh</span>
-                                <span class="addr-tag">Mặc định</span>
-                            </div>
-                        </label>
-
-                        <!-- Địa chỉ 2 của tài khoản -->
-                        <label class="address-option">
-                            <input type="radio" name="address" value="addr2">
-                            <div class="address-detail">
-                                <strong>45 Lê Văn Việt, P.Tăng Nhơn Phú A</strong>
-                                <span>TP. Thủ Đức, TP. Hồ Chí Minh</span>
-                            </div>
-                        </label>
-
-                        <!-- Thêm địa chỉ mới -->
-                        <label class="address-option address-new">
-                            <input type="radio" name="address" value="new-addr" id="new-addr-radio">
-                            <div class="address-detail">
-                                <strong>Nhập địa chỉ mới</strong>
-                            </div>
-                        </label>
-
-                    </div>
-
-                    <!-- Form nhập địa chỉ mới (hiển thị khi chọn "Địa chỉ mới") -->
-                    <div class="new-address-form" id="new-addr-form">
-                        <div class="form-group">
-                            <label for="new-street">Địa chỉ chi tiết *</label>
-                            <input type="text" id="new-street" name="new_street"
-                                   placeholder="Số nhà, đường, phường/xã...">
+                    <!-- ---- THÔNG TIN NGƯỜI ĐẶT (tự động hiển thị) ---- -->
+                    <div class="info-card">
+                        <h3>Thông tin người đặt</h3>
+                        <!-- Thông tin lấy từ tài khoản đăng nhập (hardcoded demo) -->
+                        <div class="user-detail-row">
+                            <span>Họ tên:</span>
+                            <strong>Nguyễn Văn An</strong>
                         </div>
-                        <div class="form-row">
+                        <div class="user-detail-row">
+                            <span>Email:</span>
+                            <strong>user@demo.com</strong>
+                        </div>
+                        <div class="user-detail-row">
+                            <span>SĐT:</span>
+                            <strong>0909 123 456</strong>
+                        </div>
+                    </div>
+
+
+                    <!-- ---- CHỌN ĐỊA CHỈ GIAO HÀNG ---- -->
+                    <div class="info-card">
+                        <h3>Địa chỉ giao hàng</h3>
+
+                        <!-- Chọn địa chỉ có sẵn hoặc địa chỉ mới -->
+                        <div class="address-options">
+
+                            <!-- Địa chỉ 1 của tài khoản -->
+                            <label class="address-option">
+                                <input type="radio" name="address" value="addr1" checked>
+                                <div class="address-detail">
+                                    <strong>123 Nguyễn Trãi, P.Nguyễn Cư Trinh</strong>
+                                    <span>Quận 1, TP. Hồ Chí Minh</span>
+                                    <span class="addr-tag">Mặc định</span>
+                                </div>
+                            </label>
+
+                            <!-- Địa chỉ 2 của tài khoản -->
+                            <label class="address-option">
+                                <input type="radio" name="address" value="addr2">
+                                <div class="address-detail">
+                                    <strong>45 Lê Văn Việt, P.Tăng Nhơn Phú A</strong>
+                                    <span>TP. Thủ Đức, TP. Hồ Chí Minh</span>
+                                </div>
+                            </label>
+
+                            <!-- Thêm địa chỉ mới -->
+                            <label class="address-option address-new">
+                                <input type="radio" name="address" value="new-addr" id="new-addr-radio">
+                                <div class="address-detail">
+                                    <strong>Nhập địa chỉ mới</strong>
+                                </div>
+                            </label>
+
+                        </div>
+
+                        <!-- Form nhập địa chỉ mới (hiển thị khi chọn "Địa chỉ mới") -->
+                        <div class="new-address-form" id="new-addr-form" style="display:none;">
                             <div class="form-group">
-                                <label for="new-district-cart">Quận / Huyện *</label>
-                                <select id="new-district-cart" name="new_district">
-                                    <option value="">Chọn quận/huyện</option>
-                                    <option value="q1">Quận 1</option>
-                                    <option value="q2">Quận 2 (TP.Thủ Đức)</option>
-                                    <option value="q3">Quận 3</option>
-                                    <option value="q5">Quận 5</option>
-                                    <option value="binh-thanh">Bình Thạnh</option>
-                                    <option value="go-vap">Gò Vấp</option>
-                                </select>
+                                <label for="new-street">Địa chỉ chi tiết *</label>
+                                <input type="text" id="new-street" name="new_street"
+                                    placeholder="Số nhà, đường, phường/xã...">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="new-district-cart">Quận / Huyện *</label>
+                                    <select id="new-district-cart" name="new_district">
+                                        <option value="">Chọn quận/huyện</option>
+                                        <option value="q1">Quận 1</option>
+                                        <option value="q2">Quận 2 (TP.Thủ Đức)</option>
+                                        <option value="q3">Quận 3</option>
+                                        <option value="q5">Quận 5</option>
+                                        <option value="binh-thanh">Bình Thạnh</option>
+                                        <option value="go-vap">Gò Vấp</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-city-cart">Tỉnh / Thành phố *</label>
+                                    <select id="new-city-cart" name="new_city">
+                                        <option value="hcm">TP. Hồ Chí Minh</option>
+                                        <option value="hn">Hà Nội</option>
+                                        <option value="dn">Đà Nẵng</option>
+                                        <option value="ct">Cần Thơ</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="new-city-cart">Tỉnh / Thành phố *</label>
-                                <select id="new-city-cart" name="new_city">
-                                    <option value="hcm">TP. Hồ Chí Minh</option>
-                                    <option value="hn">Hà Nội</option>
-                                    <option value="dn">Đà Nẵng</option>
-                                    <option value="ct">Cần Thơ</option>
-                                </select>
+                                <label for="new-phone-cart">Số điện thoại nhận hàng *</label>
+                                <input type="tel" id="new-phone-cart" name="new_phone" placeholder="0909 xxx xxx">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="new-phone-cart">Số điện thoại nhận hàng *</label>
-                            <input type="tel" id="new-phone-cart" name="new_phone"
-                                   placeholder="0909 xxx xxx">
+
+                    </div><!-- /địa chỉ giao hàng -->
+
+
+                    <!-- ---- HÌNH THỨC THANH TOÁN ---- -->
+                    <div class="info-card">
+                        <h3>Hình thức thanh toán</h3>
+
+                        <!-- Thanh toán trực tuyến -->
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="online">
+                            <div class="payment-detail">
+                                <div>
+                                    <strong>Thanh toán trực tuyến</strong>
+                                    <span>Chuyển khoản / Ví điện tử / Thẻ</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Thanh toán tiền mặt -->
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <div class="payment-detail">
+                                <div>
+                                    <strong>Tiền mặt (COD)</strong>
+                                    <span>Thanh toán khi nhận hàng</span>
+                                </div>
+                            </div>
+                        </label>
+
+                    </div><!-- /hình thức thanh toán -->
+
+
+                    <!-- ---- GHI CHÚ ĐƠN HÀNG ---- -->
+                    <div class="info-card">
+                        <h3>Ghi chú</h3>
+                        <div class="form-group" style="margin:0;">
+                            <textarea name="note" placeholder="Ghi chú cho người giao hàng..."></textarea>
                         </div>
                     </div>
 
-                </div><!-- /địa chỉ giao hàng -->
 
+                    <!-- ---- TÓM TẮT ĐƠN HÀNG ---- -->
+                    <div class="order-summary-card">
+                        <h3>Tóm tắt đơn hàng</h3>
 
-                <!-- ---- HÌNH THỨC THANH TOÁN ---- -->
-                <div class="info-card">
-                    <h3>Hình thức thanh toán</h3>
-
-                    <!-- Thanh toán trực tuyến -->
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="online">
-                        <div class="payment-detail">
-                            <div>
-                                <strong>Thanh toán trực tuyến</strong>
-                                <span>Chuyển khoản / Ví điện tử / Thẻ</span>
+                        <!-- Chi tiết tính tiền -->
+                        <div class="summary-rows">
+                            <div class="summary-row">
+                                <span>Tạm tính (4 quyển):</span>
+                                <span>366.000đ</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Giảm giá:</span>
+                                <span class="discount-text">-42.000đ</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Phí vận chuyển:</span>
+                                <span class="free-text">Miễn phí</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span>Tổng cộng:</span>
+                                <strong class="total-price">324.000đ</strong>
                             </div>
                         </div>
-                    </label>
 
-                    <!-- Thanh toán tiền mặt -->
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="cod" checked>
-                        <div class="payment-detail">
-                            <div>
-                                <strong>Tiền mặt (COD)</strong>
-                                <span>Thanh toán khi nhận hàng</span>
-                            </div>
+                        <!-- Nút đặt hàng – dẫn sang trang xác nhận đơn hàng -->
+                        <a href="order-confirm.html" class="btn-orange btn-full"
+                            style="display:block; text-align:center; margin-top:16px;">
+                            Đặt hàng ngay
+                        </a>
+
+                        <!-- Cam kết mua sắm an toàn -->
+                        <div class="safe-shopping">
+                            <span>Mua sắm an toàn, bảo mật thông tin</span>
                         </div>
-                    </label>
 
-                </div><!-- /hình thức thanh toán -->
+                    </div><!-- /order-summary-card -->
+
+                </div><!-- /cart-summary-section -->
+
+            </div><!-- /cart-layout -->
+
+        </div><!-- /container -->
+    </main>
 
 
-                <!-- ---- GHI CHÚ ĐƠN HÀNG ---- -->
-                <div class="info-card">
-                    <h3>Ghi chú</h3>
-                    <div class="form-group" style="margin:0;">
-                        <textarea name="note" placeholder="Ghi chú cho người giao hàng..."></textarea>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-brand">
+                    <div class="footer-logo-name">BookStore</div>
+                    <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.</p>
+                    <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM &nbsp;|&nbsp; Hotline: 0909 123 456</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-btn">f</a><a href="#" class="social-btn">in</a>
                     </div>
                 </div>
-
-
-                <!-- ---- TÓM TẮT ĐƠN HÀNG ---- -->
-                <div class="order-summary-card">
-                    <h3>Tóm tắt đơn hàng</h3>
-
-                    <!-- Chi tiết tính tiền -->
-                    <div class="summary-rows">
-                        <div class="summary-row">
-                            <span>Tạm tính (4 quyển):</span>
-                            <span>366.000đ</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Giảm giá:</span>
-                            <span class="discount-text">-42.000đ</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Phí vận chuyển:</span>
-                            <span class="free-text">Miễn phí</span>
-                        </div>
-                        <div class="summary-row total-row">
-                            <span>Tổng cộng:</span>
-                            <strong class="total-price">324.000đ</strong>
-                        </div>
-                    </div>
-
-                    <!-- Nút đặt hàng – dẫn sang trang xác nhận đơn hàng -->
-                    <a href="order-confirm.html" class="btn-orange btn-full" style="display:block; text-align:center; margin-top:16px;">
-                        Đặt hàng ngay
-                    </a>
-
-                    <!-- Cam kết mua sắm an toàn -->
-                    <div class="safe-shopping">
-                        <span>Mua sắm an toàn, bảo mật thông tin</span>
-                    </div>
-
-                </div><!-- /order-summary-card -->
-
-            </div><!-- /cart-summary-section -->
-
-        </div><!-- /cart-layout -->
-
-    </div><!-- /container -->
-</main>
-
-
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="footer-main">
-        <div class="container">
-            <div class="footer-brand">
-                <div class="footer-logo-name">BookStore</div>
-                <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.</p>
-                <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM &nbsp;|&nbsp; Hotline: 0909 123 456</p>
-                <div class="footer-social">
-                    <a href="#" class="social-btn">f</a><a href="#" class="social-btn">in</a>
+                <div class="footer-col">
+                    <h4>Danh mục</h4>
+                    <ul>
+                        <li><a href="category.html">Văn học</a></li>
+                        <li><a href="category.html">Kỹ năng sống</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="footer-col">
-                <h4>Danh mục</h4>
-                <ul>
-                    <li><a href="category.html">Văn học</a></li>
-                    <li><a href="category.html">Kỹ năng sống</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Tài khoản</h4>
-                <ul>
-                    <li><a href="order-history.html">Lịch sử đơn hàng</a></li>
-                    <li><a href="login.html">Đăng nhập</a></li>
-                    <li><a href="admin/login.html">Quản trị viên</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Hỗ trợ</h4>
-                <ul><li><a href="#">Hướng dẫn mua hàng</a></li></ul>
+                <div class="footer-col">
+                    <h4>Tài khoản</h4>
+                    <ul>
+                        <li><a href="order-history.html">Lịch sử đơn hàng</a></li>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="admin/login.html">Quản trị viên</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hỗ trợ</h4>
+                    <ul>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <div class="container">© 2026 BookStore – Nhà sách trực tuyến.</div>
-    </div>
-</footer>
+        <div class="footer-bottom">
+            <div class="container">© 2026 BookStore – Nhà sách trực tuyến.</div>
+        </div>
+    </footer>
 
+    <script>
+    (function() {
+        var radios = document.querySelectorAll('input[name="address"]');
+        var form = document.getElementById('new-addr-form');
+        function toggleForm() {
+            var checked = document.querySelector('input[name="address"]:checked');
+            form.style.display = (checked && checked.value === 'new-addr') ? 'block' : 'none';
+        }
+        radios.forEach(function(r) { r.addEventListener('change', toggleForm); });
+        toggleForm(); // chạy khi tải trang
+    })();
+    </script>
 </body>
+
 </html>

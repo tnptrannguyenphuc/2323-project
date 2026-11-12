@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt tài khoản – BookStore</title>
+    <meta name="description" content="Quản lý thông tin tài khoản, sổ địa chỉ và mật khẩu tại BookStore.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/orders.css">
+    <style>
+        .settings-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+        .settings-card-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .settings-card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin: 0;
+        }
+        .avatar-upload-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+            flex-wrap: wrap;
+        }
+        .avatar-preview-lg {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-main), var(--green-dark));
+            color: white;
+            font-size: 32px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .address-item-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .address-item-box.default {
+            border-color: var(--green-main);
+            background: #f0fdf4;
+        }
+        .badge-verified {
+            background: #dcfce7;
+            color: #166534;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+        .badge-default-addr {
+            background: var(--green-main);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        .gender-options {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .gender-options label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER (đồng bộ với index-logged.html & order-history.html)
+     ============================================================ -->
+<header class="site-header">
+    <div class="header-top">
+        <div class="container">
+            <a href="index-logged.html" class="site-logo">
+                <span class="logo-text">
+                    <span class="logo-name">BookStore</span>
+                    <span class="logo-slogan">Kho sách tri thức</span>
+                </span>
+            </a>
+            <div class="header-search">
+                <input type="text" placeholder="Tìm kiếm sách, tác giả, thể loại..." autocomplete="off">
+                <a href="search.html" class="header-search-btn">Tìm kiếm</a>
+            </div>
+            <div class="header-actions">
+                <a href="cart.html" class="header-action-btn">
+                    <span>Giỏ hàng</span>
+                    <span class="cart-badge">3</span>
+                </a>
+                <div class="user-logged-in">
+                    <span class="user-avatar">N</span>
+                    <div class="user-info-header">
+                        <span class="user-name">Nguyễn Văn An</span>
+                        <span class="user-email">user@demo.com</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="order-history.html">Đơn hàng của tôi</a>
+                        <a href="account-settings.html" style="color:var(--green-main); font-weight:600;">Cài đặt tài khoản</a>
+                        <a href="index.html">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="header-nav">
+        <div class="container">
+            <a href="category.html" class="nav-item">Văn học</a>
+            <a href="category.html" class="nav-item">Kinh tế</a>
+            <a href="category.html" class="nav-item">Khoa học</a>
+            <a href="category.html" class="nav-item">Kỹ năng sống</a>
+            <a href="category.html" class="nav-item">Thiếu nhi</a>
+            <a href="category.html" class="nav-item">Giáo khoa</a>
+            <a href="category.html" class="nav-item">Lịch sử</a>
+            <a href="search.html" class="nav-item" style="margin-left:auto; color:#ffe082;">Tìm nâng cao</a>
+        </div>
+    </nav>
+</header>
+
+
+<!-- ============================================================
+     MAIN - NỘI DUNG CÀI ĐẶT TÀI KHOẢN
+     ============================================================ -->
+<main class="main-content">
+    <div class="container">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index-logged.html">Trang chủ</a>
+            <span class="sep">›</span>
+            <span>Tài khoản</span>
+            <span class="sep">›</span>
+            <span>Cài đặt tài khoản</span>
+        </nav>
+
+        <!-- Bố cục 2 cột: sidebar tài khoản + nội dung form cài đặt -->
+        <div class="account-layout">
+
+            <!-- ---- SIDEBAR TÀI KHOẢN ---- -->
+            <aside class="account-sidebar">
+                <!-- Thông tin tóm tắt user -->
+                <div class="sidebar-section user-profile-card">
+                    <div class="profile-avatar">N</div>
+                    <div class="profile-info">
+                        <strong>Nguyễn Văn An</strong>
+                        <span>user@demo.com</span>
+                    </div>
+                </div>
+
+                <!-- Menu điều hướng tài khoản -->
+                <div class="sidebar-section">
+                    <h3>Tài khoản của tôi</h3>
+                    <span class="sidebar-link active" style="cursor:default; display:block;">Hồ sơ cá nhân</span>
+                    <span class="sidebar-link" style="cursor:default; display:block;">Sổ địa chỉ</span>
+                    <a href="order-history.html" class="sidebar-link">Lịch sử đơn hàng</a>
+                    <span class="sidebar-link" style="cursor:default; display:block;">Đổi mật khẩu</span>
+                    <a href="index.html" class="sidebar-link" style="color:#e74c3c;">Đăng xuất</a>
+                </div>
+            </aside>
+
+            <!-- ---- NỘI DUNG CÀI ĐẶT ---- -->
+            <div class="account-content">
+                <h1>Cài đặt tài khoản</h1>
+                <p class="content-subtitle">Quản lý hồ sơ cá nhân, sổ địa chỉ nhận hàng và bảo mật tài khoản BookStore của bạn</p>
+
+                <!-- CARD 1: HỒ SƠ CÁ NHÂN -->
+                <section class="settings-card" id="profile-section">
+                    <div class="settings-card-header">
+                        <h2 class="settings-card-title">👤 Thông tin cá nhân</h2>
+                        <span style="font-size:0.85rem; color:var(--text-gray);">Cập nhật lần cuối: 28/10/2026</span>
+                    </div>
+
+                    <!-- Ảnh đại diện -->
+                    <div class="avatar-upload-row">
+                        <div class="avatar-preview-lg">N</div>
+                        <div>
+                            <div style="font-weight:700; color:var(--text-dark); margin-bottom:4px;">Ảnh đại diện</div>
+                            <div style="font-size:0.85rem; color:var(--text-gray); margin-bottom:10px;">Chấp nhận file định dạng JPG, PNG hoặc GIF. Tối đa 2MB.</div>
+                            <button type="button" class="btn btn-sm btn-outline" style="border-color:var(--green-main); color:var(--green-main);">Đổi ảnh mới</button>
+                        </div>
+                    </div>
+
+                    <!-- Form thông tin -->
+                    <form action="#" method="POST" onsubmit="alert('Đã cập nhật thông tin thành công!'); return false;">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom:18px;">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="fullname"><strong>Họ và tên</strong> <span style="color:#e74c3c;">*</span></label>
+                                <input type="text" id="fullname" value="Nguyễn Văn An" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="email"><strong>Địa chỉ Email</strong> <span class="badge-verified">✓ Đã xác minh</span></label>
+                                <input type="email" id="email" value="user@demo.com" required>
+                            </div>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom:18px;">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="phone"><strong>Số điện thoại</strong> <span style="color:#e74c3c;">*</span></label>
+                                <input type="tel" id="phone" value="0912345678" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label for="birthday"><strong>Ngày sinh</strong></label>
+                                <input type="date" id="birthday" value="1998-08-15">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><strong>Giới tính</strong></label>
+                            <div class="gender-options">
+                                <label><input type="radio" name="gender" value="male" checked> Nam</label>
+                                <label><input type="radio" name="gender" value="female"> Nữ</label>
+                                <label><input type="radio" name="gender" value="other"> Khác</label>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; gap:12px; margin-top:24px;">
+                            <button type="submit" class="btn btn-primary" style="padding:10px 24px;">Lưu thay đổi</button>
+                            <button type="reset" class="btn btn-secondary" style="padding:10px 20px;">Hủy bỏ</button>
+                        </div>
+                    </form>
+                </section>
+
+
+                <!-- CARD 2: SỔ ĐỊA CHỈ GIAO HÀNG -->
+                <section class="settings-card" id="address-section">
+                    <div class="settings-card-header">
+                        <div>
+                            <h2 class="settings-card-title">📍 Sổ địa chỉ nhận hàng</h2>
+                            <span style="font-size:0.85rem; color:var(--text-gray);">Quản lý danh sách địa chỉ giao hàng để đặt hàng nhanh chóng</span>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary">+ Thêm địa chỉ mới</button>
+                    </div>
+
+                    <!-- Địa chỉ 1: Mặc định -->
+                    <div class="address-item-box default">
+                        <div>
+                            <div style="font-weight:700; font-size:1rem; color:var(--text-dark); margin-bottom:4px;">
+                                Nguyễn Văn An
+                                <span style="font-weight:normal; color:var(--text-gray); margin-left:8px;">| 0912 345 678</span>
+                                <span class="badge-default-addr">Mặc định</span>
+                            </div>
+                            <div style="color:var(--text-dark); font-size:0.9rem; margin-top:4px;">
+                                123 Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <a href="#" class="btn btn-sm btn-outline" style="border-color:var(--green-main); color:var(--green-main);">Sửa</a>
+                            <span class="btn btn-sm btn-secondary disabled" style="opacity:0.5; cursor:not-allowed;">Xóa</span>
+                        </div>
+                    </div>
+
+                    <!-- Địa chỉ 2 -->
+                    <div class="address-item-box">
+                        <div>
+                            <div style="font-weight:700; font-size:1rem; color:var(--text-dark); margin-bottom:4px;">
+                                Nguyễn Văn An (Văn phòng)
+                                <span style="font-weight:normal; color:var(--text-gray); margin-left:8px;">| 0988 776 655</span>
+                            </div>
+                            <div style="color:var(--text-dark); font-size:0.9rem; margin-top:4px;">
+                                Tòa nhà FPT, Phố Duy Tân, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <a href="#" class="btn btn-sm btn-secondary">Thiết lập mặc định</a>
+                            <a href="#" class="btn btn-sm btn-outline" style="border-color:var(--green-main); color:var(--green-main);">Sửa</a>
+                            <a href="#" class="btn btn-sm btn-outline" style="border-color:#e74c3c; color:#e74c3c;">Xóa</a>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- CARD 3: ĐỔI MẬT KHẨU & BẢO MẬT -->
+                <section class="settings-card" id="password-section">
+                    <div class="settings-card-header">
+                        <div>
+                            <h2 class="settings-card-title">🔒 Đổi mật khẩu & Bảo mật</h2>
+                            <span style="font-size:0.85rem; color:var(--text-gray);">Để tăng cường an toàn, vui lòng không chia sẻ mật khẩu của bạn</span>
+                        </div>
+                    </div>
+
+                    <form action="#" method="POST" onsubmit="alert('Đã đổi mật khẩu thành công!'); return false;" style="max-width:520px;">
+                        <div class="form-group">
+                            <label for="current-pwd"><strong>Mật khẩu hiện tại</strong> <span style="color:#e74c3c;">*</span></label>
+                            <input type="password" id="current-pwd" placeholder="Nhập mật khẩu đang dùng" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new-pwd"><strong>Mật khẩu mới</strong> <span style="color:#e74c3c;">*</span></label>
+                            <input type="password" id="new-pwd" placeholder="Tối thiểu 6 ký tự, gồm chữ và số" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-pwd"><strong>Xác nhận mật khẩu mới</strong> <span style="color:#e74c3c;">*</span></label>
+                            <input type="password" id="confirm-pwd" placeholder="Nhập lại mật khẩu mới" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-orange" style="padding:10px 24px; margin-top:8px;">Đổi mật khẩu</button>
+                    </form>
+                </section>
+
+            </div><!-- /account-content -->
+
+        </div><!-- /account-layout -->
+
+    </div><!-- /container -->
+</main>
+
+
+<!-- ============================================================
+     FOOTER (đồng bộ chuẩn BookStore)
+     ============================================================ -->
+<footer class="site-footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="footer-brand">
+                <div class="footer-logo-name">BookStore</div>
+                <p>Nhà sách trực tuyến uy tín hàng đầu Việt Nam.<br>
+                   Cung cấp sách chính hãng, giao hàng nhanh toàn quốc.</p>
+                <p>Địa chỉ: 123 Đường Sách, Q.1, TP.HCM<br>
+                   Hotline: 0909 123 456<br>
+                   Email: contact@bookstore.vn</p>
+                <div class="footer-social">
+                    <a href="#" class="social-btn">f</a>
+                    <a href="#" class="social-btn">in</a>
+                    <a href="#" class="social-btn">yt</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Danh mục</h4>
+                <ul>
+                    <li><a href="category.html">Văn học</a></li>
+                    <li><a href="category.html">Kinh tế</a></li>
+                    <li><a href="category.html">Khoa học</a></li>
+                    <li><a href="category.html">Kỹ năng sống</a></li>
+                    <li><a href="category.html">Thiếu nhi</a></li>
+                    <li><a href="category.html">Giáo khoa</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Liên hệ chúng tôi</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Tài khoản</h4>
+                <ul>
+                    <li><a href="account-settings.html">Cài đặt tài khoản</a></li>
+                    <li><a href="order-history.html">Lịch sử đơn hàng</a></li>
+                    <li><a href="cart.html">Giỏ hàng</a></li>
+                    <li><a href="admin/login.html">Quản trị viên</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            © 2026 BookStore – Nhà sách trực tuyến. Thiết kế bởi nhóm sinh viên.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+

@@ -322,7 +322,8 @@ input, select, textarea {
 /* ============================================================
    PAGE CONTENT - Nội dung từng trang
    ============================================================ */
-.page-content {
+.page-content,
+.admin-content {
     flex: 1;
     padding: 28px;
 }
