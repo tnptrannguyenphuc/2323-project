@@ -20,9 +20,10 @@ public class KhachHangController extends Controller {
             if (chon == 1) {
                 ds.xuatDanhSach();
             } else if (chon == 2) {
+                String ma  = ConsoleInput.nhapMaMoi("  Ma KH (vd: KH004): ", ds);
                 String ten = ConsoleInput.nhapChuoi("  Ho ten: ");
                 String sdt = ConsoleInput.nhapChuoi("  So dien thoai: ");
-                KhachHang kh = ds.taoMoi(ten, sdt);
+                KhachHang kh = ds.taoMoi(ma, ten, sdt);
                 if (ds.them(kh)) System.out.println("Them khach hang thanh cong! Ma KH: " + kh.getMaKH());
             } else if (chon == 3) {
                 String ma = ConsoleInput.nhapChuoi("Nhap ma KH can xoa: ");

@@ -32,11 +32,12 @@ public class NhanVienController extends Controller {
     private void themNhanVien(DanhSachNhanVien ds) {
         System.out.println("  Chon vai tro: 1-Quan ly  2-Thu ngan  3-Nhan vien kho");
         int loai     = ConsoleInput.nhapInt("  Chon (1-3): ", 1, 3);
+        String ma    = ConsoleInput.nhapMaMoi("  Ma NV (vd: QL02, TN03, NK02): ", ds);
         String ten   = ConsoleInput.nhapChuoi("  Ho ten: ");
         String sdt   = ConsoleInput.nhapChuoi("  So dien thoai: ");
         double luong = ConsoleInput.nhapDouble("  Luong co ban: ", 0);
         String mk    = ConsoleInput.nhapChuoi("  Mat khau dang nhap: ");
-        NhanVien nv = ds.taoMoi(loai, ten, sdt, luong, mk);
+        NhanVien nv = ds.taoMoi(loai, ma, ten, sdt, luong, mk);
         if (ds.them(nv)) System.out.println("Da them nhan vien thanh cong! Ma NV: " + nv.getMaNV());
     }
 

@@ -8,7 +8,6 @@ import java.util.Arrays;
 public class DanhSachNhanVien extends DanhSachCoBan<NhanVien> {
 
     private static final String[] MA_LOAI = {"QU", "TH", "NV"};          // ma loai trong file
-    private static final String[] TIEN_TO = {"QL", "TN", "NK"};          // tien to ma nhan vien
     private static final String[] TEN_LOAI = {"Quan ly", "Thu ngan", "Nhan vien kho"};
 
     public DanhSachNhanVien() { super("nhan vien"); }
@@ -35,8 +34,8 @@ public class DanhSachNhanVien extends DanhSachCoBan<NhanVien> {
     }
 
     // loai: 1-Quan ly, 2-Thu ngan, 3-Nhan vien kho
-    public NhanVien taoMoi(int loai, String ten, String sdt, double luong, String mk) {
-        String ma = TIEN_TO[loai - 1] + String.format("%02d", getSoLuong() + 1);
+    // ma: do nguoi dung nhap
+    public NhanVien taoMoi(int loai, String ma, String ten, String sdt, double luong, String mk) {
         return tao(MA_LOAI[loai - 1], ma, ten, sdt, luong, mk);
     }
 

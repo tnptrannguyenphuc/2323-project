@@ -7,10 +7,10 @@ import java.time.LocalDate;
  */
 public class SanPhamForm {
 
-    public static SanPham nhapMoi() {
+    public static SanPham nhapMoi(DanhSachSanPham ds) {
         System.out.println("  Chon loai san pham: 1-Thuc pham  2-Do uong");
         int loai = ConsoleInput.nhapInt("  Chon loai (1-2): ", 1, 2);
-        String ma = ConsoleInput.nhapChuoi("  Ma SP: ").toUpperCase();
+        String ma = ConsoleInput.nhapMaMoi("  Ma SP (vd: TP005, DU004): ", ds);
         String ten = ConsoleInput.nhapChuoi("  Ten san pham: ");
         String dv = ConsoleInput.nhapChuoi("  Don vi tinh (kg/chai/hop/vi/cai): ");
         double gn = ConsoleInput.nhapDouble("  Gia nhap: ", 0);

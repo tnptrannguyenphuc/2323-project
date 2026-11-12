@@ -67,11 +67,8 @@ public class SieuThi {
     // Hoan tat thanh toan hoa don
     public void thanhToan(HoaDon hd, KhachHang kh) {
         if (kh != null) {
-            // Giam gia theo hang thanh vien (neu co)
-            double giamTV = hd.tinhTongTienHang() * kh.getPhanTramGiam();
-            hd.setGiamThanhVien(giamTV);
-            // Cong diem tich luy cho khach hang dua tren so tien thanh toan thuc te
-            kh.congDiem(hd.tinhTongThanhToan());
+            // Cong diem tich luy cho khach hang thanh vien dua tren tong tien hoa don
+            kh.congDiem(hd.tinhTongTienHang());
         }
         dsHD.them(hd);
     }
@@ -93,6 +90,7 @@ public class SieuThi {
         dsSP.docFile(DATA_DIR + "sanpham.txt");
         dsNV.docFile(DATA_DIR + "nhanvien.txt");
         dsKH.docFile(DATA_DIR + "khachhang.txt");
+        dsHD.docFile(DATA_DIR + "hoadon.txt");
     }
 
     // Cac ham getter lay danh sach

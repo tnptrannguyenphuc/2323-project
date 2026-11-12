@@ -25,11 +25,7 @@ public class InHoaDon {
                     ct.getTenSP(), ct.getSoLuong(), ct.getDonGia(), ct.tinhThanhTien());
         }
         System.out.println("-".repeat(65));
-        System.out.printf(FMT_TIEN, "Tổng tiền hàng:", hd.tinhTongTienHang());
-        if (hd.getGiamThanhVien() > 0) {
-            System.out.printf(FMT_TIEN, "Ưu đãi hạng thành viên:", -hd.getGiamThanhVien());
-        }
-        System.out.printf(FMT_TIEN, "TỔNG CẦN THANH TOÁN (" + hd.getPhuongThuc() + "):", hd.tinhTongThanhToan());
+        System.out.printf(FMT_TIEN, "TỔNG CẦN THANH TOÁN (" + hd.getPhuongThuc() + "):", hd.tinhTongTienHang());
         if (hd.getPhuongThuc().equals(HoaDon.PHUONG_THUC[0])) {
             System.out.printf(FMT_TIEN, "Tiền khách đưa:", hd.getTienKhachDua());
             System.out.printf(FMT_TIEN, "Tiền thừa trả lại:", hd.tinhTienThua());
@@ -47,6 +43,6 @@ public class InHoaDon {
     public static void ngan(HoaDon hd) {
         System.out.printf("%-8s %-18s %-8s %-12s %,16.0f đ%n",
                 hd.getMaHD(), hd.getThoiGian().format(FMT), hd.getMaNV(),
-                hd.laKhachLe() ? "Khách lẻ" : hd.getMaKH(), hd.tinhTongThanhToan());
+                hd.laKhachLe() ? "Khách lẻ" : hd.getMaKH(), hd.tinhTongTienHang());
     }
 }

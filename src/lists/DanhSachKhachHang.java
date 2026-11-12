@@ -24,8 +24,8 @@ public class DanhSachKhachHang extends DanhSachCoBan<KhachHang> {
         return loc(k -> k.getHoTen().toLowerCase().contains(tuKhoa.toLowerCase()), KhachHang[]::new);
     }
 
-    // Tao khach hang moi voi ma tu tang
-    public KhachHang taoMoi(String hoTen, String sdt) {
-        return new KhachHang("KH" + String.format("%03d", getSoLuong() + 1), hoTen, sdt, 0);
+    // Tao khach hang moi voi ma do nguoi dung nhap (diem tich luy ban dau = 0)
+    public KhachHang taoMoi(String ma, String hoTen, String sdt) {
+        return new KhachHang(ma, hoTen, sdt, 0);
     }
 }

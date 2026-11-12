@@ -26,11 +26,6 @@ public abstract class SanPham {
     // Hàm TRỪU TƯỢNG: lớp con BẮT BUỘC cài đặt
     public abstract String getLoai(); // "Thực phẩm", "Đồ uống"
 
-    // Giá bán thực tế
-    public double giaBanThucTe() {
-        return giaBan;
-    }
-
     // Kiểm tra còn hàng để bán hay không
     public boolean coTheBan() {
         return soLuong > 0;

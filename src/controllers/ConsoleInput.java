@@ -1,3 +1,4 @@
+import interfaces.IQuanLyDanhSach;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,21 @@ public class ConsoleInput {
     public static String nhapChuoi(String thongBao) {
         System.out.print(thongBao);
         return SC.nextLine().trim();
+    }
+
+    // Nhap ma moi cho danh sach: khong duoc de trong, tu doi sang chu hoa,
+    // va khong duoc trung voi ma da co trong danh sach (kiem tra ngay khi nhap)
+    public static String nhapMaMoi(String thongBao, IQuanLyDanhSach<?> ds) {
+        while (true) {
+            String ma = nhapChuoi(thongBao).toUpperCase();
+            if (ma.isEmpty()) {
+                System.out.println("  Loi: Ma khong duoc de trong!");
+            } else if (ds.timTheoMa(ma) != null) {
+                System.out.println("  Loi: Ma " + ma + " da ton tai, vui long nhap ma khac!");
+            } else {
+                return ma;
+            }
+        }
     }
 
     public static int nhapInt(String thongBao, int min, int max) {

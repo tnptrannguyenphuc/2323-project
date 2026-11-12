@@ -13,8 +13,7 @@ public class BanHangController extends Controller {
             System.out.println("So dien thoai chua dang ky thanh vien, tinh la khach le.");
         }
         if (kh != null) {
-            System.out.printf("Khach hang: %s | Hang: %s | Uu dai giam: %.0f%%%n",
-                    kh.getHoTen(), kh.getHangTV(), kh.getPhanTramGiam() * 100);
+            System.out.printf("Khach hang: %s | Hang: %s%n", kh.getHoTen(), kh.getHangTV());
         }
 
         HoaDon hd = new HoaDon(st.getDsHD().taoMaMoi(), st.getNguoiDangNhap().getMaNV(),
@@ -66,9 +65,9 @@ public class BanHangController extends Controller {
         int pt = ConsoleInput.nhapInt("Chon: ", 1, HoaDon.PHUONG_THUC.length);
         hd.setPhuongThuc(HoaDon.PHUONG_THUC[pt - 1]);
 
-        double canTra = hd.tinhTongTienHang() * (1 - (kh != null ? kh.getPhanTramGiam() : 0));
-        System.out.printf("Tong tien can thanh toan: %.0f VND%n", canTra);
-        hd.setTienKhachDua(pt == 1 ? ConsoleInput.nhapDouble("Nhap so tien khach dua: ", canTra) : canTra);
+        double tongTien = hd.tinhTongTienHang();
+        System.out.printf("Tong tien can thanh toan: %.0f VND%n", tongTien);
+        hd.setTienKhachDua(pt == 1 ? ConsoleInput.nhapDouble("Nhap so tien khach dua: ", tongTien) : tongTien);
 
         st.thanhToan(hd, kh);
         System.out.println("\n----- KET QUA GIAO DICH -----");

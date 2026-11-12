@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Lớp HoaDon: hóa đơn bán hàng, chứa mảng ChiTietHoaDon (mảng thủ công),
- * áp dụng chiết khấu thành viên và phương thức thanh toán.
+ * và phương thức thanh toán.
  */
 public class HoaDon {
 
@@ -21,7 +21,6 @@ public class HoaDon {
 
     private String phuongThuc = PHUONG_THUC[0]; // phương thức thanh toán
     private double tienKhachDua;   // tiền khách đưa (nếu tiền mặt)
-    private double giamThanhVien;  // số tiền giảm theo hạng thành viên
 
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
@@ -30,6 +29,17 @@ public class HoaDon {
         this.maNV     = maNV;
         this.maKH     = maKH;
         this.thoiGian = LocalDateTime.now();
+    }
+
+    // Tạo hóa đơn từ dòng thông tin trong file đã tách bằng ";"
+    // Định dạng: maHD;thoiGian;maNV;maKH;phuongThuc;tienKhachDua
+    // (các món hàng nằm ở các dòng "CT" phía sau, do DanhSachHoaDon đọc và thêm vào)
+    public static HoaDon tuChuoi(String[] t) {
+        HoaDon hd = new HoaDon(t[0], t[2], t[3]);
+        hd.thoiGian     = LocalDateTime.parse(t[1], FMT); // giữ đúng thời gian lập hóa đơn cũ
+        hd.phuongThuc   = t[4];
+        hd.tienKhachDua = Double.parseDouble(t[5]);
+        return hd;
     }
 
     // Thêm một món hàng vào hóa đơn
@@ -47,21 +57,16 @@ public class HoaDon {
         dsChiTiet[soChiTiet++] = new ChiTietHoaDon(maSP, tenSP, donGia, soLuong);
     }
 
-    // Tổng tiền hàng trước khi giảm giá
+    // Tổng tiền hàng = tổng tiền khách phải thanh toán
     public double tinhTongTienHang() {
         double tong = 0;
         for (int i = 0; i < soChiTiet; i++) tong += dsChiTiet[i].tinhThanhTien();
         return tong;
     }
 
-    // Tổng phải thanh toán sau khi trừ ưu đãi thành viên
-    public double tinhTongThanhToan() {
-        return Math.max(0, tinhTongTienHang() - giamThanhVien);
-    }
-
     // Tiền thừa trả lại cho khách
     public double tinhTienThua() {
-        return Math.max(0, tienKhachDua - tinhTongThanhToan());
+        return Math.max(0, tienKhachDua - tinhTongTienHang());
     }
 
     public boolean laKhachLe() {
@@ -73,7 +78,7 @@ public class HoaDon {
     // Chuyển hóa đơn sang chuỗi (nhiều dòng) để ghi file
     public String toFileString() {
         String s = String.join(";", maHD, thoiGian.format(FMT), maNV, maKH,
-                String.valueOf((long) giamThanhVien), phuongThuc, String.valueOf((long) tienKhachDua));
+                phuongThuc, String.valueOf((long) tienKhachDua));
         for (int i = 0; i < soChiTiet; i++) s += "\n" + dsChiTiet[i].toFileString();
         return s;
     }
@@ -85,8 +90,6 @@ public class HoaDon {
     public ChiTietHoaDon getChiTiet(int i) { return dsChiTiet[i]; }
     public LocalDateTime getThoiGian() { return thoiGian; }
     public int getSoChiTiet()          { return soChiTiet; }
-    public double getGiamThanhVien()   { return giamThanhVien; }
-    public void setGiamThanhVien(double g) { this.giamThanhVien = g; }
     public String getPhuongThuc()      { return phuongThuc; }
     public void setPhuongThuc(String p){ this.phuongThuc = p; }
     public void setTienKhachDua(double t){ this.tienKhachDua = t; }

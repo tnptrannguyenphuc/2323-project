@@ -25,7 +25,7 @@ public class SanPhamController extends Controller {
             switch (chon) {
                 case 1: ds.xuatDanhSach(); break;
                 case 2:
-                    if (ds.them(SanPhamForm.nhapMoi())) System.out.println("Da them san pham thanh cong!");
+                    if (ds.them(SanPhamForm.nhapMoi(ds))) System.out.println("Da them san pham thanh cong!");
                     break;
                 case 3: SanPhamForm.sua(ds); break;
                 case 4:

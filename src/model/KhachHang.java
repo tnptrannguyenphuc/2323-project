@@ -6,7 +6,6 @@ package model;
  * Tính năng nổi bật:
  *   - Tích lũy điểm sau mỗi lần mua hàng (cứ 10.000 đ = 1 điểm).
  *   - Hạng thành viên tăng dần: Thường -> Bạc -> Vàng -> Kim cương.
- *   - Hạng cao hơn được giảm giá nhiều hơn khi thanh toán hóa đơn.
  */
 public class KhachHang {
 
@@ -14,8 +13,6 @@ public class KhachHang {
     public static final String[] TEN_HANG  = {"Thường", "Bạc", "Vàng", "Kim cương"};
     // Điểm tối thiểu để đạt mỗi hạng tương ứng
     public static final int[]    DIEM_MIN  = {0, 100, 500, 1500};
-    // % giảm giá theo từng hạng (0%, 1%, 2%, 3%)
-    public static final double[] GIAM_HANG = {0.0, 0.01, 0.02, 0.03};
 
     private String maKH;        // mã khách hàng (ví dụ: KH001)
     private String hoTen;       // họ và tên
@@ -41,11 +38,6 @@ public class KhachHang {
     // Tên hạng thành viên hiện tại
     public String getHangTV() { 
         return TEN_HANG[getChiSoHang()]; 
-    }
-
-    // % giảm giá theo hạng hiện tại
-    public double getPhanTramGiam() { 
-        return GIAM_HANG[getChiSoHang()]; 
     }
 
     // Cộng điểm sau khi mua hàng: cứ 10.000 đ = 1 điểm
